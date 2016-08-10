@@ -4,6 +4,6 @@ class Report < ApplicationRecord
 
 
     validates :report_text, length: { minimum: 30, maximum: 300 }, presence: true
-
+    validates :sender_user, presence: true
 
 end
