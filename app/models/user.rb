@@ -4,10 +4,10 @@ class User < ApplicationRecord
   has_many :reports_on_user, class_name: 'Report', foreign_key: :reported_id
   has_many :posts
 
-  validation :login, uniqueness: true, presence: true
+  validates :login, uniqueness: true, presence: true
 
   validate :check_date_of_birth
-  
+
  def check_date_of_birth
     from = 16.years.ago.to_date
     to = 200.years.ago.to_date

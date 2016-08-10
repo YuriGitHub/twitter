@@ -5,6 +5,6 @@ class Post < ApplicationRecord
 	has_many :comments
 
 
-	validate :text, length: { in: 10...140}
-	validate :text, :user_id, presence: true
+	validates :text, length: { in: 10...140}
+	validates :text, :user_id, presence: true
 end
