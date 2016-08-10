@@ -12,7 +12,7 @@ RSpec.describe Report, type: :model do
 		describe 'Validation test' do
 
 			it 'validate text length' do
-				should validate_length_of(:report_text).is_at_least(30)
+				should validate_length_of(:report_text).is_at_least(30).is_at_most(300)
 			end
 			it 'validate presence report text' do
 				should validate_presence_of :report_text
