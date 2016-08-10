@@ -5,7 +5,7 @@ require 'rails_helper'
 		end
 
 		it 'have many User reports on user' do
-	 		should have_many(:reports_on_user)
+	 		should have_many(:reports)
 		end
 
 		it 'Naby posts' do
