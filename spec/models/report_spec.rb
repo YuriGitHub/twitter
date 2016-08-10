@@ -6,7 +6,7 @@ RSpec.describe Report, type: :model do
 		end
 
 		it 'belong to reported_user' do
-	 		should belong_to(:reported_user)
+	 		should belong_to(:reportable)
 		end
 
 		describe 'Validation test' do
@@ -20,7 +20,7 @@ RSpec.describe Report, type: :model do
 
 			it 'validate presence other field' do
 				
-				should validate_presence_of :type_of_report
+				#should validate_presence_of :type_of_report
 				should validate_presence_of :reported_id
 			end
 		end
