@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :login, uniqueness: true, presence: true
 
   validate :check_date_of_birth
-  
+
  def check_date_of_birth
     from = 16.years.ago.to_date
     to = 200.years.ago.to_date
