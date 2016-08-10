@@ -6,6 +6,7 @@ RSpec.describe Post, type: :model do
         should have_many :likes
         should have_many :images
         should have_many :comments
+        should have_many :reports
     end
 # validates :text, length: { in: 10...140}
 # 	validates :text, :user_id, presence: true
