@@ -11,5 +11,11 @@ RSpec.describe Comment, type: :model do
      	should validate_length_of(:text).is_at_most(50)
     end
 
+    it 'check has_many reports' do
+    	should have_many :reports
+    end
+
+    
+
 
 end
