@@ -20,10 +20,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
    def update
        if current_user.valid_password?(account_update_params[:current_password])
-           User.update(account_update_params.except(:current_password))
+         u = User.update(account_update_params.except(:current_password))
+         if u[0].valid?
+            redirect_to edit_user_registration_path
+         else
+             errors = ""
+             u[0].errors.full_messages.each do |e|
+               errors = errors+e+" " 
+             end
+             flash[:error] = errors
+            redirect_to edit_user_registration_path
+         end
+       else
+           flash[:error] = "Wrong password"
             redirect_to edit_user_registration_path
        end
-   end
+    end
+
 
   # DELETE /resource
    def destroy
@@ -62,6 +75,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
    end
    private 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name,:login,:gender,:date_of_birth,:country,:city , :current_password)
+    params.require(:user).permit(:avatar,:first_name, :last_name,:login,:gender,:date_of_birth,:country,:city , :current_password)
   end
 end
