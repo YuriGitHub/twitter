@@ -38,6 +38,8 @@ gem 'draper',              '> 3.x'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 
+gem 'activerecord-session_store'
+
 gem 'sunspot_rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
