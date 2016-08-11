@@ -16,6 +16,10 @@ class User < ApplicationRecord
 
   validate :check_date_of_birth
 
+  # after_create do 
+  #   #DeviseMailer.welcome_email(self.email).deliver_later
+  # end
+
  def check_date_of_birth
     from = 16.years.ago.to_date
     to = 200.years.ago.to_date
@@ -23,7 +27,7 @@ class User < ApplicationRecord
       errors.add(:date_of_birth,'Date of birth lesser than accepted') unless date_of_birth < from
       errors.add(:date_of_birth,"Are u joking?, youre really: #{Date.current.year - date_of_birth.year}") unless date_of_birth > to
     end
-<<<<<<< HEAD
+
   end 
 
 
@@ -56,8 +60,7 @@ def self.new_with_session(params, session)
     end
   end
   
-=======
- end
+
 
  # Search user by first_name, last_name, email, login
  searchable do
@@ -65,5 +68,5 @@ def self.new_with_session(params, session)
    text :first_name, :last_name
  end
 
->>>>>>> pre_development
+
 end
