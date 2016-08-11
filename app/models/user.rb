@@ -4,9 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:confirmable, :validatable
 
-  after_create :reindex!
-  after_update :reindex!
-
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
   has_many :posts
@@ -26,17 +23,8 @@ class User < ApplicationRecord
 
  # Search user by first_name, last_name, email, login
  searchable do
-   text :first_name, :last_name, :email
-
-   string  :sort_login do
-      title.downcase.gsub(/^(an?|the)/, '')
-    end
+   text :login, :email
+   text :first_name, :last_name
  end
 
- protected
- 
-  def reindex!
-    Sunspot.index!(self)
-  end
- 
 end

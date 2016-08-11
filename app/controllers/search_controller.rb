@@ -1,9 +1,12 @@
 class SearchController < ApplicationController
-
+  
+  # Search user
   def search
-    @users = User.search {
-      keywords params[:query]
-      order_by :created_at, :asc
-    }.results
+    @search = Sunspot.search( User ) do
+     fulltext params[:query]
+    end
+    @users = @search.results
+    
+    render 'search/index'
   end
 end
