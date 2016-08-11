@@ -24,6 +24,7 @@ require 'rails_helper'
                     u2.save
                     u3.save
                     u4.save
+
                     expect(u1.valid?).to be false
                     expect(u2.valid?).to be true
                     expect(u3.valid?).to be true

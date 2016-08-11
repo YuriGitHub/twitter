@@ -16,7 +16,7 @@ Devise.setup do |config|
   config.mailer_sender = APP_CONFIG['DEFAULT_EMAIL_FROM']
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+   config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -272,4 +272,7 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.omniauth :facebook, "528746693981384", "ef2432d3e9e6bfbf63d3edb4cf257e95"
+  config.omniauth :google_oauth2, "241693823924-kvrk5u2fcvglko0qc0l2efk0a2ll3kha.apps.googleusercontent.com",
+                  "OBKyW4mpZ080GdBeyRd-x1GC"
 end
