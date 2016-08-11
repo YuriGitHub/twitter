@@ -17,6 +17,7 @@ require 'rails_helper'
                 end
                 it 'checks date of birth validator' do
                     u1 = User.create(confirmed_at:DateTime.now,email:'email1@mail.com',password:'password',login:'somel1',date_of_birth:201.years.ago.to_date)
+<<<<<<< HEAD
                     u2 = User.create(email:'email2@mail.com',password:'password',login:'somel2',date_of_birth:82.years.ago.to_date)
                     u3 = User.create(email:'email3@mail.com',password:'password',login:'somel3',date_of_birth:17.years.ago.to_date)
                     u4 = User.create(email:'email4@mail.com',password:'password',login:'somel4',date_of_birth:15.years.ago.to_date)
@@ -24,6 +25,11 @@ require 'rails_helper'
                     u2.save
                     u3.save
                     u4.save
+=======
+                    u2 = User.create(confirmed_at:DateTime.now,email:'email2@mail.com',password:'password',login:'somel2',date_of_birth:82.years.ago.to_date)
+                    u3 = User.create(confirmed_at:DateTime.now,email:'email3@mail.com',password:'password',login:'somel3',date_of_birth:17.years.ago.to_date)
+                    u4 = User.create(confirmed_at:DateTime.now,email:'email4@mail.com',password:'password',login:'somel4',date_of_birth:15.years.ago.to_date)
+>>>>>>> pre_development
                     expect(u1.valid?).to be false
                     expect(u2.valid?).to be true
                     expect(u3.valid?).to be true
