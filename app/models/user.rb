@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  after_create :reindex!
+  after_update :reindex!
+
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
   has_many :posts
@@ -15,6 +18,21 @@ class User < ApplicationRecord
       errors.add(:date_of_birth,'Date of birth lesser than accepted') unless date_of_birth < from
       errors.add(:date_of_birth,"Are u joking?, youre really: #{Date.current.year - date_of_birth.year}") unless date_of_birth > to
     end
-  end 
-  
+ end
+
+ # Search user by first_name, last_name, email, login
+ searchable do
+   text :first_name, :last_name, :email
+
+   string  :sort_login do
+      title.downcase.gsub(/^(an?|the)/, '')
+    end
+ end
+
+ protected
+ 
+  def reindex!
+    Sunspot.index!(self)
+  end
+ 
 end
