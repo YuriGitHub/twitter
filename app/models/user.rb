@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, , :timeoutable and :rtrackabl eecoverable
+  devise :database_authenticatable, :registerable,
+         :lockable,:rememberable, :omniauthable , :validatable
 
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable

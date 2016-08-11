@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811070253) do
+ActiveRecord::Schema.define(version: 20160811070453) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -95,12 +95,20 @@ ActiveRecord::Schema.define(version: 20160811070253) do
     t.integer  "gender"
     t.string   "country"
     t.string   "city"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "email",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer  "failed_attempts",     default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index [nil], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
