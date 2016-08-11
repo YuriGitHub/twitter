@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
-  enum gender: [ :nan, :male , :female]
+  enum gender: [ :nan,:male , :female]
+
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   devise :database_authenticatable, :registerable,
@@ -22,6 +23,7 @@ class User < ApplicationRecord
       errors.add(:date_of_birth,'Date of birth lesser than accepted') unless date_of_birth < from
       errors.add(:date_of_birth,"Are u joking?, youre really: #{Date.current.year - date_of_birth.year}") unless date_of_birth > to
     end
+<<<<<<< HEAD
   end 
 
 
@@ -54,4 +56,14 @@ def self.new_with_session(params, session)
     end
   end
   
+=======
+ end
+
+ # Search user by first_name, last_name, email, login
+ searchable do
+   text :login, :email
+   text :first_name, :last_name
+ end
+
+>>>>>>> pre_development
 end
