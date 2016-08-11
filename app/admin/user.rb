@@ -78,7 +78,7 @@ controller do
             attributes_table  do
             h5 "Report Text: #{r.report_text}"
             h5 link_to "Sender: #{r.sender_user.login}", admin_admin_user_path(r.sender_user)
-            h5 link_to "Delete Report", delete_report_admin_user_path(r), method: :delete
+            h5 report_to_unlock_path(r)
             end
         }
    

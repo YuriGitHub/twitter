@@ -1,0 +1,8 @@
+<h3>Hello <%= @user.login %>! You were block by reason <%= @user.blocked_text %></h3>
+<%= form_for @report, url: "/report_to_unlock/#{@user.id}", method: :post do |f| %>
+	 
+	 <%= f.label :feedbacks_text%><br />
+    <%= f.text_field :feedbacks_text %>
+    <%= f.submit  %>
+
+<% end %>

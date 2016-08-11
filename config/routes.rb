@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
 
 
-  get '/report_to_unlock', to: 'send_reports#delete_report'
-
+  get '/report_to_unlock/', to: 'send_reports#show_report'
+  post '/report_to_unlock/:id/', to: 'send_reports#add_report'
+  delete '/admin/users/delete_report/:id', to: 'admin/users#delete_report'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'search' => 'search#search'
 

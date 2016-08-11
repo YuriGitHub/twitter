@@ -7,7 +7,7 @@ class MailforLockedUserMailer < ApplicationMailer
     url  = ENV['HOST']
     @user = user
     @reason = reason
-    @url = url.concat '/report_to_unlock'
+    @url = url.concat('/report_to_unlock').concat('?id=').concat(@user.id)
     mail(to: user.email, subject: "You have been blocked")
   end
 end
