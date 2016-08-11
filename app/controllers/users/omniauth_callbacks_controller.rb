@@ -15,7 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session["devise.facebook_data"] = request.env["omniauth.auth"]
 
 
-
+     @user.send_confirmation_instructions
       redirect_to new_user_registration_url
     end
   end
@@ -32,12 +32,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in_and_redirect @user, :event => :authentication
       else
         session["devise.google_data"] = request.env["omniauth.auth"]
+         @user.send_confirmation_instructions
         redirect_to new_user_registration_url
       end
   end
 
   def failure
-    redirect_to root_path    
+    redirect_to '/'
   end
  
 end
