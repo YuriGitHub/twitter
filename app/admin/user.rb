@@ -3,6 +3,33 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
+
+controller do
+    # This code is evaluated within the controller class
+
+    def delete_report
+       m = Report.find(params[:id]).destroy
+      redirect_to admin_user_path m.sender_user
+    end
+
+    def lock_user
+      u = User.find(params[:id])
+      u.locked_at = Time.now.utc
+      u.save
+      MailforLockedUserMailer.lock_user_email(u,'loh').deliver_now
+      redirect_to admin_user_path u
+    end
+
+
+    def unlock_user
+        u = User.find(params[:id])
+        redirect_to admin_user_path u
+
+    end
+  end
+
+
+
  permit_params :login, :email, :password, :first_name,
                :last_name, :country,:city,:date_of_birth,
                :gender,:avatar
@@ -20,7 +47,7 @@ ActiveAdmin.register User do
     index do 
       id_column
        column "Image" do |user|
-         column image_tag user.avatar.url(:thumb)
+          image_tag user.avatar.url(:thumb)
         end
       column :login
       column :email
@@ -28,13 +55,33 @@ ActiveAdmin.register User do
     end
 
     show do
-        columns do
-      attributes_table_for user do
-      row :login
-      row :email
-      row :last_name
-     end
-    end
+      if user.access_locked?  
+
+        h1 "User is locked"
+
+       end
+          attributes_table do
+          row :image do
+            image_tag user.avatar.url(:medium)
+          end
+          row :first_name
+          row :last_name
+          row :email
+          row :login
+          row :city
+          row :country
+          row :date_of_birth
+        end
+
+    
+        columns '', user.reports.each {|r|
+            attributes_table  do
+            h5 "Report Text: #{r.report_text}"
+            h5 link_to "Sender: #{r.sender_user.login}", admin_admin_user_path(r.sender_user)
+            h5 link_to "Delete Report", delete_report_admin_user_path(r), method: :delete
+            end
+        }
+   
   end
 
     form  do |f| 

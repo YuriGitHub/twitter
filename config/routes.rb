@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/report_to_unlock', to: 'send_reports#delete_report'
 end
