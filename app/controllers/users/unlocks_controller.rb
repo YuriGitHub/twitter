@@ -1,18 +1,17 @@
 class Registrations::UnlocksController < Devise::UnlocksController
   # GET /resource/unlock/new
-  # def new
-  #   super
-  # end
+  def new
 
-  # POST /resource/unlock
-  # def create
-  #   super
-  # end
+  end
 
-  # GET /resource/unlock?unlock_token=abcdef
-  # def show
-  #   super
-  # end
+  
+  def create
+
+  end
+
+def  show
+
+  end
 
   # protected
 
