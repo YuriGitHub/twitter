@@ -1,12 +1,17 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
+
+  after_create :reindex!
+  after_update :reindex!
+
+
   enum gender: [ :nan,:male , :female]
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   devise :database_authenticatable, :registerable,
-         :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:confirmable, :validatable
+         :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
 
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
@@ -69,6 +74,12 @@ def self.new_with_session(params, session)
    text :login, :email
    text :first_name, :last_name
  end
+
+ protected
+
+    def reindex!
+      Sunspot.index!(self)
+    end
 
 
 end
