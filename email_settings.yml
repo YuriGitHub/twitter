@@ -1,0 +1,2 @@
+DEFAULT_EMAIL_FROM: "example@mail.com"
+HOST: 'localhost:3000'

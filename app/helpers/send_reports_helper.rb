@@ -1,0 +1,2 @@
+module SendReportsHelper
+end
