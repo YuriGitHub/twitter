@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   validate :check_date_of_birth
 
-  # after_create do 
+  # after_create do
   #   #DeviseMailer.welcome_email(self.email).deliver_later
   # end
 
@@ -29,7 +29,7 @@ class User < ApplicationRecord
       errors.add(:date_of_birth,"Are u joking?, youre really: #{Date.current.year - date_of_birth.year}") unless date_of_birth > to
     end
 
-  end 
+  end
 
 
   def self.from_omniauth(auth)
@@ -42,7 +42,7 @@ class User < ApplicationRecord
     user.password = '123456'
     user.name = auth.info.name   # assuming the user model has a name
     if auth.info.first_name
-       user.first_name = auth.info.first_name       
+       user.first_name = auth.info.first_name
        user.last_name = auth.info.last_name
     else
       user.first_name = auth.info.name.split(' ')[0]
@@ -61,7 +61,7 @@ def self.new_with_session(params, session)
       end
     end
   end
-  
+
 
 
  # Search user by first_name, last_name, email, login
