@@ -1,12 +1,17 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
+
+  after_create :reindex!
+  after_update :reindex!
+
+
   enum gender: [ :nan,:male , :female]
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   devise :database_authenticatable, :registerable,
-         :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:confirmable, :validatable
+         :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
 
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
@@ -17,7 +22,7 @@ class User < ApplicationRecord
 
   validate :check_date_of_birth
 
-  # after_create do 
+  # after_create do
   #   #DeviseMailer.welcome_email(self.email).deliver_later
   # end
 
@@ -29,7 +34,7 @@ class User < ApplicationRecord
       errors.add(:date_of_birth,"Are u joking?, youre really: #{Date.current.year - date_of_birth.year}") unless date_of_birth > to
     end
 
-  end 
+  end
 
 
   def self.from_omniauth(auth)
@@ -42,7 +47,7 @@ class User < ApplicationRecord
     user.password = '123456'
     user.name = auth.info.name   # assuming the user model has a name
     if auth.info.first_name
-       user.first_name = auth.info.first_name       
+       user.first_name = auth.info.first_name
        user.last_name = auth.info.last_name
     else
       user.first_name = auth.info.name.split(' ')[0]
@@ -61,7 +66,7 @@ def self.new_with_session(params, session)
       end
     end
   end
-  
+
 
 
  # Search user by first_name, last_name, email, login
@@ -69,6 +74,12 @@ def self.new_with_session(params, session)
    text :login, :email
    text :first_name, :last_name
  end
+
+ protected
+
+    def reindex!
+      Sunspot.index!(self)
+    end
 
 
 end
