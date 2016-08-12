@@ -37,6 +37,7 @@ gem 'ransack',             github: 'activerecord-hackery/ransack'
 gem 'draper',              '> 3.x'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
+gem 'bootstrap-sass'
 
 
 gem 'activerecord-session_store'
@@ -50,8 +51,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
    gem 'rspec-rails', '~> 3.5'
    gem 'factory_girl'
- 
-   
+
+
 end
 
 group :test do
