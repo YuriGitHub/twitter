@@ -7,10 +7,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:confirmable, :validatable
 
+  has_and_belongs_to_many:followers,class_name:"User",join_table:"followers",foreign_key: :user_id,association_foreign_key: :follower_id
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
   has_many :posts
-
   validates :login, uniqueness: true, presence: true
 
   validate :check_date_of_birth
@@ -29,5 +29,27 @@ class User < ApplicationRecord
    text :login, :email
    text :first_name, :last_name
  end
+ #json format fields-----\
+
+    def as_json(options={})
+        if self.is_follower !=nil and self.image_url != nil
+            options[:methods] = [:follow,:image_url]
+        else
+            options[:methods] = [:image_url] if self.image_url != nil
+            options[:methods] = [:follow] if self.follow != nil and self.image_url != nil
+        end
+        super
+   end
+
+    attr_accessor :is_follower
+
+    def follow
+        self.is_follower
+    end
+
+    def image_url
+        self.avatar.url(:thumb)
+    end
+ #json format fields-----/
 
 end
