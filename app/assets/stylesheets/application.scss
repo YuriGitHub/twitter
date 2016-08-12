@@ -13,3 +13,18 @@
  * require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  padding-top: 20px;
+}
+body {
+
+}
+footer {
+  padding: 30px 0;
+}
