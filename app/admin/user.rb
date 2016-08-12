@@ -9,7 +9,7 @@ controller do
 
     def delete_report
        m = Report.find(params[:id]).destroy
-      redirect_to admin_user_path m.sender_user
+      redirect_to admin_user_path m.reportable
     end
 
     def lock_user
@@ -94,7 +94,7 @@ controller do
             attributes_table  do
             h5 "Report Text: #{r.report_text}"
             h5 link_to "Sender: #{r.sender_user.email}", admin_user_path(r.sender_user)
-            h5 link_to 'Delete report', url: "/admin/users/delete_report/#{r.id}"
+            h5 link_to 'Delete report', "/admin/users/delete_report/#{r.id}", method: :delete
             end
         }
 
