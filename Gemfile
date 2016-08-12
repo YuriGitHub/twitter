@@ -50,14 +50,15 @@ group :development, :test do
   gem 'byebug', platform: :mri
    gem 'rspec-rails', '~> 3.5'
    gem 'factory_girl'
- 
-   
+
+
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 group :development do
+  gem 'progress_bar'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem "rails-erd"

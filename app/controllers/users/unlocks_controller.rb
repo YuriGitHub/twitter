@@ -1,10 +1,10 @@
-class Registrations::UnlocksController < Devise::UnlocksController
+class Users::UnlocksController < Devise::UnlocksController
   # GET /resource/unlock/new
   def new
 
   end
 
-  
+
   def create
 
   end
