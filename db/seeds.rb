@@ -15,4 +15,3 @@ AdminUser.create!(email: 'test@gmail.com', password: '1234567', password_confirm
                email: "email#{b}@mail.com",
                password:"12345678#{b}")
 end
-
