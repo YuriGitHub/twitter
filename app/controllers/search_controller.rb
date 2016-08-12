@@ -17,6 +17,10 @@ class SearchController < ApplicationController
             end
             render json: search.results
         }
+        format.html{
+            @users = results
+            @users
+        }
     end
     
   end
