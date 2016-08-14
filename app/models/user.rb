@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
 
-  after_create :reindex!
-  after_update :reindex!
+ # after_create :reindex!
+ # after_update :reindex!
 
 
   enum gender: [ :nan,:male , :female]
