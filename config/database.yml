@@ -13,15 +13,17 @@ development:
   password: Uw0ugjnmJeKowJD-I1ddWSQJ6o
   port: 5432
 test:
-  adapter: postgresql
-  database: twiter_test
-  pool: 5
-  timeout: 5000
-
-production:
 adapter: postgresql
 host: ec2-54-163-238-215.compute-1.amazonaws.com
 username: nuicschlmlccep
 database: d866eepmurc3q0
 password: Uw0ugjnmJeKowJD-I1ddWSQJ6o
-port: 5432 
+port: 5432
+
+production:
+  adapter: postgresql
+  host: ec2-54-163-238-215.compute-1.amazonaws.com
+  username: nuicschlmlccep
+  database: d866eepmurc3q0
+  password: Uw0ugjnmJeKowJD-I1ddWSQJ6o
+  port: 5432
