@@ -51,9 +51,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
    gem 'rspec-rails', '~> 3.5'
    gem 'factory_girl'
-   gem 'sqlite3'
-
-
+   
 end
 
 group :test do
