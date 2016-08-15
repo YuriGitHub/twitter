@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get 'search' => 'search#search'
   post 'user/add_report/:id_reportable', to: 'send_reports#add_report_to_user', as: 'send_report'
  
-  #resources :users, only: [:show]
+  resources :users, only: [:show]
 end

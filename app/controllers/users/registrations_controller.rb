@@ -19,10 +19,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
    def update
-
+          u = current_user 
          u = User.update(account_update_params.except(:current_password))
          if u[0].valid?
-            redirect_to edit_user_registration_path
+            redirect_to user_path(current_user)
          else
              errors = ""
              u[0].errors.full_messages.each do |e|
