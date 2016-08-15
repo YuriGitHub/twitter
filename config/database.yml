@@ -7,9 +7,11 @@
 
 development:
   adapter: postgresql
-  database: twiter_development
-  pool: 5
-  timeout: 5000
+  host: localhost
+  username: nuicschlmlccep
+  database: d866eepmurc3q0
+  password: Uw0ugjnmJeKowJD-I1ddWSQJ6o
+
 test:
   adapter: postgresql
   database: twiter_test
