@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
 
-  after_create :reindex!
-  after_update :reindex!
+ # after_create :reindex!
+ # after_update :reindex!
 
 
   enum gender: [ :nan,:male , :female]
@@ -80,6 +80,5 @@ def self.new_with_session(params, session)
     def reindex!
       Sunspot.index!(self)
     end
-
 
 end
