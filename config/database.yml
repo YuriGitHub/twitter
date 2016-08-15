@@ -18,6 +18,7 @@ test:
 
 production:
   adapter: postgresql
-  database: twiter_production
-  pool: 5
-  timeout: 5000
+  host: localhost
+  username: nuicschlmlccep
+  database: d866eepmurc3q0
+  password: Uw0ugjnmJeKowJD-I1ddWSQJ6o
