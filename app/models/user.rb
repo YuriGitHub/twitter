@@ -81,5 +81,4 @@ def self.new_with_session(params, session)
       Sunspot.index!(self)
     end
 
-
 end
