@@ -58,7 +58,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 group :development do
-  gem 'capistrano'
+  gem "capistrano", "~> 3.6"
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano3-puma'
