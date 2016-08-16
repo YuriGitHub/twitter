@@ -3,11 +3,12 @@ server '37.139.4.141',user: 'twitter_deploy',  roles: [:web, :app, :db], primary
 
 
 set :repo_url,        'git@github.com:YuriGitHub/twitter.git'
-set :branch, "template"
+set :branch,          "template"
 set :application,     'twitter'
 set :user,            'twitter_deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
+
 
 # Don't change these unless you know what you're doing
 set :pty,             true
@@ -75,11 +76,14 @@ namespace :deploy do
     end
   end
 
-  before :starting,     :check_revision
+
+
+
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
+
 
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma

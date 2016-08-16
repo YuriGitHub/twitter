@@ -31,7 +31,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: twitter_production
+  database: twitter
   pool: 5
   host: localhost
   username: twitter_user
