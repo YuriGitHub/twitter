@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  post "ajax_check_validations", to: 'services#ajax_check_validations'
+
   ActiveAdmin.routes(self)
   
   root :to => 'home#index'

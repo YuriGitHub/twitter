@@ -31,7 +31,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
              flash[:error] = errors
             redirect_to edit_user_registration_path
          end
-      
     end
 
 

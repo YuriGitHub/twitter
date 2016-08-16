@@ -1,3 +1,4 @@
+
 <div id="fullscreen_bg" class="fullscreen_bg"/>
  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'centered-form' }) do |f| %>
 <div class="container">
@@ -9,6 +10,15 @@
             <h3 class="text-center">Edit Information</h3>
 
         <div class="panel-body">
+<div id='login-error' class='registrations-errors'>login error</div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <%= f.text_field :login, class: 'form-control', placeholder: 'Login' %>
+                            <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="input-group">
@@ -19,37 +29,53 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+
+
+                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <%= f.text_field :last_name, class: 'form_control', placeholder: "Last Name" %>
-                            <!-- <input type="text" class="form-control" placeholder="Last Name" /> -->
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
+                            <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
 
-                    <div class="form-group">
+
+                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                            <%= f.text_field :country, class: 'form_control', placeholder: "Country" %>
-                            <!-- <input type="text" class="form-control" placeholder="Address" /> -->
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+                            <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
 
-                    <div class="form-group">
+
+                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                            <%= f.text_field :city, class: 'form_control', placeholder: "City" %>
-                            <!-- <input type="text" class="form-control" placeholder="Address" /> -->
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+                            <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
-                    </div>
+                    </div>                   
+
+                    
 
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                              <%= f.date_field :date_of_birth, class: 'form_control', placeholder: "Age"%>
-                            <!-- <input type="text" class="form-control" placeholder="Age" /> -->
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <%= f.date_field :date_of_birth, class: 'form-control', placeholder: 'Date of birth' %>
+                            <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
+
+                   
+
+
+
+                   
 
                     <div class="form-group">
                         <div class="input-group">
@@ -59,17 +85,20 @@
                         </div>
                     </div>
 
+                    
+
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><%= image_tag resource.avatar.url(:thumb) %></span>
-                           <%= f.file_field :avatar %>
+                          <div id='avatar'> <label class="btn btn-default btn-file" id="user_avatar_btn"><%= f.file_field :avatar %> Browse <input type="file" style="display: none;"></label>                         
+                          </div>
                             <!-- <input type="text" class="form-control" placeholder="Credit card" /> -->
                         </div>
                     </div>
 
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">
-			Save
-		</button>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit", id="edit_submit">
+            Save
+        </button>
 
 
       </div>
@@ -81,3 +110,36 @@
 
 
 </div>
+
+
+<%= javascript_tag do %>
+  var login = $('#user_login').val()
+  $('#edit_submit').click(function(event){ 
+        event.preventDefault();       
+        
+        if($('#user_login').val() == ""){
+            $('#login-error').show();
+            $('#user_login').val(login);            
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                 url: "/ajax_check_validations",
+                 data: {"new_login" : $('#user_login').val()},
+                 success: function(res){
+                     console.log(res);
+                     if(res['result'] == 'login exists'){
+                        $('#login-error').text('login exists');
+                        $('#login-error').show();
+                     }
+                     else {
+                        $('#edit_user').submit();
+                     }
+                 }
+            });
+                
+
+        }
+       
+  });
+<% end %>
