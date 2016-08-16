@@ -38,7 +38,7 @@ gem 'draper',              '> 3.x'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
-
+gem 'kaminari'
 
 gem 'activerecord-session_store'
 

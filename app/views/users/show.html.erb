@@ -2,10 +2,6 @@
 	.user-cont{
 	margin-top: 65px; 
 }
-	.utw{
-		height: 400px;
-		background-color: silver;
-	}
 </style>
 
 <div class="user-cont">
@@ -44,7 +40,13 @@
 	  <div class="col-md-2"><h4>I follow: <%= @user.ifollow.count %> </h4> </h4></div>
 	  <div class="col-md-2"><h4>Posts: <%= @user.posts.count %> </h4></div>
 	</div>
-	<div class="col-md-6 utw">
-	
+	<% if @user == current_user %>
+		<div class="col-md-8">
+			<%= render partial: 'posts/new' %>
+		</div>
+	<% end %>
+	<div class="col-md-8">
+		<%= render partial: 'posts/index' %>
+		<%= paginate @posts %>
 	</div>
 </div>
