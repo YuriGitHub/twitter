@@ -3,7 +3,7 @@ server '37.139.4.141',user: 'twitter_deploy',  roles: [:web, :app, :db], primary
 
 
 set :repo_url,        'git@github.com:YuriGitHub/twitter.git'
-set :branch, 'template'
+
 set :application,     'twitter'
 set :user,            'twitter_deploy'
 set :puma_threads,    [4, 16]
@@ -27,7 +27,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 ## Defaults:
 # set :scm,           :git
-# set :branch,        :master
+set :branch,        :template
 # set :format,        :pretty
 # set :log_level,     :debug
 # set :keep_releases, 5
