@@ -19,11 +19,13 @@ test:
   adapter: sqlite3
   pool: 5
   timeout: 5000
-database: db/test.sqlite3
+  database: db/test.sqlite3
 
 
-production:
-  adapter: sqlite3
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: twitter
   pool: 5
-  timeout: 5000
-database: db/development.sqlite3
+  username: postgres
+  password:

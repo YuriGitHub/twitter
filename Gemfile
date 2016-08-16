@@ -42,7 +42,7 @@ gem 'bootstrap-sass'
 
 gem 'activerecord-session_store'
 
-
+gem 'pg'
 gem 'country_select'
 gem 'sunspot_solr'
 gem 'sunspot_rails'
