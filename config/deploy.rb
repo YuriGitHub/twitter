@@ -7,12 +7,12 @@ set :branch, 'template'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :deploy_to, '/home'
+set :deploy_to, '/home/rails'
 
 server '37.139.4.141', user: 'root', roles: [:web, :app, :db], primary: true
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
-set :rbenv_ruby, '2.3.1'
+# set :rbenv_ruby, '2.3.1'
 # Default value for :scm is :git
 # set :scm, :git
 
