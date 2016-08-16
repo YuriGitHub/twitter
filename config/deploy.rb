@@ -1,5 +1,5 @@
 # Change these
-server '37.139.4.141',  roles: [:web, :app, :db], primary: true
+server '37.139.4.141',user: 'twitter_deploy',  roles: [:web, :app, :db], primary: true
 
 
 set :repo_url,        'git@github.com:YuriGitHub/twitter.git'
