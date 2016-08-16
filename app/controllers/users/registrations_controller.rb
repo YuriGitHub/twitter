@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
          u = current_user
          u.update(account_update_params.except(:current_password))
          if u.valid?
-            redirect_to edit_user_registration_path
+           redirect_to user_path(current_user)
          else
              errors = ""
              u.errors.full_messages.each do |e|
