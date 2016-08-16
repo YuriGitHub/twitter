@@ -58,6 +58,10 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem "sshkit", github: "capistrano/sshkit"
   gem 'progress_bar'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
