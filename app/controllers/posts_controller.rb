@@ -3,9 +3,6 @@ class PostsController < ApplicationController
 	def index
 		@user = User.find(params[:id])
 		@postq = Post.new
-		@postq.text = 'dssdd'
-		render partial: 'index'
-	
 	end
 
 	def create
@@ -13,7 +10,7 @@ class PostsController < ApplicationController
 		post = Post.new(post_params)
 		post.user_id = @user.id
 		post.save
-		redirect_to :backrt
+		redirect_to :back
 	end
 
 	def show
