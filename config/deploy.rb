@@ -1,7 +1,7 @@
 # Change these
 server '37.139.4.141',  roles: [:web, :app, :db], primary: true
 
-set :branch, 'template'
+set :branch, fetch(:branch, "template")
 set :repo_url,        'git@github.com:YuriGitHub/twitter.git'
 set :application,     'twitter'
 set :user,            'twitter_deploy'
