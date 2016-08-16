@@ -1,0 +1,12 @@
+<style type="text/css">
+	.user-cont{
+	margin-top: 65px; 
+}
+</style>
+
+<div class="user-cont"> 
+	<%= form_for @post, url: user_post_path(current_user, @post), method: :put do |f| %>
+		<%= f.text_area :text %>
+		<%= f.submit "Edit post" %>
+	<% end %>
+</div>
