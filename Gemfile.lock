@@ -124,6 +124,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     choice (0.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -378,8 +381,10 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capistrano
+  capistrano-bundler
   capistrano-rails
   capistrano-rvm
+  capistrano3-puma
   coffee-rails (~> 4.2)
   country_select
   devise
