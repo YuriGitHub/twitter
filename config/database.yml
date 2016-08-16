@@ -27,5 +27,5 @@ production:
   encoding: unicode
   database: twitter
   pool: 5
-  username: postgres
-  password:
+  username: yuri_twitter
+  password: yura89peregudov
