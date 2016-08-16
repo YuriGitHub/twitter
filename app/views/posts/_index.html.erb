@@ -4,12 +4,15 @@
   		<div class="panel-heading">Created at : <%= post.created_at %> 
   		<% if @user == current_user %>
       	<%= link_to 'Edit', class: "col-md-offset-right" %>
-      	<%= link_to 'Delete' %>
+      	<%= link_to 'Delete', user_post_path(@user), method: :delete %>
       <% end %>
       </div>
   	<div class="panel-body">
-			<%= post.text %>
+        <%= post.text %>
   	</div>
 		<% end %>
 	<% end %> 
+ </div>
+ <div> 
+    <%= @postq.text %>
  </div>

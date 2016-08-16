@@ -1,0 +1,4 @@
+<%= form_for @post, url:  do |f| %>
+	<%= f.text_area :post, class: 'form-control', rows: '3' %>
+	<%= f.submit "Send post"%>
+<% end %>
