@@ -1,0 +1,15 @@
+<% if @user.posts %>
+	<div class="panel panel-default">
+		<% @user.posts.each do |post| %>
+  		<div class="panel-heading">Created at : <%= post.created_at %> 
+  		<% if @user == current_user %>
+      	<%= link_to 'Edit', class: "col-md-offset-right" %>
+      	<%= link_to 'Delete' %>
+      <% end %>
+      </div>
+  	<div class="panel-body">
+			<%= post.text %>
+  	</div>
+		<% end %>
+	<% end %> 
+ </div>
