@@ -37,27 +37,32 @@ gem 'ransack',             github: 'activerecord-hackery/ransack'
 gem 'draper',              '> 3.x'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
+gem 'bootstrap-sass'
 
 
 gem 'activerecord-session_store'
 
 
 gem 'country_select'
-
+gem 'sunspot_solr'
 gem 'sunspot_rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
    gem 'rspec-rails', '~> 3.5'
    gem 'factory_girl'
- 
-   
+   gem 'sqlite3'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem "sshkit", github: "capistrano/sshkit"
+  gem 'progress_bar'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem "rails-erd"
@@ -65,7 +70,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'sunspot_solr'
+
   gem 'pry-rails'
 end
 
