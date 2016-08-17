@@ -1,0 +1,41 @@
+<nav id="spy">
+  <ul class="sidebar-nav nav">
+    <li>
+      <%= link_to root_path do %>
+        <span class="glyphicon glyphicon-home"> Home</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to collections_path do %>
+        <span class="glyphicon glyphicon-th"> Collections</span>
+      <% end %>
+    </li>
+    <li>
+      <a href="articles.html">
+        <span class="glyphicon glyphicon-star-empty"> Статьи</span>
+      </a>
+    </li>
+    <li>
+      <a href="">
+        <span class="glyphicon glyphicon-heart"> Закладки</span>
+      </a>
+    </li>
+    <li>
+      <%= link_to user_path(current_user) do %>
+        <span class="glyphicon glyphicon-user"> Profile</span>
+      <% end %>
+    </li>
+    <li class="delimiter">
+      <a href="settings.html">
+        <span class="glyphicon glyphicon-cog"> Настройки
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="#anch2">
+        <span class="glyphicon glyphicon-question-sign"> Справка</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+

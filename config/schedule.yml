@@ -1,0 +1,5 @@
+Delete:
+  cron: "0 4 * * *"
+  class: "DeleteBlockedUserJob"
+  queue: default
+  active_job: true

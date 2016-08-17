@@ -5,6 +5,6 @@ class Post < ApplicationRecord
 	has_many :comments
 	has_many :reports, as: :reportable
 
-	validates :text, length: { in: 10...140}
+	validates :text, length: { in: 10...500}
 	validates :text, :user_id, presence: true
 end
