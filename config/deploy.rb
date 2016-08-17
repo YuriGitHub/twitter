@@ -57,8 +57,9 @@ namespace :deploy do
         puts "Run `git push` to sync changes."
         exit
       end
-      invoke 'sunspot:solr:start'
+
     end
+      invoke 'sunspot:solr:start'
   end
 
   desc 'Initial Deploy'
