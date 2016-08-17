@@ -19,3 +19,5 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+/solr/development/data/
+/public/system/users/avatars
