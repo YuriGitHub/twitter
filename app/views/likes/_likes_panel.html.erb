@@ -1,12 +1,8 @@
-<script type="text/javascript" charset="utf-8"> 
-    var post_id = <%=post_id%>
-</script>
-
 <div id="like-container_<%=post_id%>">
-    <span id="like" onclick="perform_like(post_id)" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-    <span id="like_count">13123</span>
-    <span id="dislike" onclick="perform_dislike(post_id)" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-    <span id="dislike_count">123</span>
+    <span id="like" onclick="perform_like(<%=post_id%>)" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+    <span id="like_count">0</span>
+    <span id="dislike" onclick="perform_dislike(<%=post_id%>)" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+    <span id="dislike_count">0</span>
 </div>
 
 <script type="text/javascript" charset="utf-8"> 
