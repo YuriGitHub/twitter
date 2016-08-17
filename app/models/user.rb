@@ -1,12 +1,23 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
+
+ # after_create :reindex!
+ # after_update :reindex!
+
+
   enum gender: [ :nan,:male , :female]
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "missing_:style.gif"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   devise :database_authenticatable, :registerable,
-         :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:confirmable, :validatable
+         :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
+
+  has_many :received_ms, class_name: 'Message', foreign_key: 'receiver_id'
+  has_many :send_ms, class_name: 'Message', foreign_key: 'sender_id'
+
+  has_and_belongs_to_many:ifollow,class_name:"User",join_table:"followers",foreign_key: :follower_id,association_foreign_key: :user_id
+  has_and_belongs_to_many:followers,class_name:"User",join_table:"followers",foreign_key: :user_id,association_foreign_key: :follower_id
 
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
@@ -17,7 +28,7 @@ class User < ApplicationRecord
 
   validate :check_date_of_birth
 
-  # after_create do 
+  # after_create do
   #   #DeviseMailer.welcome_email(self.email).deliver_later
   # end
 
@@ -29,7 +40,7 @@ class User < ApplicationRecord
       errors.add(:date_of_birth,"Are u joking?, youre really: #{Date.current.year - date_of_birth.year}") unless date_of_birth > to
     end
 
-  end 
+  end
 
 
   def self.from_omniauth(auth)
@@ -42,7 +53,7 @@ class User < ApplicationRecord
     user.password = '123456'
     user.name = auth.info.name   # assuming the user model has a name
     if auth.info.first_name
-       user.first_name = auth.info.first_name       
+       user.first_name = auth.info.first_name
        user.last_name = auth.info.last_name
     else
       user.first_name = auth.info.name.split(' ')[0]
@@ -61,7 +72,7 @@ def self.new_with_session(params, session)
       end
     end
   end
-  
+
 
 
  # Search user by first_name, last_name, email, login
@@ -69,6 +80,33 @@ def self.new_with_session(params, session)
    text :login, :email
    text :first_name, :last_name
  end
+ #json format fields-----\
 
+    def as_json(options={})
+        if self.is_follower !=nil and self.image_url != nil
+            options[:methods] = [:follow,:image_url]
+        else
+            options[:methods] = [:image_url] if self.image_url != nil
+            options[:methods] = [:follow] if self.follow != nil and self.image_url != nil
+        end
+        super
+   end
+
+    attr_accessor :is_follower
+
+    def follow
+        self.is_follower
+    end
+
+    def image_url
+        self.avatar.url(:thumb)
+    end
+ #json format fields-----/
+
+ protected
+
+    def reindex!
+      Sunspot.index!(self)
+    end
 
 end

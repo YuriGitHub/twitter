@@ -9,7 +9,7 @@ controller do
 
     def delete_report
        m = Report.find(params[:id]).destroy
-      redirect_to admin_user_path m.sender_user
+      redirect_to admin_user_path m.reportable
     end
 
     def lock_user
@@ -25,8 +25,9 @@ controller do
     def unlock_user
         u = User.find(params[:id])
         u.lock_access!
+        u.save
+        flash[:notice] = "Email sended"
         redirect_to admin_user_path u
-
     end
 
 
@@ -92,8 +93,8 @@ controller do
         columns '', user.reports.each {|r|
             attributes_table  do
             h5 "Report Text: #{r.report_text}"
-            h5 link_to "Sender: #{r.sender_user.login}", admin_admin_user_path(r.sender_user)
-            h5 report_to_unlock_path(r)
+            h5 link_to "Sender: #{r.sender_user.email}", admin_user_path(r.sender_user)
+            h5 link_to 'Delete report', "/admin/users/delete_report/#{r.id}", method: :delete
             end
         }
 
