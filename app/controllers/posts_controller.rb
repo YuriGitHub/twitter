@@ -8,9 +8,8 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@user = User.find_by(params[:id])
 		@post = Post.new(post_params)
-		@post.user_id = @user.id
+		@post.user_id = current_user.id
 
 		if @post.save
 			respond_to do |format|
