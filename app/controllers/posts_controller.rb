@@ -11,17 +11,13 @@ class PostsController < ApplicationController
 		@user = User.find_by(params[:id])
 		@post = Post.new(post_params)
 		@post.user_id = @user.id
-		# binding.pry
-		@post.save
-		respond_to do |format|
-      if @post.save
-        format.html { redirect_to current_user }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { redirect_to current_user, notice: "Post not created :(" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+
+		if @post.save
+			respond_to do |format|
+				format.json {render json: @post.as_json, status: 200 }
+				format.html { redirect_to current_user }
+			end
+		end
 	end
 
 	def edit
@@ -30,10 +26,11 @@ class PostsController < ApplicationController
 
 	def destroy
 		post = Post.find(params[:id])
-		post.destroy
 		respond_to do |format|
-			format.html { redirect_to current_user }
-      format.json { head :no_content }
+			if post.destroy
+	      		format.json {render json: @post.as_json, status: 200 }
+				format.html { redirect_to current_user }
+			end
 		end
 	end
 

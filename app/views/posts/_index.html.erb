@@ -1,16 +1,18 @@
+<div class='post_index'>
 <% if @posts %>
-	<div class="panel panel-default">
 		<% @posts.each do |post| %>
-  		<div class="panel-heading">Created at : <%= post.created_at %> 
-  		<% if @user == current_user %>
-      	<%= link_to 'Edit', edit_user_post_path(current_user, post) %>
-      	<%= link_to 'Delete',user_post_path(current_user, post), method: :delete %>
-      <% end %>
-      </div>
-  	<div class="panel-body">
-        <%= post.text %>
-  	</div>
+      <div class="h panel panel-default">
+        <div class="panel-heading">Created at : <%= post.created_at %> 
+    		<% if @user == current_user %>
+        	<%= link_to 'Edit', edit_user_post_path(current_user, post) %>
+        	<%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps' %>
+        <% end %>
+        </div>
+    	<div class="panel-body">
+          <%= post.text %>
+    	</div>
+
 		<% end %>
 	<% end %> 
  </div>
- 
+ </div>
