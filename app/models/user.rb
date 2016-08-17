@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  
+  acts_as_paranoid
+  
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
 

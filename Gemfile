@@ -38,7 +38,9 @@ gem 'draper',              '> 3.x'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
-
+gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 gem 'activerecord-session_store'
 
