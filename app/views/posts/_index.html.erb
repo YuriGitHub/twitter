@@ -1,18 +1,24 @@
-<div class='post_index'>
+<style type="text/css">
+  .space{
+  margin-top: 15px; 
+}
+</style>
+<div class="post_index">
+</div>
+<div>
 <% if @posts %>
-		<% @posts.each do |post| %>
-      <div class="h panel panel-default">
-        <div class="panel-heading">Created at : <%= post.created_at %> 
-    		<% if @user == current_user %>
-        	<%= link_to 'Edit', edit_user_post_path(current_user, post) %>
-        	<%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps' %>
+  <div class="panel panel-default">
+	  <% @posts.each do |post| %> 
+    	<div class="space panel-body">
+        <h5>Created at : <%= post.created_at %></h5>
+        --------------------------------------------<br>
+        <%= post.text %>
+        <% if @user == current_user %>
+          <%= link_to 'Edit', edit_user_post_path(current_user, post) %>
+          <%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps' %>
         <% end %>
-        </div>
-    	<div class="panel-body">
-          <%= post.text %>
     	</div>
-
 		<% end %>
 	<% end %> 
- </div>
- </div>
+</div>
+</div>
