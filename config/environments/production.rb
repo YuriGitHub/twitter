@@ -9,7 +9,7 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = false
-config.action_mailer.default_url_options = { host: '37.139.4.141', port: 80 }
+  config.action_mailer.default_url_options = { host: '37.139.4.141', port: 80 }
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -23,7 +23,7 @@ config.action_mailer.default_url_options = { host: '37.139.4.141', port: 80 }
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -57,7 +57,7 @@ config.action_mailer.default_url_options = { host: '37.139.4.141', port: 80 }
   # config.active_job.queue_name_prefix = "twitter_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
