@@ -1,4 +1,4 @@
-<%= form_for Report.new, url:"user/add_report/#{@id}", method: :post do |f|  %>
+<%= form_for Report.new, url:"/user/add_report/#{@id}", method: :post do |f|  %>
 <%= f.label :report_text %>
 <%= f.text_field :report_text %>
 <%= f.submit value: 'Send Report' %>

@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -38,13 +38,17 @@ gem 'draper',              '> 3.x'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
+
 gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
+gem 'kaminari'
+
+
 gem 'activerecord-session_store'
 
-
+gem 'pg'
 gem 'country_select'
 gem 'sunspot_solr'
 gem 'sunspot_rails'
@@ -60,9 +64,11 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 group :development do
-  gem 'capistrano'
+  gem "capistrano", "~> 3.6"
   gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
   gem "sshkit", github: "capistrano/sshkit"
   gem 'progress_bar'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

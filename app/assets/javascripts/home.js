@@ -36,6 +36,7 @@ $(document).ready(function(){
            var template =  user_template.clone()
            var ava =  template.find("#avatar")
            var info = template.find("#title")
+           var refs = template.find('.user_ref').get()
 
            var follow_button = template.find("#follow_button")
 
@@ -44,7 +45,6 @@ $(document).ready(function(){
 
            if(data[i].image_url != null){
               ava.attr("src",data[i].image_url)
-              console.log(ava)
            }
 
            info.attr("id","title_"+data[i].id)
@@ -59,6 +59,9 @@ $(document).ready(function(){
                 follow_button.attr("class","btn btn-sm btn-success")
            }
 
+           for(ref in refs){
+            $(refs[ref]).attr("href","/users/"+data[i].id)
+           }
 
           //update avatar in here 
            info.text(data[i].login)
