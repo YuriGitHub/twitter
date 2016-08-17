@@ -17,18 +17,18 @@ $(document).ready(function(){
             }
 
             if(data.like == ''){
-                like.attr('class','glyphicon glyphicon-thumbs-up')
-                dislike.attr('class','glyphicon glyphicon-thumbs-down')
+                like.attr('class','glyphicon glyphicon-thumbs-up like-element')
+                dislike.attr('class','glyphicon glyphicon-thumbs-down like-element')
             }
 
             if(data.like == 'true'){
-                like.attr('class','glyphicon glyphicon-thumbs-up liked')
-                dislike.attr('class','glyphicon glyphicon-thumbs-down')
+                like.attr('class','glyphicon glyphicon-thumbs-up liked like-element')
+                dislike.attr('class','glyphicon glyphicon-thumbs-down like-element')
             }
  
             if(data.like == 'false'){
-                like.attr('class','glyphicon glyphicon-thumbs-up')
-                dislike.attr('class','glyphicon glyphicon-thumbs-down disliked')
+                like.attr('class','glyphicon glyphicon-thumbs-up like-element')
+                dislike.attr('class','glyphicon glyphicon-thumbs-down disliked like-element')
             }
 
     }
