@@ -1,7 +1,8 @@
 <button id="new_post_but">New Post</button>
 <div class="new_post_form" style="display:none">
-<%= form_for @post, url: user_posts_path(@user) do |f| %>
+<%= form_for @post, url: user_posts_path(@user),html: {multipart: true} do |f| %>
 	<%= f.text_area :text, class: 'form-control', rows: '3' %>
+        <%=render partial: "images/create_images", locals:{f:f}%>
 	<%= f.submit "Send post"%>
 <% end %>
 </div>

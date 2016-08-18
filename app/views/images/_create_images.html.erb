@@ -1,0 +1,3 @@
+<%=f.fields_for :images,html: {multipart: true} do |ff|%>
+    <%=ff.file_field :image, multiple:true%>
+<%end%>
