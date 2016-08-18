@@ -1,0 +1,7 @@
+<button id="new_post_but">New Post</button>
+<div class="new_post_form" style="display:none">
+<%= form_for @post, url: user_posts_path(@user) do |f| %>
+	<%= f.text_area :text, class: 'form-control', rows: '3' %>
+	<%= f.submit "Send post"%>
+<% end %>
+</div>

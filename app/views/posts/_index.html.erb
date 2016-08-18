@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/assets/show.css"/>
+<link rel="stylesheet" href="/assets/likes.css"/>
+<script type="text/javascript" src="/assets/posts.js"></script>
+<script src="/assets/likes.js"></script>
+
+<div class="post_index"></div>
+<div>
+<% if @posts %>
+  <div class="panel panel-default">
+	  <% @posts.each do |post| %> 
+    	<div class="space panel-body">
+        <h5>Created at : <%= post.created_at %></h5>
+        --------------------------------------------<br>
+        <%= post.text %><br>
+        <% if post.video.to_s != "" %>
+          <%= video_tag post.video.to_s, controls: true, size: '200x200' %>
+        <% end %>
+        <br>
+        <% if post.audio.to_s != "" %>
+          <%= audio_tag post.audio.to_s, controls: true %><br>
+        <% end %>
+        <% if @user == current_user %>
+          <%= link_to 'Edit', edit_user_post_path(current_user, post) %>
+          <%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps' %>
+        <% if current_user != nil %>
+          <%=render partial: "/likes/likes_panel", locals:{post_id:post.id}%>
+        <% end %>
+        <% end %>
+    	</div>
+		<% end %>
+	<% end %> 
+</div>
