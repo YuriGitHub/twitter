@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		# binding.pry
 		@user = User.find(params[:id])
 		@posts = @user.posts
 	end
@@ -35,10 +34,9 @@ class PostsController < ApplicationController
 
 	def update
 		user = User.find(params[:user_id])
-		post = Post.find(params[:id])
-		post.update(post_params)
+		@post = Post.find(params[:id])
 		respond_to do |format|
-      if @post.update(car_params)
+      if @post.update(post_params)
         format.html { redirect_to current_user }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -50,6 +48,6 @@ class PostsController < ApplicationController
 
 	private
 	def post_params
-		params.require(:post).permit(:text)
+		params.require(:post).permit(:text, :video, :audio)
 	end
 end

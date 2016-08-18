@@ -1,14 +1,10 @@
-<style type="text/css">
-	.user-cont{
-	margin-top: 65px;
-}
-</style>
+<link rel="stylesheet" href="/assets/show.css"/>
 
-<div class="user-cont">
+<dir class="user-cont">
     <div class="col-md-4">
         <%= image_tag @user.avatar.url(:medium), class: 'img-rounded' %>
         <h4><%= @user.last_name%> <%= @user.first_name %></h4>
-        <h4>Login: <%= @user.login %></h4>
+        <h4 id="headercustom">Login: <%= @user.login %></h4>
         <h4>Date of birth: <%= @user.date_of_birth %> </h4>
         <h4>Live in: <%= @user.country %> - <%= @user.city %></h4>
         <% if @user.id != current_user.id %>

@@ -7,4 +7,7 @@ class Post < ApplicationRecord
 
 	validates :text, length: { in: 10...500}
 	validates :text, :user_id, presence: true
+
+	mount_uploader :video
+	mount_uploader :audio
 end
