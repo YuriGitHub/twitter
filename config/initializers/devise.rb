@@ -13,7 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   APP_CONFIG = YAML.load_file("#{Rails.root}/email_settings.yml")
-  config.mailer_sender = APP_CONFIG['DEFAULT_EMAIL_FROM']
+  config.mailer_sender = APP_CONFIG[Rails.env]['DEFAULT_EMAIL_FROM']
   config.secret_key = '2f58379acfc62ecbf24aeb6e142d6f44bc563cd0285044db5eaa93fe05da01a0312e110d13c95ac8c1a986a0ee40b1211fce2dcce17ec5dfd752d9c7ccb72584'
   # Configure the class responsible to send e-mails.
    config.mailer = 'Devise::Mailer'
