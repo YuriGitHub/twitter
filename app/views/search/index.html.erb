@@ -1,5 +1,6 @@
-<h1>Search</h1>
-<%= render "search" %>
+
 <% @users.each do |user| %>
 <%= user.email %><br>
+<% @id = user.id %>
+<%= render "send_reports/add_report", object: @id  %>
 <% end %>

@@ -8,10 +8,13 @@
 
 AdminUser.create!(email: 'test@gmail.com', password: '1234567', password_confirmation: '1234567')
 
-10.times do |b|
-  User.create!(first_name:"first name#{b}",
-               last_name:"last_name#{b}",
-               login: "login#{b}",
-               email: "email#{b}@mail.com",
-               password:"12345678#{b}")
+99.times do |n|
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name: name,
+              email: email,
+              password:              password,
+              password_confirmation: password,
+              activated: true,
+              activated_at: Time.zone.now)
 end

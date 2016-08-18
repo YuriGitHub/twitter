@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
 # 	validates :text, :user_id, presence: true
     describe 'Testing validateion' do 
     		it 'checking validation text length' do
-    			should validate_length_of(:text).is_at_most(139).is_at_least(10)
+    			should validate_length_of(:text).is_at_most(499).is_at_least(10)
     		end
 
     		it 'Testing presence of fields' do
