@@ -2,10 +2,10 @@ class SearchController < ApplicationController
 
     # Search user
     def search
-        search = Sunspot.search( User ) do
+        search = User.solr_search do
             fulltext params[:query]
         end
-        results = search.results 
+        results = search
         respond_to do |format|
             format.json{
                 results.each do |u|
