@@ -13,8 +13,9 @@
           <%= video_tag post.video.to_s, controls: true, size: '200x200' %>
         <% end %>
         <br>
+        <% if post.audio.to_s != "" %>
           <%= audio_tag post.audio.to_s, controls: true %><br>
-
+        <% end %>
         <% if @user == current_user %>
           <%= link_to 'Edit', edit_user_post_path(current_user, post) %>
           <%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps' %>
