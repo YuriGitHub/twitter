@@ -24,10 +24,17 @@ test:
 
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: twitter
-  pool: 5
-  host: localhost
-  username: twitter_user
-  password: yura89peregudov
+    adapter: sqlite3
+    encoding: unicode
+    database: db/production.sqlite3
+    pool: 5
+
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: twitter
+#   pool: 5
+#   host: localhost
+#   username: twitter_user
+#   password: yura89peregudov
