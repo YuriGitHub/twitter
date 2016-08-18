@@ -9,8 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <div  class="navbar-brand">
-                <a href="#">Twitter</a>
-                <%#= link_to "Twitter", root_path %>
+              <%= link_to "Twitter", root_path %>
             </div>
             <% if user_signed_in? %>
                 <% if current_page?(root_path)   %>
