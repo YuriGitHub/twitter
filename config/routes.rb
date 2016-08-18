@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :posts, only: [:index, :update, :destroy, :edit, :create]
   end
+
+  get 'lang/:locale' => 'users#lang', as: :set_locale
 end
