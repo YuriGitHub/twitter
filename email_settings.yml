@@ -1,2 +1,7 @@
-DEFAULT_EMAIL_FROM: "example@mail.com"
-HOST: 'localhost:3000'
+development:
+  DEFAULT_EMAIL_FROM: "example@mail.com"
+  HOST: 'localhost:3000'
+
+production:
+  DEFAULT_EMAIL_FROM: "example@mail.com"
+  HOST: '37.139.4.141'

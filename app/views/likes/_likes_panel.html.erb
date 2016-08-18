@@ -1,0 +1,15 @@
+<div id="like-container_<%=post_id%>">
+    <span id="like" onclick="perform_like(<%=post_id%>)" class="glyphicon glyphicon-thumbs-up like-element" aria-hidden="true"></span>
+    <span id="like_count">0</span>
+    <span id="dislike" onclick="perform_dislike(<%=post_id%>)" class="glyphicon glyphicon-thumbs-down like-element" aria-hidden="true"></span>
+    <span id="dislike_count">0</span>
+</div>
+
+<script type="text/javascript" charset="utf-8"> 
+    $(document).ready(function(){
+        upload_like(<%=post_id%>)
+    })
+</script>
+
+
+
