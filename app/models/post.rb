@@ -10,4 +10,5 @@ class Post < ApplicationRecord
 
 	mount_uploader :video
 	mount_uploader :audio
+        accepts_nested_attributes_for :images
 end
