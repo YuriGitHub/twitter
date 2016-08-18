@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(version: 20160818092804) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "video"
+    t.string   "audio"
   end
 
   create_table "reports", force: :cascade do |t|

@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   
   root :to => 'home#index'
   get 'home/ifollow'=>'home#ifollow'
+   #todo must be post
   get 'home/toggle_follow'=>'home#toggle_follow'
+
+  post 'likes/toggle_like' => 'likes#toggle_like'
+  post 'likes/toggle_dislike' => 'likes#toggle_dislike'
+  get 'likes/upload_like' => 'likes#upload_like'
 
   get '/report_to_unlock/', to: 'send_reports#show_report'
   post '/report_to_unlock/:id/', to: 'send_reports#add_report'

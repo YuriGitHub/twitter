@@ -24,6 +24,14 @@
             </div>
             <div class="col-lg-1">
 
+              <div class="dropdown">
+                  <button class="dropbtn"><%= locale %></button>
+                  <div class="dropdown-content">
+                    <li><%= link_to 'en', set_locale_path(:locale => 'en') %></li>
+                    <li><%= link_to 'uk', set_locale_path(:locale => 'uk') %></li>
+                  </div>
+                </div>
+
             </div>
             <div class="col-lg-3">
               <div id="navbar" class="collapse navbar-collapse">

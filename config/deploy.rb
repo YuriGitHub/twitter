@@ -3,7 +3,7 @@ server '37.139.4.141',user: 'twitter_deploy',  roles: [:web, :app, :db], primary
 
 
 set :repo_url,        'git@github.com:YuriGitHub/twitter.git'
-set :branch,          "template"
+set :branch,          "pre_development"
 set :application,     'twitter'
 set :user,            'twitter_deploy'
 set :puma_threads,    [4, 16]

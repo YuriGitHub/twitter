@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :reports, as: :reportable
   has_many :posts
   has_many :feedback_to_admins
+  has_many :likes
 
   validates :login, uniqueness: true, presence: true
 
