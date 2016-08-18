@@ -48,6 +48,6 @@ class PostsController < ApplicationController
 
 	private
 	def post_params
-		params.require(:post).permit(:text, :video, :audio)
+		params.require(:post).permit(:text, :video, :audio,images_attributes:[:image,:post_id])
 	end
 end
