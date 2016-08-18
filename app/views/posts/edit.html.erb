@@ -2,11 +2,11 @@
 
 <div class="user-cont"> 
 	<%= form_for @post, url: user_post_path(current_user, @post), method: :put do |f| %>
-		<%= f.text_area :text %><br>
+		<%= f.text_area :text %><br><br>
 		<%= f.label "Upload video" %>
-		<%= f.file_field :video %>
+		<%= f.file_field :video %><br><br>
 		<%= f.label "Upload music" %>
-		<%= f.file_field :audio %>
+		<%= f.file_field :audio %><br><br>
 		<%= f.submit "Edit post" %>
 	<% end %>
 </div>
