@@ -10,7 +10,15 @@ if("<%= @result %>" == 'error'){
 		commentsArea.append("<%= j render partial: '/comments/comment', locals:{comment_id: @comment.id} %>");
 		var form = commentsArea.children('form')[0];
 		$(form).children('textarea').val('');
-	}
+
+		var newCommentForm = $(".new_comment").last();
+		$(newCommentForm).on("keypress", function(e){
+			if(e.which == 13 ){
+				$(this).submit();
+			}
+		});
+	
+		}
 	//comments to comments
 	if("<%= @comment.commentable_type %>" == 'Comment'){		
 		//найти поддиалог, к которому относится данный коммент
