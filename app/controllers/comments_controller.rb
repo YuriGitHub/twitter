@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
 
 	def ansver_to_comment
 		@comment = Comment.find(params[:id])
+		@login = User.find(@comment.user_id).login.split('@')[0]
+		@current_login = current_user.login.split('@')[0]
 	end
 
 

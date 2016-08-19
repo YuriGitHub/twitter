@@ -2,8 +2,8 @@ var div = 'div[data-post-id=' + "<%= @comment.post_id %>" + ']' +
 				'[data-comment-id=' + "<%= @comment.commentable_id %>" + ']';
 var dialogArea = $(div);
 var form  = dialogArea.children('form')[0];
-			$(form).children('textarea').val('user' + "<%= current_user.id %>" +  
-				' to user' + "<%= @comment.user_id %>" + ': ');
+			$(form).children('textarea').val("<%= @current_login %>" +  
+				' >>> ' + "<%= @login %>" + ' :  ');
 			
 
 

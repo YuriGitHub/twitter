@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :feedback_to_admins
   has_many :likes
 
