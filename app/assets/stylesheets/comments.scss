@@ -5,6 +5,10 @@
     left: 20px;
     padding: 20px;
     width: 620px;
+
+    overflow-y: scroll;
+    height: 250px;
+    
 }
 
 .comments-textarea{
@@ -19,6 +23,11 @@
     display: none;
     width: 517px;
     padding: 20px;
+
+
+    overflow-y: scroll;
+    height: 250px;
+    
 }
 
 .comment-user{
