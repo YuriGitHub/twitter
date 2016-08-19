@@ -168,6 +168,8 @@ GEM
       activemodel-serializers-xml (~> 1.0)
       activesupport (~> 5.0)
       request_store (~> 1.0)
+    dropzonejs-rails (0.7.3)
+      rails (> 3.1)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -397,6 +399,7 @@ DEPENDENCIES
   country_select
   devise
   draper (> 3.x)
+  dropzonejs-rails
   factory_girl
   inherited_resources!
   jbuilder (~> 2.5)

@@ -1,3 +1,19 @@
-<%=f.fields_for :images,html: {multipart: true} do |ff|%>
-    <%=ff.file_field :images, multiple:true%>
+<%=form_for(@image,html:{multipart:true,class:'dropzone',id:'new_upload'}) do |f|%>
+    <div class="fallback">
+        <%=f.file_field :image%>
+        <%=f.hidden_field :post_id, value: post.id%>
+        <%=f.submit "Upload"%>
+    </div>
 <%end%>
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function(){
+        Dropzone.autoDiscover = false;
+
+        $("#new_upload").dropzone({
+            maxFilesize: 1,
+            paramName: "image[image]",
+            addRemoveLinks: true
+        });
+    });
+</script>
