@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160819082838) do
   end
 
   create_table "attachments", force: :cascade do |t|
-    t.integer  "type"
+    t.integer  "file_type"
     t.string   "file"
     t.integer  "post_id"
     t.datetime "created_at", null: false

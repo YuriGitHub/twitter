@@ -5,7 +5,7 @@ class DropImagesCreateAttachments < ActiveRecord::Migration[5.0]
         remove_column :posts, :audio, :string
 
         create_table :attachments do |t|
-            t.integer :type
+            t.integer :file_type
             t.string :file
             t.integer :post_id
             t.timestamps
