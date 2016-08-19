@@ -6,8 +6,7 @@ if("<%= @result %>" == 'error'){
 	//comments to posts
 	if("<%= @comment.commentable_type %>" == 'Post'){		
 		var select = "[id=" + "<%= @comment.post_id %>" + "]";
-		var commentsArea = $(select).filter('.comments-area')
-		commentsArea.append("<%= @comment.text %>" + "<br/>");
+		var commentsArea = $(select).filter('.comments-area')		
 		commentsArea.append("<%= j render partial: '/comments/comment', locals:{comment_id: @comment.id} %>");
 		var form = commentsArea.children('form')[0];
 		$(form).children('textarea').val('');
@@ -21,7 +20,7 @@ if("<%= @result %>" == 'error'){
 		var dialogArea = $('div[data-post-id=' + dataPostId + ']' + '[data-comment-id=' + dataCommentId + ']');
 		dialogArea.append("<div id=<%=@comment.id%>>" + "<%= @comment.text %>" + "<br/>" +
 		        "<a data-remote=true rel=nofollow data-method=delete \
-		        href=/comments/<%= @comment.id %>>delete</a>" + "<br/>" + "</div>");
+		        href=/comments/<%= @comment.id %>>удалить</a>" + "<br/>" + "</div>");
 		
 		var form = dialogArea.children('form')[0];
 		$(form).children('textarea').val('');

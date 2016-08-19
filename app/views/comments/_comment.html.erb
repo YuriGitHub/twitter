@@ -3,9 +3,14 @@
 <% comments = comment.comments %>
 <% ansver = Comment.new(commentable_type:'Comment', post_id:comment.post_id, commentable_id:comment_id, user_id:current_user.id) %>
 
+<div id=<%= comment.id %> >
+	<%= comment.text %><br>	
 
+<%= link_to 'комментировать', reply_comment_path(comment), method: :post, remote: true %> 
+<% if comment.user_id == current_user.id %>
+	<%= link_to 'удалить', comment_path(comment), method: :delete, remote: true %><br>
+<% end %>
 
-<a href="#" class ='show-comment-dialog-link', data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %>>ответить </a><br>
 
 
 <div class='personal-comment-dialog-area' data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %> >
@@ -23,21 +28,16 @@
 			<div id=<%=c.id%>>
 				<%= 'user_id' + c.user_id.to_s + ': ' + c.text %><br>
 				<% if c.user_id != current_user.id %>
-
-					<a href='#' class='ansver-to-comment-link' 
-						data-post-id=<%=c.post_id%> data-comment-id=<%=c.commentable_id%> 
-						data-user-id=<%=c.user_id %> data-current-user-id=<%= current_user.id %>
-						 >ответить</a>
+						 <%= link_to 'ответить', ansver_to_comment_path(c), method: :post, remote: true %>
 				<% else %>
 					<%= link_to 'delete', comment_path(c), method: :delete, remote: true %>
 
 				<% end %>
 			</div>
-
-
-
 		<% end %>
 	</div>	
+
+</div>
 
 </div>
 

@@ -1,0 +1,2 @@
+var div = 'div[data-post-id=' + "<%= @comment.post_id %>" + ']' + '[data-comment-id=' + "<%= @comment.id %>" + ']';
+$(div).toggle();

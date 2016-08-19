@@ -8,6 +8,25 @@ class CommentsController < ApplicationController
 		end		
 	end
 
+
+	def reply_comment
+		@comment = Comment.find(params[:id])
+	end
+
+	def ansver_to_comment
+		@comment = Comment.find(params[:id])
+	end
+
+
+
+
+
+
+
+
+
+
+
 	def destroy
 		comment = Comment.find(params[:id])
 		@id = comment.id

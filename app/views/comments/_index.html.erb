@@ -22,8 +22,7 @@
 
 
 	<div class='all-comments-list'>
-		<% comments.each do |c| %>
-			<%= c.text %><br>			
+		<% comments.each do |c| %>				
 			<%= render partial: '/comments/comment', locals:{comment_id: c.id} %>
 		<% end %>
 	</div>
