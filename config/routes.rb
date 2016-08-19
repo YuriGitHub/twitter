@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post "ajax_check_validations", to: 'services#ajax_check_validations'
 
   ActiveAdmin.routes(self)
-  
+  get '/chat/', to: 'chat#index'
   root :to => 'home#index'
   get 'home/ifollow'=>'home#ifollow'
    #todo must be post
@@ -26,8 +26,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'search' => 'search#search'
   post 'user/add_report/:id_reportable', to: 'send_reports#add_report_to_user', as: 'send_report'
- 
+
   resources :users, only: [:show] do
     resources :posts, only: [:index, :update, :destroy, :edit, :create]
   end
+  mount ActionCable.server => "/chat"
 end

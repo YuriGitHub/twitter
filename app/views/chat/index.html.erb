@@ -1,0 +1,47 @@
+<div id='all_messages'>
+<% if !@messages.blank? %>
+  <% for m in @messages %>
+      <h3><%= m.text %><h3>
+  <% end %>
+<% else %>
+  <h3> No Messsages</h3>
+<% end %>
+</div>
+<input type="text" id='text_value'/>
+<button class="btn-primary" id='submit'>Send </button>
+<script>
+App.global_chat = App.cable.subscriptions.create({
+  channel: "ChatChannel",
+  id: getParameterByName('user_id')
+}, {
+  connected: function() {
+
+  },
+  disconnected: function() {},
+  received: function(data) {
+    console.log(data)
+    $("#text_value").val('')
+    $('#all_messages').append('<h3>' + data.sender + ':' + data.message + '</h3>');
+  },
+});
+
+</script>
+<script>
+$( "#submit" ).click(function() {
+sen()
+});
+
+
+$("#text_value").keypress(function(e){
+    if(e.which == 13){
+        sen()
+    }
+})
+;
+
+function sen(){
+  var text_message = $("#text_value").val();
+
+  App.global_chat.perform("send_message",{text: text_message});
+}
+</script>

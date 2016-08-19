@@ -104,6 +104,8 @@ def self.new_with_session(params, session)
     end
  #json format fields-----/
 
+
+  
  protected
 
     def reindex!
