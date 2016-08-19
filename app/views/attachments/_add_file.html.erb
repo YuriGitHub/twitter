@@ -1,7 +1,7 @@
-<%=form_for(@image,html:{multipart:true,class:'dropzone',id:'new_upload'}) do |f|%>
+<%=form_for([current_user,post,@attachment],html:{multipart:true,class:'dropzone',id:'new_upload'}) do |f|%>
     <div class="fallback">
-        <%=f.file_field :image%>
-        <%=f.hidden_field :post_id, value: post.id%>
+        <%=f.file_field :file%>
+        <%#<%=f.hidden_field :post_id, value: post.id%>
         <%=f.submit "Upload"%>
     </div>
 <%end%>
@@ -10,10 +10,11 @@
     $(document).ready(function(){
         Dropzone.autoDiscover = false;
 
-        $("#new_upload").dropzone({
-            maxFilesize: 1,
-            paramName: "image[image]",
-            addRemoveLinks: true
-        });
+
+            $("#new_upload").dropzone({
+                maxFilesize:700,
+                paramName: "attachment[file]",
+                    addRemoveLinks: true
+            });
     });
 </script>
