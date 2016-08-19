@@ -10,6 +10,6 @@ class UsersController < ApplicationController
         @post = Post.new
         @posts = Post.where('user_id = ?', @user.id).page(params[:page]).per(4).reverse_order!
             #@post.images.build
-            @post.attachments.build
+            #@post.attachments.build
     end 
 end

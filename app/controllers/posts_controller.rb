@@ -21,7 +21,8 @@ class PostsController < ApplicationController
     def edit
         @post = Post.find(params[:id])
         #@image = Image.create(post_id:@post.id)
-        @attachment = Attachment.new(post_id:@post.id)
+        @attachment = Attachment.new
+        
     end
 
     def destroy
