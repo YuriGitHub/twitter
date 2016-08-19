@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 	belongs_to :user
 	has_many :likes
 	has_many :images
-	has_many :comments
+	has_many :comments, as: :commentable, dependent: :destroy
 	has_many :reports, as: :reportable
 
 	validates :text, length: { in: 5...500}

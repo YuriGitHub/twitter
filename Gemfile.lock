@@ -27,6 +27,15 @@ GIT
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
 
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 27d8854ba63941ac22f821174abab7c10ce5a35c
+  specs:
+    carrierwave (0.11.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,12 +136,6 @@ GEM
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
     choice (0.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -196,7 +199,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    json (2.0.2)
     jwt (1.5.4)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
@@ -392,7 +394,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capistrano3-puma
-  carrierwave
+  carrierwave!
   coffee-rails (~> 4.2)
   country_select
   devise
