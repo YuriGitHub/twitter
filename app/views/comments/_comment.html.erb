@@ -30,7 +30,7 @@
 				<% if c.user_id != current_user.id %>
 						 <%= link_to 'ответить', ansver_to_comment_path(c), method: :post, remote: true %>
 				<% else %>
-					<%= link_to 'delete', comment_path(c), method: :delete, remote: true %>
+					<%= link_to 'удалить', comment_path(c), method: :delete, remote: true %>
 
 				<% end %>
 			</div>
@@ -40,6 +40,19 @@
 </div>
 
 </div>
+
+<%= javascript_tag do %>
+	var newCommentForms = $(".new_comment");
+	var form = newCommentForms.last();
+	$(form).on("keypress", function(e){
+			if(e.which == 13 ){
+				$(this).submit();
+			}
+			});
+
+<% end %>
+
+
 
 
 
