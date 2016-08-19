@@ -1,0 +1,33 @@
+
+
+<link rel="stylesheet" href="/assets/comments.scss"></link>
+
+<% post = Post.find(post_id) %>
+<% comments = post.comments %>
+<% comment = Comment.new(commentable_type:'Post', post_id:post.id, commentable_id:post_id, user_id:current_user.id) %>
+
+<%= link_to 'comments', '#', :class => 'show-comments-area-link', :id => post.id %>
+
+
+<div class='comments-area' id=<%= post.id %> >
+<%= form_for comment, remote: true do |f| %>
+	<%= f.text_area :text %>
+	<%= f.hidden_field :user_id %>
+	<%= f.hidden_field :post_id %>
+	<%= f.hidden_field :commentable_type %>
+	<%= f.hidden_field :commentable_id %>
+	<%= f.submit %>
+<% end %><br>
+
+
+
+
+	<div class='all-comments-list'>
+		<% comments.each do |c| %>
+			<%= c.text %><br>			
+			<%= render partial: '/comments/comment', locals:{comment_id: c.id} %>
+		<% end %>
+	</div>
+
+
+</div>

@@ -1,0 +1,46 @@
+
+<% comment = Comment.find(comment_id) %>
+<% comments = comment.comments %>
+<% ansver = Comment.new(commentable_type:'Comment', post_id:comment.post_id, commentable_id:comment_id, user_id:current_user.id) %>
+
+
+
+<a href="#" class ='show-comment-dialog-link', data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %>>ответить </a><br>
+
+
+<div class='personal-comment-dialog-area' data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %> >
+	partial_comment: <%= comment_id %><br>
+	<%= form_for ansver, remote: true do |f| %>
+		<%= f.text_area :text %>
+		<%= f.hidden_field :user_id %>
+		<%= f.hidden_field :post_id %>
+		<%= f.hidden_field :commentable_type %>
+		<%= f.hidden_field :commentable_id %>
+		<%= f.submit %>
+	<% end %><br>
+
+	<div >
+		<% comments.each do |c| %>
+			<div id=<%=c.id%>>
+				<%= 'user_id' + c.user_id.to_s + ': ' + c.text %><br>
+				<% if c.user_id != current_user.id %>
+
+					<a href='#' class='ansver-to-comment-link' 
+						data-post-id=<%=c.post_id%> data-comment-id=<%=c.commentable_id%> 
+						data-user-id=<%=c.user_id %> data-current-user-id=<%= current_user.id %>
+						 >ответить</a>
+				<% else %>
+					<%= link_to 'delete', comment_path(c), method: :delete, remote: true %>
+
+				<% end %>
+			</div>
+
+
+
+		<% end %>
+	</div>	
+
+</div>
+
+
+

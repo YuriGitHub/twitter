@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :posts, only: [:index, :update, :destroy, :edit, :create]
   end
+
+  resources :comments
+
 end
