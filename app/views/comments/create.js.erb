@@ -17,9 +17,11 @@ if("<%= @result %>" == 'error'){
 		var dataPostId = "<%= @comment.post_id %>";		
 		var dataCommentId = "<%= @comment.commentable_id %>";
 		var dialogArea = $('div[data-post-id=' + dataPostId + ']' + '[data-comment-id=' + dataCommentId + ']');
-		dialogArea.append("<div id=<%=@comment.id%>>" + "<%= @comment.text %>" + "<br/>" +
-		        "<a data-remote=true rel=nofollow data-method=delete \
-		        href=/comments/<%= @comment.id %>>удалить</a>" + "<br/>" + "</div>");
+		dialogArea.append("<div id=<%=@comment.id%>>" + "<div class=comment-user>" +
+							"<%= User.find(@comment.user_id).login.split('@')[0]  %>" +
+							"</div>" + ': ' + 	"<%= @comment.text %>" + "<br/>" +
+		        			"<a data-remote=true rel=nofollow data-method=delete \
+		       				 href=/comments/<%= @comment.id %>>удалить</a>" + "<br/>" + "</div>");
 		
 		var form = dialogArea.children('form')[0];
 		$(form).children('textarea').val('');

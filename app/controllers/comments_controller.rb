@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
-	def create
-		@comment = Comment.new(comment_params)
-		if @comment.save			
-			@result = 'sussess'
+	def create		
+			@comment = Comment.new(comment_params)
+			if @comment.save			
+				@result = 'sussess'
+			else
+				@result = 'error'
+			end	
 		else
-			@result = 'error'
-		end		
+			
 	end
 
 
@@ -18,15 +20,6 @@ class CommentsController < ApplicationController
 		@login = User.find(@comment.user_id).login.split('@')[0]
 		@current_login = current_user.login.split('@')[0]
 	end
-
-
-
-
-
-
-
-
-
 
 
 	def destroy

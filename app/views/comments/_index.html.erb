@@ -23,7 +23,11 @@
 	var form = newCommentForms.last();
 	$(form).on("keypress", function(e){
 			if(e.which == 13 ){
-				$(this).submit();
+				if($(this).children('textarea').val() == ''){
+					return false;
+				}else{
+					$(this).submit();
+				}
 			}
 			});
 

@@ -3,7 +3,7 @@ var div = 'div[data-post-id=' + "<%= @comment.post_id %>" + ']' +
 var dialogArea = $(div);
 var form  = dialogArea.children('form')[0];
 			$(form).children('textarea').val("<%= @current_login %>" +  
-				' >>> ' + "<%= @login %>" + ' :  ');
+				' -> ' + "<%= @login %>" + ' :  ');
 			
 
 

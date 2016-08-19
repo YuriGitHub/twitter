@@ -5,7 +5,9 @@
 
 <div id=<%= comment.id %> >
 
-<%= User.find(comment.user_id).login.split('@')[0] + ': ' %>
+<div class='comment-user'>
+	<%= User.find(comment.user_id).login.split('@')[0] + ': ' %>
+</div>
 
 	<%= comment.text %><br>	
 
@@ -29,9 +31,10 @@
 	<div >
 		<% comments.each do |c| %>
 			<div id=<%=c.id%>>
-
-				<% @login = User.find(c.user_id).login.split('@')[0] %>
-				<%=  @login + ': ' + c.text %><br>
+				<div class='comment-user'>
+					<%= User.find(c.user_id).login.split('@')[0] + ' : ' %>
+				</div>
+				<%= c.text %><br>
 				<% if c.user_id != current_user.id %>
 						 <%= link_to 'ответить', ansver_to_comment_path(c), method: :post, remote: true %>
 				<% else %>
@@ -52,9 +55,17 @@
 	var form = newCommentForms.last();
 	$(form).on("keypress", function(e){
 			if(e.which == 13 ){
-				$(this).submit();
+
+				if($(this).children('textarea').val() == ''){					
+					return false;
+				}else{
+					$(this).submit();
+				}
+				
 			}
 			});
+
+
 
 <% end %>
 
