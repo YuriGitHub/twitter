@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     post 'user/add_report/:id_reportable', to: 'send_reports#add_report_to_user', as: 'send_report'
 
 
-    resources :images,only: [:create,:destroy,:update]
+    resources :attachments,only: [:create,:destroy,:update]
     resources :users, only: [:show] do
         resources :posts, only: [:index, :update, :destroy, :edit, :create] do
         end

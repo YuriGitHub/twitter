@@ -40,7 +40,8 @@ gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'activerecord-session_store'
-gem "carrierwave"
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
 
 gem 'pg'
 gem 'country_select'

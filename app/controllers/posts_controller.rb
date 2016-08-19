@@ -20,7 +20,8 @@ class PostsController < ApplicationController
 
     def edit
         @post = Post.find(params[:id])
-        @image = Image.create(post_id:@post.id)
+        #@image = Image.create(post_id:@post.id)
+        @attachment = Attachment.new(post_id:@post.id)
     end
 
     def destroy
@@ -49,6 +50,6 @@ class PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:text, :video, :audio,images_attributes:[:image,:post_id])
+        params.require(:post).permit(:text)
     end
 end
