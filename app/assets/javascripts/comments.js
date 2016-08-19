@@ -1,13 +1,13 @@
 $(document).ready(function(){	
 
-	var newCommentForms = $(".new_comment");
-	$.each(newCommentForms, function(key, obj){
-		$(obj).on("keypress", function(e){
-			if(e.which == 13 ){
-				$(this).submit();
-			}
-		});
-	});
+	// var newCommentForms = $(".new_comment");
+	// $.each(newCommentForms, function(key, obj){
+	// 	$(obj).on("keypress", function(e){
+	// 		if(e.which == 13 ){
+	// 			$(this).submit();
+	// 		}
+	// 	});
+	// });
 
 	//comments to posts
 	var arrShowCommentsAreaLinks = $('.show-comments-area-link');

@@ -11,9 +11,7 @@ if("<%= @result %>" == 'error'){
 		var form = commentsArea.children('form')[0];
 		$(form).children('textarea').val('');	
 	
-		}
-	//comments to comments
-	if("<%= @comment.commentable_type %>" == 'Comment'){		
+		}else if("<%= @comment.commentable_type %>" == 'Comment'){		
 		//найти поддиалог, к которому относится данный коммент
 		//<div class=personal-comment-dialog-area data-post-id=  data-comment-id= >
 		var dataPostId = "<%= @comment.post_id %>";		

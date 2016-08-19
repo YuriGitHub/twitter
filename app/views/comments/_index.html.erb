@@ -18,7 +18,16 @@
 	<%= f.hidden_field :commentable_id %>	
 <% end %><br>
 
+<%= javascript_tag do %>
+	var newCommentForms = $(".new_comment");
+	var form = newCommentForms.last();
+	$(form).on("keypress", function(e){
+			if(e.which == 13 ){
+				$(this).submit();
+			}
+			});
 
+<% end %>
 
 
 	<div class='all-comments-list'>
@@ -29,3 +38,5 @@
 
 
 </div>
+
+
