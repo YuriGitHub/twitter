@@ -12,6 +12,7 @@
         <h5>Created at : <%= post.created_at %></h5>
         --------------------------------------------<br>
         <%= post.text %><br>
+        <%= render partial: 'attachments/media', object: post.attachments, as: 'attachments' %>
         <% if @user == current_user %>
           <%= link_to 'Edit', edit_user_post_path(current_user, post) %>
           <%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps' %>
