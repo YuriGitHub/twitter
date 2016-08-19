@@ -9,14 +9,13 @@
 
 
 <div class='personal-comment-dialog-area' data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %> >
-	partial_comment: <%= comment_id %><br>
+	
 	<%= form_for ansver, remote: true do |f| %>
-		<%= f.text_area :text %>
+		<%= f.text_area :text, :class => 'comments-textarea' %>
 		<%= f.hidden_field :user_id %>
 		<%= f.hidden_field :post_id %>
 		<%= f.hidden_field :commentable_type %>
-		<%= f.hidden_field :commentable_id %>
-		<%= f.submit %>
+		<%= f.hidden_field :commentable_id %>		
 	<% end %><br>
 
 	<div >
