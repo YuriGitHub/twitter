@@ -9,5 +9,9 @@ class UsersController < ApplicationController
             end
 	    @post = Post.new
 	    @posts = Post.where('user_id = ?', @user.id).page(params[:page]).per(4).reverse_order!
-	end 
+	end
+
+  def lang
+    redirect_to :back
+  end
 end

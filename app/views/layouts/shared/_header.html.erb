@@ -22,13 +22,14 @@
                 <% end %>
             <% end %>
             </div>
-            <div class="col-lg-1">
+            <div class="col-lg-1 locale">
 
               <div class="dropdown">
                   <button class="dropbtn"><%= locale %></button>
-                  <div class="dropdown-content">
-                    <li><%= link_to 'en', set_locale_path(:locale => 'en') %></li>
-                    <li><%= link_to 'uk', set_locale_path(:locale => 'uk') %></li>
+                  <div class="dropdown-content
+">
+                    <%= link_to 'en', set_locale_path(:locale => 'en') %>
+                    <%= link_to 'ru', set_locale_path(:locale => 'ru') %>
                   </div>
                 </div>
 
