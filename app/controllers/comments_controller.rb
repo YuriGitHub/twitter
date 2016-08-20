@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 	def create		
 			@comment = Comment.new(comment_params)
 			if @comment.save			
-				@result = 'sussess'
+				@result = 'success'
 			else
 				@result = 'error'
 			end	
