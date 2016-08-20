@@ -1,31 +1,18 @@
 
-if("<%= @result %>" == 'error'){
-	console.log('error');
-	console.log("<%= @comment.post_id %>");
-}else{
-	//comments to posts
-	if("<%= @comment.commentable_type %>" == 'Post'){		
-		var select = "[id=" + "<%= @comment.post_id %>" + "]";
-		var commentsArea = $(select).filter('.comments-area')		
+if("<%= @result %>" == 'success'){
+	
+	if("<%= @comment.commentable_type %>" == 'Post'){
+		var commentsArea = $("[id=" + "<%= @comment.post_id %>" + "]").filter('.comments-area');
 		commentsArea.append("<%= j render partial: '/comments/comment', locals:{comment_id: @comment.id} %>");
 		var form = commentsArea.children('form')[0];
 		$(form).children('textarea').val('');	
 	
-		}else if("<%= @comment.commentable_type %>" == 'Comment'){		
-		//найти поддиалог, к которому относится данный коммент
-		//<div class=personal-comment-dialog-area data-post-id=  data-comment-id= >
-		var dataPostId = "<%= @comment.post_id %>";		
-		var dataCommentId = "<%= @comment.commentable_id %>";
-		var dialogArea = $('div[data-post-id=' + dataPostId + ']' + '[data-comment-id=' + dataCommentId + ']');
-		dialogArea.append("<div id=<%=@comment.id%>>" + "<div class=comment-user>" +
-							"<%= User.find(@comment.user_id).login.split('@')[0]  %>" +
-							"</div>" + ': ' + 	"<%= @comment.text %>" + "<br/>" +
-		        			"<a data-remote=true rel=nofollow data-method=delete \
-		       				 href=/comments/<%= @comment.id %>>удалить</a>" + "<br/>" + "</div>");
-		
+	}else if("<%= @comment.commentable_type %>" == 'Comment'){			
+		var dialogArea = $('div[data-post-id=' + "<%= @comment.post_id %>"  + ']' +
+		                  '[data-comment-id=' + "<%= @comment.commentable_id %>" + ']');
+		dialogArea.append("<%= j render partial: '/comments/comment', locals:{comment_id: @comment.id} %>");		
 		var form = dialogArea.children('form')[0];
 		$(form).children('textarea').val('');
-
 	}	
 
 }

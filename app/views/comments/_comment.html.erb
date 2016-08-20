@@ -1,54 +1,47 @@
-
 <% comment = Comment.find(comment_id) %>
 <% comments = comment.comments %>
 <% ansver = Comment.new(commentable_type:'Comment', post_id:comment.post_id, commentable_id:comment_id, user_id:current_user.id) %>
+<div id=<%= 'comment' + comment.id.to_s %>>
 
-<div id=<%= comment.id %> >
-
-<div class='comment-user'>
-	<%= User.find(comment.user_id).login.split('@')[0] + ': ' %>
-</div>
-
+	<div class='comment-user'>
+		<%= User.find(comment.user_id).login.split('@')[0] + ': ' %>
+	</div>
 	<%= comment.text %><br>	
 
-<%= link_to 'комментировать', reply_comment_path(comment), method: :post, remote: true %> 
-<% if comment.user_id == current_user.id %>
-	<%= link_to 'удалить', comment_path(comment), method: :delete, remote: true %><br>
-<% end %>
+	<% if comment.commentable_type == 'Post' %>
+		<%= link_to 'комментировать', reply_comment_path(comment), method: :post, remote: true %> 
+	<% end %>
 
+	<% if comment.user_id == current_user.id %>
+		<%= link_to 'удалить', comment_path(comment), method: :delete, remote: true %><br>
+	<% end %>
 
-
-<div class='personal-comment-dialog-area' data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %> >
+	<div class='personal-comment-dialog-area' data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %> >
 	
-	<%= form_for ansver, remote: true do |f| %>
-		<%= f.text_area :text, :class => 'comments-textarea' %>
-		<%= f.hidden_field :user_id %>
-		<%= f.hidden_field :post_id %>
-		<%= f.hidden_field :commentable_type %>
-		<%= f.hidden_field :commentable_id %>		
-	<% end %><br>
+		<%= form_for ansver, remote: true do |f| %>
+			<%= f.text_area :text, :class => 'comments-textarea' %>
+			<%= f.hidden_field :user_id %>
+			<%= f.hidden_field :post_id %>
+			<%= f.hidden_field :commentable_type %>
+			<%= f.hidden_field :commentable_id %>		
+		<% end %><br>
 
-	<div >
-		<% comments.each do |c| %>
-			<div id=<%=c.id%>>
-				<div class='comment-user'>
-					<%= User.find(c.user_id).login.split('@')[0] + ' : ' %>
-				</div>
-				<%= c.text %><br>
-				<% if c.user_id != current_user.id %>
+		<div>
+			<% comments.each do |c| %>
+				<div id=<%= 'comment' + c.id.to_s %>>
+					<div class='comment-user'>
+						<%= User.find(c.user_id).login.split('@')[0] + ' : ' %>
+					</div>
+					<%= c.text %><br>
+					<% if c.user_id != current_user.id %>
 						 <%= link_to 'ответить', ansver_to_comment_path(c), method: :post, remote: true %>
-				<% else %>
-					<%= link_to 'удалить', comment_path(c), method: :delete, remote: true %>
-
-				<% end %>
-			</div>
-		<% end %>
-	</div>	
-
-</div>
-
-
-
+					<% else %>
+						<%= link_to 'удалить', comment_path(c), method: :delete, remote: true %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>	
+	</div>
 </div>
 <%= javascript_tag do %>
 	var newCommentForms = $(".new_comment");
@@ -64,8 +57,6 @@
 				
 			}
 			});
-
-
 
 <% end %>
 
