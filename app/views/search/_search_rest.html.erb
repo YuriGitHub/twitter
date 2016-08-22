@@ -10,7 +10,7 @@
                 <li><a href="#its_equal">Posts</a></li>
             </ul>
         </div>
-        <input type="text" value="<%=@query%>" class="form-control" id="search_field" placeholder="Search">
+        <input type="text" value="<%=@query%>" class="form-control" id="search_field" placeholder="<%= t '.search' %>">
 
         <span class="input-group-btn">
             <button class="btn btn-default" id="search_button" onclick="perform_search()" type="button">

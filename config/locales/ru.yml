@@ -1,3 +1,29 @@
 ru:
-  hello: "Привет мир"
-  register: "Регистрация"
+  helpers:
+    placeholder:
+      user:
+        login: "Логин"
+        first_name: "Имя"
+        last_name: "Фамилия"
+        country: "Страна"
+        city: "Город"
+  search:
+    search_rest:
+      search: "Поиск"
+  layouts:
+    shared:
+      header:
+        my_page: "Моя страница"
+        edit_account: "Редактировать аккаунт"
+        logout: "Выйти"
+  users:
+    show:
+      login: "Логин: "
+      date_of_birth: "Дата рождения: "
+      live: "Живет в: "
+      followers: "Подписчики: "
+      i_follow: "Подписки: "
+      follow: "Подписаться"
+      unfollow: "Одписаться"
+      posts: "Посты: "
+      

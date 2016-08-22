@@ -7,7 +7,7 @@
         <div class="panel panel-default">
         <div class="panel panel-primary">
 
-            <h3 class="text-center">Edit Information</h3>
+            <h3 class="text-center"><%= t '.edit_info' %></h3>
 
         <div class="panel-body">
 <div id='login-error' class='registrations-errors'>login error</div>
@@ -15,7 +15,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <%= f.text_field :login, class: 'form-control', placeholder: 'Login' %>
+                            <%= f.text_field :login, class: 'form-control', placeholder: true %>
                             <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
+                            <%= f.text_field :first_name, class: 'form-control', placeholder: true %>
                             <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
+                            <%= f.text_field :last_name, class: 'form-control', placeholder: true%>
                             <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+                            <%= f.text_field :country, class: 'form-control', placeholder: true%>
                             <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+                            <%= f.text_field :city, class: 'form-control', placeholder: true %>
                             <!-- <input type="text" class="form-control" placeholder="First Name" /> -->
                         </div>
                     </div>                   
@@ -90,15 +90,13 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><%= image_tag resource.avatar.url(:thumb) %></span>
-                          <div id='avatar'> <label class="btn btn-default btn-file" id="user_avatar_btn"><%= f.file_field :avatar %> Browse <input type="file" style="display: none;"></label>                         
+                          <div id='avatar'> <label class="btn btn-default btn-file" id="user_avatar_btn"><%= f.file_field :avatar %> <%= t '.browse' %> <input type="file" style="display: none;"></label>                         
                           </div>
                             <!-- <input type="text" class="form-control" placeholder="Credit card" /> -->
                         </div>
                     </div>
 
-                        <button class="btn btn-lg btn-primary btn-block" type="submit", id="edit_submit">
-            Save
-        </button>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit", id="edit_submit"><%= t '.save' %> </button>
 
 
       </div>

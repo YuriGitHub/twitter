@@ -4,18 +4,18 @@
     <div class="col-md-4">
         <%= image_tag @user.avatar.url(:medium), class: 'img-rounded' %>
         <h4><%= @user.last_name%> <%= @user.first_name %></h4>
-        <h4 id="headercustom">Login: <%= @user.login %></h4>
-        <h4>Date of birth: <%= @user.date_of_birth %> </h4>
-        <h4>Live in: <%= @user.country %> - <%= @user.city %></h4>
+        <h4 id="headercustom"><%= t '.login' %><%= @user.login %></h4>
+        <h4><%= t '.date_of_birth' %><%= @user.date_of_birth %> </h4>
+        <h4><%= t '.live' %><%= @user.country %> - <%= @user.city %></h4>
         <% if @user.id != current_user.id %>
 						<% @id = @user.id %>
             <%=form_tag '/home/toggle_follow', method:'get' do%>
                 <%=hidden_field_tag 'id', @user.id%>
                 <% unless @is_following %>
-                    <%=submit_tag 'Follow',class:"btn btn-success btn-md"%>
+                    <%=submit_tag t '.follow', class:"btn btn-success btn-md"%>
             <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Report</button>
                 <% else %>
-                    <%=submit_tag 'Unfollow',class:"btn btn-danger btn-md", style:""%>
+                    <%=submit_tag t '.unfollow',class:"btn btn-danger btn-md", style:""%>
 
             <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Report</button>
                 <% end %>
@@ -40,9 +40,9 @@
 			<% end %>
 	</div>
 	<div>
-	  <div class="col-md-2"><h4>Followers: <%= @user.followers.count %> </h4></div>
-	  <div class="col-md-2"><h4>I follow: <%= @user.ifollow.count %> </h4> </h4></div>
-	  <div class="col-md-2"><h4>Posts: <%= @user.posts.count %> </h4></div>
+	  <div class="col-md-2"><h4><%= t '.followers'  %> <%= @user.followers.count %> </h4></div>
+	  <div class="col-md-2"><h4><%= t '.i_follow' %><%= @user.ifollow.count %> </h4> </h4></div>
+	  <div class="col-md-2"><h4><%= t '.posts' %><%= @user.posts.count %> </h4></div>
 	</div>
 	<% if @user == current_user %>
 		<div class="col-md-8">
