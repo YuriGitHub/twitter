@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819072215) do
+ActiveRecord::Schema.define(version: 20160819082838) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20160819072215) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "file_type"
+    t.string   "file"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string   "text"
     t.integer  "user_id"
@@ -68,16 +76,6 @@ ActiveRecord::Schema.define(version: 20160819072215) do
     t.index ["user_id", "follower_id"], name: "index_followers_on_user_id_and_follower_id", unique: true
   end
 
-  create_table "images", force: :cascade do |t|
-    t.integer  "post_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
   create_table "likes", force: :cascade do |t|
     t.boolean  "like"
     t.integer  "user_id"
@@ -99,8 +97,6 @@ ActiveRecord::Schema.define(version: 20160819072215) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "video"
-    t.string   "audio"
   end
 
   create_table "reports", force: :cascade do |t|
