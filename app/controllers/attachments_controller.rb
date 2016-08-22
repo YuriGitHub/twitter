@@ -24,16 +24,20 @@ class AttachmentsController < ApplicationController
 
     end
 
-    def update
-        if (@attachment = Attachment.update(image_params))
-            render json: {}
-        else
-            render json: {},status:400
-        end
-    end
+    #def update
+    #if (@attachment = Attachment.update(image_params))
+    #render json: {}
+    #else
+    #render json: {},status:400
+    #end
+    #end
 
     def destroy
-        Image.find(params[:id]).destroy
+        respond_to do |format|
+            if  Attachment.find(params[:id]).destroy
+                format.json{render json: {},status:200}
+            end
+        end
     end
 
     private

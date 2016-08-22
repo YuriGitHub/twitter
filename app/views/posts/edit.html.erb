@@ -2,8 +2,19 @@
 
 <div class="user-cont"> 
     <%= form_for @post, url: user_post_path(current_user, @post), method: :put do |f| %>
-        <%= f.text_area :text %><br><br>
-        <%= f.submit "Edit post" %>
+        <%= f.text_area :text, class:'form-control',rows:'10'%><br><br>
+        <%= f.submit "Edit post", class:"btn btn-primary" %>
     <% end %>
-    <%=render partial: 'attachments/add_file',locals:{post:@post}%>
+    <h3 class="text-info">Attachments:</h3>
+    <div class="row">
+
+        <div class="col-sm-8">
+            <%=render partial: 'attachments/edit'%>
+        </div>
+        <div class="col-sm-4">
+            <%=render partial: 'attachments/add_file',locals:{post:@post}%>
+        </div>
+
+    </div>
+
 </div>

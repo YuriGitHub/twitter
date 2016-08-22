@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     get 'search' => 'search#search'
     post 'user/add_report/:id_reportable', to: 'send_reports#add_report_to_user', as: 'send_report'
 
-
+    delete 'attachments/:id',to:'attachments#destroy',as:'attachment_destroy'
     resources :users, only: [:show] do
         resources :posts, only: [:index, :update, :destroy, :edit, :create] do
             resources :attachments,only: [:create,:destroy,:update]
