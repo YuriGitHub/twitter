@@ -4,6 +4,9 @@ class PostsController < ApplicationController
     def index
         @user = User.find(params[:id])
         @posts = @user.posts
+        @posts.each do |post|
+            post.set_attachments
+        end
     end
 
     def create

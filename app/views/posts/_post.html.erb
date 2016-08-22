@@ -1,0 +1,29 @@
+<div class="panel panel-default post"> <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-7">
+                <h4 class="text-info"><%=post.user.login%></h4>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="text-muted"><%=time_ago_in_words(post.created_at)%>&nbsp;ago&nbsp;</h5>
+            </div>
+            <div class="col-sm-2 pull-right" style = 'padding: 7px'>
+                <% if post.user.id == current_user.id %>
+                    <%= link_to 'Edit', edit_user_post_path(current_user, post), class:'text-primary' %>
+                    <%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps', class:'text-danger' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p><%=post.text%></p>
+        <div class="row-fluid">
+            <div class="pull-right">
+                <% if current_user != nil %>
+                    <%=render partial: "/likes/likes_panel", locals:{post_id:post.id}%>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
