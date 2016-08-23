@@ -1,10 +1,30 @@
 class AttachmentsController < ApplicationController
 
+    
+
+    def show_image 
+        @post =  Post.find(params[:post_id])      
+        images = @post.attachments.image       
+        @image = images.find(params[:image_id]) 
+        if params[:position] == 'next'             
+             @index = images.find_index(@image)
+             if @index == images.count - 1
+                @image = images[0]
+             else              
+                @image = images[@index + 1]
+             end
+        end
+    end
+
+
+
+
+
+
+
+
     def create
         @attachment = Attachment.new(attachment_params);
-
-
-
         @attachment.post_id = params[:post_id]
         if Post.find(params[:post_id]).user_id == current_user.id
             type = params[:attachment][:file].content_type.split('/')[0]
@@ -23,6 +43,11 @@ class AttachmentsController < ApplicationController
         end
 
     end
+
+
+
+
+
 
     #def update
     #if (@attachment = Attachment.update(image_params))

@@ -33,4 +33,6 @@ Rails.application.routes.draw do
             resources :attachments,only: [:create,:destroy,:update]
         end
     end
+
+    post 'show_image' => 'attachments#show_image'
 end

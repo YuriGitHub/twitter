@@ -1,0 +1,23 @@
+_images
+
+<%= post_id %>
+<% post = Post.find(post_id) %>
+<% images = post.attachments.image %>
+
+<div class='row'>
+	<div class='col-sm-10'></div>
+
+	<link rel="stylesheet" href="/assets/attachments.scss"/>
+	<div class='images-box col-sm-2' id="post-<%= post_id %>" >	
+		<% i = 0 %>
+		<% images.each do |image| %>			
+			<%=link_to show_image_path(image_id: image, post_id: post), remote: true, method: :post do %>
+				<%=image_tag image.file.to_s, :width => 70, :height => 60 %><br>				
+			<% end %>
+			<% i += 1 %>
+			<% break if i == 4 %>	
+		<% end %>
+	</div> 
+
+</div>
+
