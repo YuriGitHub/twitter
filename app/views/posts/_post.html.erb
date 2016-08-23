@@ -26,6 +26,9 @@
                     <%=render partial: "/likes/likes_panel", locals:{post_id:post.id}%>
                 <% end %>
             </div>
+
+            <%= render partial: "/comments/index", locals:{post_id: post.id} %>
+
         </div>
     </div>
 </div>
