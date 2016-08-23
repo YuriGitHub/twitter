@@ -40,7 +40,6 @@ gem "omniauth-google-oauth2"
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'activerecord-session_store'
-gem 'therubyracer'
 
 gem "carrierwave", github: 'carrierwaveuploader/carrierwave'
 gem "bootstrap-switch-rails"
@@ -51,6 +50,11 @@ gem 'sunspot_solr'
 gem 'sunspot_rails'
 gem 'dropzonejs-rails'
 
+
+group :production do
+gem 'therubyracer'
+
+end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
