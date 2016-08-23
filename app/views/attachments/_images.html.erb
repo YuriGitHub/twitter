@@ -10,7 +10,7 @@
 	<div class='col-sm-2'>	
 		<% i = 0 %>
 		<% images.each do |image| %>			
-			<%=link_to show_image_path(image_id: image, post_id: post), remote: true, method: :get do %>
+			<%=link_to show_image_path(image_id: image, post_id: post), remote: true do %>
 				<%=image_tag image.file.to_s, :width => 70, :height => 60 %><br>				
 			<% end %>
 			<% i += 1 %>

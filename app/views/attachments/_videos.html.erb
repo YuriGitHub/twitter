@@ -7,7 +7,7 @@
 
 <div id="post-<%= post.id %>-videos" class='post-videos' >
 	<% videos.each do |clip| %>
-		<%=link_to show_video_path(video_id: clip, post_id: post), remote: true, method: :get do %>
+		<%=link_to show_video_path(video_id: clip, post_id: post), remote: true do %>
 			<span><%=clip.file.to_s.split('/').last%></span><br>
 		<% end %>	
 	<% end %>

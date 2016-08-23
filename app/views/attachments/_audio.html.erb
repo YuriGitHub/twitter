@@ -1,7 +1,7 @@
 <% post = Post.find(post_id) %>
 <% audios = post.attachments.audio %>
 	<% unless audios.empty? %>
-		<%= link_to 'audios', show_audios_block_path(post_id: post.id), method: :get, remote: true %>
+		<%= link_to 'audios', show_audios_block_path(post_id: post.id), remote: true %>
 	<% end %>
 
 <div id="post-<%=post_id%>-audio" class='post-audios'>
