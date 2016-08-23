@@ -10,4 +10,9 @@ class Post < ApplicationRecord
 
 	mount_uploader :video
 	mount_uploader :audio
+
+        #search posts by text
+        searchable do
+            text :text
+        end
 end
