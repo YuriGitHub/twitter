@@ -35,7 +35,6 @@ $(document).ready(function(){
 
     perform_like = function(id){
         $.post('/likes/toggle_like',{post_id:id}).then(function(data){
-            console.log("asdasdas")
             parse_like(id,data)
         })
     }

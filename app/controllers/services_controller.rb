@@ -8,4 +8,7 @@ class ServicesController < ApplicationController
    			render json:{'result' => 'success'}
    		end   		
     end
+
+
+   
 end

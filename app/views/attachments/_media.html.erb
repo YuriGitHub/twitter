@@ -1,0 +1,10 @@
+<% attachments.each do |attachment| %>
+	<% if attachment.file_type.to_s == "image" %>
+		<%= image_tag attachment.file.to_s, size: "250x250" %><br><br>
+	<% elsif attachment.file_type.to_s == "audio" %>
+		<%= audio_tag attachment.file.to_s, controls: true %><br><br>
+	<% else %>
+		<%= video_tag attachment.file.to_s, controls: true, size: "250x250" %><br><br>
+	<% end %>
+<% end %>     
+  

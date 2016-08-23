@@ -1,0 +1,12 @@
+$('#modal_form').show();
+$('#overlay').fadeIn(400);
+$('#modal-content').html("<img src=<%= @image.file.to_s %> id='modal-img' />");
+
+$('#modal-img').click(function(){		
+		$.ajax({
+			method: "GET",
+			url: '/show_image', 
+			data: {'post_id' : "<%= @post.id %>", 'image_id' : "<%= @image.id %>", 'position' : "next"}
+		});		
+});
+

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/assets/attachments.scss"/>
+<% post = Post.find(post_id) %>
+<% images = post.attachments.image %>
+
+<div class='row'>	
+	<div class='col-sm-10' >
+		<%= render partial: "/attachments/audio", locals:{post_id: post.id} %>
+	</div>
+	
+	<div class='col-sm-2'>	
+		<% i = 0 %>
+		<% images.each do |image| %>			
+			<%=link_to show_image_path(image_id: image, post_id: post), remote: true do %>
+				<%=image_tag image.file.to_s, :width => 70, :height => 60 %><br>				
+			<% end %>
+			<% i += 1 %>
+			<% break if i == 4 %>	
+		<% end %>
+	</div> 
+</div>
+
+
+	<%= render partial: '/attachments/videos', locals:{post_id: post_id} %>
+
+
+
+
