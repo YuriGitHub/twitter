@@ -1,0 +1,6 @@
+$('#modal_form').show();
+$('#overlay').fadeIn(400);
+
+var video = "<video width=520 height=440 controls> <source src=<%= @video.file.to_s %> type=video/mp4></video>"
+$('#modal-content').html(video);
+

@@ -74,10 +74,11 @@ footer {
 	display: none; /* в oбычнoм сoстoянии её нет) */
 }
 
-#modal-img{
-	
-	width: 500px;
-	position: relative;	
-    left: 30%;
-    top: 40%
+#modal-img{	
+	width: 400px;
+	position: relative;	    
+}
+
+#modal-content{
+	text-align: center;
 }
