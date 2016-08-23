@@ -1,3 +1,19 @@
-// Place all the styles related to the search controller here.
+// Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.search-result{
+    position: absolute;
+    width: 85%;
+    visibility: hidden;
+    margin-top: 35px
+}
+#user-mini-template{
+    margin-top:15px;
+    margin-bottom:15px;
+}
+#results{
+    list-style-type:none
+}
+.search-link{
+    margin: 5px
+}

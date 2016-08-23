@@ -12,6 +12,7 @@
  *
  * require_tree .
  *= require_self
+ *= require bootstrap3-switch
  */
 
 @import "bootstrap-sprockets";
@@ -19,14 +20,3 @@
 @import "devise/registrations.scss";
 @import "devise.scss";
 
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-  padding-top: 20px;
-}
-body {
-
-}
-footer {
-  padding: 30px 0;
-}
