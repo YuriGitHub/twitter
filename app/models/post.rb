@@ -18,4 +18,9 @@ class Post < ApplicationRecord
         self.videos = self.attachments.video
         self.audio = self.attachments.audio
     end
+
+        #search posts by text
+        searchable do
+            text :text
+        end
 end
