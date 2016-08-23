@@ -1,0 +1,47 @@
+<script>
+    var delete_deleted_element = function(element){
+        element.closest(".main").css("display","none")
+    }
+
+</script>
+<div>
+    <% if @post.images != nil %>
+        <%@post.images.each do |image|%>
+            <div style="display:inline-block; margin-left:5px;margin-right:5px; margin-top:10px; margin-bottom: 10px" class="main">
+                <%=image_tag image.file.to_s, width:'100',height:'100'%>
+                <%=link_to "Delete",attachment_destroy_path(image.id),method: :delete,remote: true, class: 'btn btn-sm btn-danger',onclick:"delete_deleted_element($(this))"%>
+            </div>
+        <% end %>
+    <% end %>
+
+    <% if @post.audio != nil %>
+        <ul style="list-style:none; margin-top: 25px">
+            <%@post.audio.each do |audio|%>
+                <li class="main">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <%=audio_tag audio.file.to_s, controls:true%>
+                        </div>
+                        <div class="col-sm-2">
+                            <%=link_to "Delete",attachment_destroy_path(audio.id),method: :delete,remote: true, class: 'btn btn-xs btn-danger',onclick:"delete_deleted_element($(this))"%>
+                        </div>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <% if @post.videos%>
+        <%@post.videos.each do |video|%> 
+            <div class="main row">
+                <div class="col-sm-3">
+                    <%=video_tag video.file.to_s,controls:true, size:'160x120' %>
+                </div>
+                <div class="col-sm-4" style="padding-top:50px">
+                    <%=link_to "Delete",attachment_destroy_path(video.id),method: :delete,remote: true, class: 'btn btn-md btn-danger',onclick:"delete_deleted_element($(this))"%>
+                </div>
+
+            </div>
+        <% end %>
+    <% end %>
+</div>

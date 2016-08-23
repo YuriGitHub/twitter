@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   devise_for :users, :controllers => { :registrations => "users/registrations" ,:omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -34,5 +35,24 @@ Rails.application.routes.draw do
   resources :comments
   post 'reply_comment/:id' => 'comments#reply_comment', as: :reply_comment
   post 'ansver_to_comment/:id' => 'comments#ansver_to_comment', as: :ansver_to_comment
+
+
+
+
+   
+
+    
+
+    delete 'attachments/:id',to:'attachments#destroy',as:'attachment_destroy'
+    resources :users, only: [:show] do
+        resources :posts, only: [:index, :update, :destroy, :edit, :create] do
+            resources :attachments,only: [:create,:destroy,:update]
+        end
+    end
+
+    get 'show_image' => 'attachments#show_image'
+    get 'show_audios_block' => 'attachments#show_audios_block'
+    get 'show_video' => 'attachments#show_video'
+    get 'show_videos_block' => 'attachments#show_videos_block'
 
 end

@@ -8,12 +8,13 @@ class SearchController < ApplicationController
         results = search.results 
         respond_to do |format|
             format.json{
-                results.each do |u|
+                results.each_with_index do |u,index|
                     if current_user.ifollow.find_by_id(u.id) != nil
                         u.is_follower = 'following'
                     else
                         u.is_follower = 'not_following'
                     end
+                    results.delete_at(index) if u.id == current_user.id
                 end
                 render json: search.results
             }

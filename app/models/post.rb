@@ -1,13 +1,21 @@
 class Post < ApplicationRecord
-	belongs_to :user
-	has_many :likes
-	has_many :images
-	has_many :comments, as: :commentable, dependent: :destroy
-	has_many :reports, as: :reportable
+    
+    belongs_to :user
+    has_many :likes
+    has_many :attachments
+    has_many :comments, as: :commentable, dependent: :destroy
+    has_many :reports, as: :reportable
 
-	validates :text, length: { in: 5...500}
-	validates :text, :user_id, presence: true
+    validates :text, length: { in: 5...500}
+    validates :text, :user_id, presence: true
 
-	mount_uploader :video
-	mount_uploader :audio
+    attr_accessor :videos
+    attr_accessor :images
+    attr_accessor :audio
+
+    def set_attachments
+        self.images = self.attachments.image
+        self.videos = self.attachments.video
+        self.audio = self.attachments.audio
+    end
 end

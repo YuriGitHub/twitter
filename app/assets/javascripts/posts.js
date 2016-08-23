@@ -22,6 +22,6 @@ $("#new_post").on("ajax:success", function(e, data, status, xhr) {
 //Destroy with AJAX 
 $(document).on('ajax:success', '#del_ps', function() {
     // .parent() is the div containing this "X" delete lin
-    $(this).parent().slideUp();
+    $(this).closest(".post").slideUp();
     }
 ); 

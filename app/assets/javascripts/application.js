@@ -14,3 +14,14 @@
 //= require jquery_ujs
 // require_tree .
 //= require bootstrap-sprockets
+//= require dropzone
+
+$(document).ready(function(){
+	$('#modal_close').click(function(){
+		$('#modal_form').hide() // делaем ему display: none;
+		$('#overlay').fadeOut(400); // скрывaем пoдлoжку
+		
+	});
+
+	
+});
