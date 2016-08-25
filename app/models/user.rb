@@ -1,17 +1,21 @@
-class User < ApplicationRecord
+#class User < ApplicationRecord::Base
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
 
  # after_create :reindex!
  # after_update :reindex!
-
+ tokenizable
 
   enum gender: [ :nan,:male , :female]
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "missing_:style.gif"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,    
          :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
+
+
+
 
   has_many :received_ms, class_name: 'Message', foreign_key: 'receiver_id'
   has_many :send_ms, class_name: 'Message', foreign_key: 'sender_id'
@@ -32,6 +36,18 @@ class User < ApplicationRecord
   # after_create do
   #   #DeviseMailer.welcome_email(self.email).deliver_later
   # end
+
+
+ #before_save :ensure_authentication_token
+
+  
+
+
+
+
+
+
+
 
  def check_date_of_birth
     from = 16.years.ago.to_date
@@ -109,5 +125,8 @@ def self.new_with_session(params, session)
     def reindex!
       Sunspot.index!(self)
     end
+
+
+ 
 
 end

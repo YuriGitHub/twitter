@@ -35,12 +35,6 @@ Rails.application.routes.draw do
   resources :comments
   post 'reply_comment/:id' => 'comments#reply_comment', as: :reply_comment
   post 'ansver_to_comment/:id' => 'comments#ansver_to_comment', as: :ansver_to_comment
-
-
-
-
-   
-
     
 
     delete 'attachments/:id',to:'attachments#destroy',as:'attachment_destroy'
@@ -54,5 +48,18 @@ Rails.application.routes.draw do
     get 'show_audios_block' => 'attachments#show_audios_block'
     get 'show_video' => 'attachments#show_video'
     get 'show_videos_block' => 'attachments#show_videos_block'
+
+
+
+
+  
+  namespace :api, :defaults => {:format => 'json'} do   
+    namespace :v1 do 
+      get 'get_profile' => 'profiles#show'  #http://localhost:3000/api/v1/get_profile?profile[email]=example@gmail.com&profile[token]=example_token
+      post 'create_profile' => 'profiles#create' #{"profile": {"email":"bush@gmail.com", "last_name" : "Bush", "first_name":"George", "login": "bush", "password":"123456"}}
+      put 'update_profile' => 'profiles#update' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35","first_name":"New_first_name", "login": "New_login"}}
+      delete 'delete_profile' => 'profiles#destroy' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35"}}      
+    end
+  end
 
 end

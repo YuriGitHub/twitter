@@ -1,21 +1,16 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-   @user = User.from_omniauth(request.env["omniauth.auth"])
-
-
-   #binding.pry
+   @user = User.from_omniauth(request.env["omniauth.auth"])  
     if @user.persisted? 
+      @user.add_token(:activate, expires_at: 10.years.from_now) #create token for API
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     elsif @user =  User.find_by(email: @user.email)
-       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
-
       session["devise.facebook_data"] = request.env["omniauth.auth"]
-
-
-     @user.send_confirmation_instructions
+      @user.send_confirmation_instructions
       redirect_to new_user_registration_url
     end
   end
@@ -24,15 +19,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
       # You need to implement the method below in your model (e.g. app/models/user.rb)
       @user = User.from_omniauth(request.env["omniauth.auth"])
-
-      #binding.pry
-
       if @user.persisted?
+        @user.add_token(:activate, expires_at: 10.years.from_now) #create token for API
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
         sign_in_and_redirect @user, :event => :authentication
       else
         session["devise.google_data"] = request.env["omniauth.auth"]
-         @user.send_confirmation_instructions
+        @user.send_confirmation_instructions
         redirect_to new_user_registration_url
       end
   end
