@@ -4,16 +4,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
    def new
-     super
+
+     build_resource({})
+
+     #binding.pry
+    yield resource if block_given?
+    respond_with resource
    end
 
   # POST /resource
    def create
+    
     build_resource(sign_up_params)
     resource.save
-
-    
-    resource.add_token(:activate, expires_at: 10.years.from_now) #create token for API
 
     yield resource if block_given?
     if resource.persisted?

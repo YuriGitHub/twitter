@@ -55,10 +55,22 @@ Rails.application.routes.draw do
   
   namespace :api, :defaults => {:format => 'json'} do   
     namespace :v1 do 
-      get 'get_profile' => 'profiles#show'  #http://localhost:3000/api/v1/get_profile?profile[email]=example@gmail.com&profile[token]=example_token
-      post 'create_profile' => 'profiles#create' #{"profile": {"email":"bush@gmail.com", "last_name" : "Bush", "first_name":"George", "login": "bush", "password":"123456"}}
-      put 'update_profile' => 'profiles#update' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35","first_name":"New_first_name", "login": "New_login"}}
-      delete 'delete_profile' => 'profiles#destroy' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35"}}      
+      post 'show_profile' =>        'profiles#show'  #http://localhost:3000/api/v1/get_profile?profile[email]=example@gmail.com&profile[token]=example_token
+      post 'create_profile' =>    'profiles#create' #{"profile": {"email":"bush@gmail.com", "last_name" : "Bush", "first_name":"George", "login": "bush", "password":"123456"}}
+      put 'update_profile' =>     'profiles#update' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35","first_name":"New_first_name", "login": "New_login"}}
+      delete 'delete_profile' =>  'profiles#destroy' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35"}} 
+      post 'login_profile' =>     'profiles#login'
+      post 'logout_profile' =>    'profiles#logout'
+
+
+      get  'get_post_info' => 'api_posts#show'  #http://localhost:3000/api/v1/get_post_info?post_id=22
+      post 'create_post' => 'api_posts#create' #{"post":{ "users_token": "91cc0dae4081", "text":"it is a new Post!", "post_id":22}} 
+      put  'update_post' => 'api_posts#update' #{"post":{ "users_token": "91cc0dae4081", "text":"updated text", "post_id":22}} 
+      delete 'delete_post' => 'api_posts#destroy' 
+
+
+
+
     end
   end
 
