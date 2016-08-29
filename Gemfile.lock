@@ -435,11 +435,8 @@ DEPENDENCIES
   sshkit!
   sunspot_rails
   sunspot_solr
-
   therubyracer
-
   tokens
-
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

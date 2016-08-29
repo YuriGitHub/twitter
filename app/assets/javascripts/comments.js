@@ -3,7 +3,10 @@ $(document).ready(function(){
 	var arrShowCommentsAreaLinks = $('.show-comments-area-link');
 	$.each(arrShowCommentsAreaLinks, function(key, obj){
 		$(obj).click(function(e){	
-			e.preventDefault();		
+			e.preventDefault();	
+
+
+			//alert();	
 			var select = "[id=" + $(this).attr('id') + "]";			
 			$(select).filter('.comments-area').toggle();		   
 		});
