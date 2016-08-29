@@ -55,18 +55,18 @@ Rails.application.routes.draw do
   
   namespace :api, :defaults => {:format => 'json'} do   
     namespace :v1 do 
-      post 'show_profile' =>        'profiles#show'  #http://localhost:3000/api/v1/get_profile?profile[email]=example@gmail.com&profile[token]=example_token
-      post 'create_profile' =>    'profiles#create' #{"profile": {"email":"bush@gmail.com", "last_name" : "Bush", "first_name":"George", "login": "bush", "password":"123456"}}
-      put 'update_profile' =>     'profiles#update' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35","first_name":"New_first_name", "login": "New_login"}}
-      delete 'delete_profile' =>  'profiles#destroy' #{"profile": {"email":"bush@gmail.com", "token":"93a44e76ff35"}} 
-      post 'login_profile' =>     'profiles#login'
-      post 'logout_profile' =>    'profiles#logout'
+      post 'show_profile' =>      'profiles#show'  #{ "email":"test@gmail.com", "token": "4ce99b39f44b"}
+      post 'create_profile' =>    'profiles#create' #{"profile": {"email":"test@gmail.com", "last_name" : "Bush", "first_name":"George", "login": "test", "password":"123456"}}
+      put 'update_profile' =>     'profiles#update' #{"profile": {"email":"test@gmail.com", "first_name":"New_first_name", "login": "New_login"}, "access": {"token": "c8c71db4d8c3"}}
+      delete 'delete_profile' =>  'profiles#destroy' #{"email":"test@gmail.com", "access": {"token": "c8c71db4d8c3"}}
+      post 'login_profile' =>     'profiles#login'  #{"email":"test@gmail.com", "password":"123456"}
+      post 'logout_profile' =>    'profiles#logout' # {  "email":"test1@gmail.com" , "token": "13f866d2c125"}
 
 
-      get  'get_post_info' => 'api_posts#show'  #http://localhost:3000/api/v1/get_post_info?post_id=22
-      post 'create_post' => 'api_posts#create' #{"post":{ "users_token": "91cc0dae4081", "text":"it is a new Post!", "post_id":22}} 
-      put  'update_post' => 'api_posts#update' #{"post":{ "users_token": "91cc0dae4081", "text":"updated text", "post_id":22}} 
-      delete 'delete_post' => 'api_posts#destroy' 
+      post  'show_post' => 'api_posts#show'  #{"post":{"post_id":26}, "access":{"token":"a93ab139d464"}}
+      post 'create_post' => 'api_posts#create' #{"post":{ "text":"it is a new Post!"}, "access":{"token" : "dsnkj778djhg"}} 
+      put  'update_post' => 'api_posts#update' #{"post":{"text":"hello1Updated Post", "post_id": 27}, "access":{"token":"a93ab139d464"}}
+      delete 'delete_post' => 'api_posts#destroy' #{"post":{"post_id": 28}, "access":{"token": "a93ab139d464"}}
 
 
 

@@ -21,9 +21,7 @@ class Api::V1::ProfilesController < ActionController::API
   end 
 
 
-  def logout
-    #user = User.find_by_email(params[:email])
-    #render json: {user: user}
+  def logout    
     if check_token(params[:token], @user)
       @user.tokens.find_by(name: 'activate').destroy
       render json: { logout: 'successfully' }
@@ -94,14 +92,20 @@ class Api::V1::ProfilesController < ActionController::API
   end
 
   def check_token(token, user)
-    if user.tokens.any?
-       unless token == user.tokens.find_by_name(:activate).token          
-          return false
-       end
-    else
-        return false
-    end
-    token   
+  	 unless user.tokens.any?  	 	
+  	 	return false
+  	 end
+  	 users_token = user.tokens.find_by_name(:activate)
+    
+       if token == users_token.token
+       		if users_token.expires_at < Time.now
+       			token.destroy
+       			return false
+          	end       
+    	else
+        	return false
+    	end
+    	token   
   end 
 
   
