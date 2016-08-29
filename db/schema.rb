@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819082838) do
+ActiveRecord::Schema.define(version: 20160825092329) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -117,6 +117,20 @@ ActiveRecord::Schema.define(version: 20160819082838) do
     t.datetime "updated_at"
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string   "name",             null: false
+    t.string   "tokenizable_type", null: false
+    t.integer  "tokenizable_id",   null: false
+    t.string   "token",            null: false
+    t.text     "data"
+    t.datetime "expires_at"
+    t.datetime "created_at",       null: false
+    t.index ["expires_at"], name: "index_tokens_on_expires_at"
+    t.index ["token"], name: "index_tokens_on_token"
+    t.index ["tokenizable_id", "tokenizable_type", "name"], name: "index_tokens_on_tokenizable_id_and_tokenizable_type_and_name", unique: true
+    t.index ["tokenizable_type", "tokenizable_id"], name: "index_tokens_on_tokenizable_type_and_tokenizable_id"
   end
 
   create_table "users", force: :cascade do |t|
