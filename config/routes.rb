@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :comments
     post 'reply_comment/:id' => 'comments#reply_comment', as: :reply_comment
     post 'ansver_to_comment/:id' => 'comments#ansver_to_comment', as: :ansver_to_comment
+    get 'show_comments_area/:id' => 'comments#show_comments_area', as: :show_comments_area
 
 
 
