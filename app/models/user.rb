@@ -1,10 +1,11 @@
-class User < ApplicationRecord
+#class User < ApplicationRecord::Base
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, , :timeoutable and :reecoverable
 
  # after_create :reindex!
  # after_update :reindex!
-
+ tokenizable
 
   enum gender: [ :nan,:male , :female]
 
@@ -30,6 +31,18 @@ class User < ApplicationRecord
   # after_create do
   #   #DeviseMailer.welcome_email(self.email).deliver_later
   # end
+
+
+ #before_save :ensure_authentication_token
+
+
+
+
+
+
+
+
+
 
  def check_date_of_birth
     from = 16.years.ago.to_date
@@ -126,5 +139,8 @@ def self.new_with_session(params, session)
     def reindex!
       Sunspot.index!(self)
     end
+
+
+
 
 end

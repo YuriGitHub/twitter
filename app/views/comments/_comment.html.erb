@@ -19,7 +19,7 @@
 	<div class='personal-comment-dialog-area' data-post-id=<%= comment.post_id %> data-comment-id=<%= comment.id %> >
 	
 		<%= form_for ansver, remote: true do |f| %>
-			<%= f.text_area :text, :class => 'comments-textarea' %>
+			<%= f.text_area :text, :class => 'comments-textarea', :id => comment.id %>
 			<%= f.hidden_field :user_id %>
 			<%= f.hidden_field :post_id %>
 			<%= f.hidden_field :commentable_type %>
@@ -44,19 +44,20 @@
 	</div>
 </div>
 <%= javascript_tag do %>
-	var newCommentForms = $(".new_comment");
-	var form = newCommentForms.last();
-	$(form).on("keypress", function(e){
-			if(e.which == 13 ){
 
-				if($(this).children('textarea').val() == ''){					
+var dialogArea = $('div[data-post-id=' + "<%= comment.post_id %>"  + ']' +
+		                   '[data-comment-id=' + "<%= comment.id %>" + ']')[0];
+var form = $(dialogArea).children("form")[0];
+	$(form).on("keypress", function(e){
+			if(e.which == 13 ){				
+				
+				if($(this).children('textarea').val() == ''){
 					return false;
 				}else{
 					$(this).submit();
 				}
-				
 			}
-			});
+    });
 
 <% end %>
 

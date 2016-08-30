@@ -10,6 +10,10 @@ class CommentsController < ApplicationController
 			
 	end
 
+	def show_comments_area
+		@post_id = params[:id]
+	end
+
 
 	def reply_comment
 		@comment = Comment.find(params[:id])

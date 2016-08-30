@@ -8,11 +8,11 @@ if("<%= @result %>" == 'success'){
 		$(form).children('textarea').val('');	
 	
 	}else if("<%= @comment.commentable_type %>" == 'Comment'){			
-		var dialogArea = $('div[data-post-id=' + "<%= @comment.post_id %>"  + ']' +
-		                  '[data-comment-id=' + "<%= @comment.commentable_id %>" + ']');
-		dialogArea.append("<%= j render partial: '/comments/comment', locals:{comment_id: @comment.id} %>");		
-		var form = dialogArea.children('form')[0];
-		$(form).children('textarea').val('');
+		 var dialogArea = $('div[data-post-id=' + "<%= @comment.post_id %>"  + ']' +
+		                   '[data-comment-id=' + "<%= @comment.commentable_id %>" + ']')[0];
+		 $(dialogArea).append("<%= j render partial: '/comments/comment', locals:{comment_id: @comment.id} %>");		
+  		 var textarea = $("#<%= @comment.commentable_id %>").filter(".comments-textarea");   
+   		 $(textarea).val(""); 
 	}	
 
 }
