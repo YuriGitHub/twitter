@@ -17,6 +17,7 @@
 //= require bootstrap-switch
 //= require dropzone
 
+
 $(document).ready(function(){
 	$('#modal_close').click(function(){
 		$('#modal_form').hide() // делaем ему display: none;

@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module Twitter
   class Application < Rails::Application
+    config.action_cable.log_tags = [
+  -> request { request.env['user_account_id'] || "no-account" },
+  :action_cable,
+  -> request { request.uuid }
+]
     # config.action_cable.mount_path = '/chats'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
