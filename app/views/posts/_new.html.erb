@@ -1,4 +1,4 @@
-<button id="new_post_but">New Post</button>
+<!-- <button id="new_post_but">New Post</button> -->
 <%=form_for [@user, @post] do |f|%>
     <%=f.hidden_field :text,value:'New post'%>
     <%=f.submit "New Post", class:'btn btn-primary'%>

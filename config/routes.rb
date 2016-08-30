@@ -50,4 +50,9 @@ Rails.application.routes.draw do
     get 'show_video' => 'attachments#show_video'
     get 'show_videos_block' => 'attachments#show_videos_block'
 
+    get 'find_chat_room', to: 'chat_rooms#find_chat_room'
+    get 'chat_room', to: 'chat_rooms#chatting'
+
+    mount ActionCable.server => "/chats"
+
 end

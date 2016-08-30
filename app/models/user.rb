@@ -13,12 +13,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
 
-  has_many :received_ms, class_name: 'Message', foreign_key: 'receiver_id'
-  has_many :send_ms, class_name: 'Message', foreign_key: 'sender_id'
-
   has_and_belongs_to_many:ifollow,class_name:"User",join_table:"followers",foreign_key: :follower_id,association_foreign_key: :user_id
   has_and_belongs_to_many:followers,class_name:"User",join_table:"followers",foreign_key: :user_id,association_foreign_key: :follower_id
-
+  has_many :messsages
+  has_many :chat_rooms
   has_many :user_reports, class_name: 'Report', foreign_key: :sender_id
   has_many :reports, as: :reportable
   has_many :posts, dependent: :destroy
@@ -43,6 +41,25 @@ class User < ApplicationRecord
 
   end
 
+  def is_main?(chat_room)
+    if(chat_room.user != nil)
+      if (self.id == chat_room.user.id)
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
+  def premission?(chat_room_id)
+    if ChatRoom.find_by('users @> ARRAY[?] and id = ?',self.id,chat_room_id).blank?
+      return true
+    else
+      return false
+    end
+  end
 
   def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

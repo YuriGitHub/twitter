@@ -1,0 +1,3 @@
+module ChatRoomsHelper
+
+end

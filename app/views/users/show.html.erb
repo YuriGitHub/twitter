@@ -12,6 +12,7 @@
         <h4>Date of birth: <%= @user.date_of_birth %> </h4>
         <h4>Live in: <%= @user.country %> - <%= @user.city %></h4>
         <% if @user.id != current_user.id %>
+        <%= link_to 'Send Message', find_chat_room_path + "?user_id=#{@user.id}" ,method: :get  %>
             <% @id = @user.id %>
             <%=form_tag '/users/toggle_follow', method:'get' do%>
                 <%=hidden_field_tag 'id', @user.id%>
