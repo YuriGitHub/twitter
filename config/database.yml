@@ -27,10 +27,16 @@ test:
       database: test
 
 production:
+  # adapter: postgresql
+  # encoding: unicode
+  # database: twitter
+  # pool: 5
+  # host: localhost
+  # username: twitter_user
+  # password: yura89peregudov
   adapter: postgresql
   encoding: unicode
-  database: twitter
   pool: 5
-  host: localhost
-  username: twitter_user
-  password: yura89peregudov
+  username: yuri
+  password: 1234567
+  database: development
