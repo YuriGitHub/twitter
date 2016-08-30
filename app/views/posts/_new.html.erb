@@ -1,7 +1,7 @@
 <!-- <button id="new_post_but">New Post</button> -->
 <%=form_for [@user, @post] do |f|%>
     <%=f.hidden_field :text,value:'New post'%>
-    <%=f.submit "New Post", class:'btn btn-primary'%>
+    <%=f.submit t('.new_post'), class:'btn btn-primary'%>
     <% end %>
 <div class="new_post_form" style="display:none">
 <%= form_for @post, url: user_posts_path(@user),html: {multipart: true} do |f| %>

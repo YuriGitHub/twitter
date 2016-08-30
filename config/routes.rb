@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'locales/:locale', to: "locales#switch", as: :locales
     devise_for :users, :controllers => { :registrations => "users/registrations" ,:omniauth_callbacks => "users/omniauth_callbacks" }
 
     devise_for :admin_users, ActiveAdmin::Devise.config

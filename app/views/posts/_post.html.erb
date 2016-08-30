@@ -8,8 +8,8 @@
             </div>
             <div class="col-sm-2 pull-right" style = 'padding: 7px'>
                 <% if post.user.id == current_user.id %>
-                    <%= link_to 'Edit', edit_user_post_path(current_user, post), class:'text-primary' %>
-                    <%= link_to 'Delete',user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps', class:'text-danger' %>
+                    <%= link_to t('.edit'), edit_user_post_path(current_user, post), class:'text-primary' %>
+                    <%= link_to t('.delete'),user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps', class:'text-danger' %>
                 <% end %>
             </div>
         </div>
