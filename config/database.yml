@@ -10,9 +10,9 @@ development:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: shaman
-  password: shaman12353
-  database: twitter_d
+  username: yuri
+  password: 1234567
+  database: development
 
 
 # Warning: The database defined as "test" will be erased and
@@ -22,15 +22,21 @@ test:
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: shaman
-      password: shaman112353
-      database: twitter_t
-
+      username: yuri
+      password: 1234567
+      database: test
 
 production:
   adapter: postgresql
   encoding: unicode
+  database: twitter
   pool: 5
-  username: yuri
-  password: 1234567
-  database: development
+  host: localhost
+  username: twitter_user
+  password: yura89peregudov
+  # adapter: postgresql
+  # encoding: unicode
+  # pool: 5
+  # username: yuri
+  # password: 1234567
+  # database: development
