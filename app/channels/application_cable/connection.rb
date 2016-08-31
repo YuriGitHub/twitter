@@ -9,7 +9,7 @@ module ApplicationCable
            protected
              def find_verified_user
                puts 'Connecting....'
-               if verified_user = env['warden'].user
+               if verified_user = User.first
                  puts 'Connected'
                  verified_user
 
