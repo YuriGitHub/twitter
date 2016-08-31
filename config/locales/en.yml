@@ -38,3 +38,6 @@ en:
     edit:
       edit: "Edit"
       attachments: "Attachments"
+  comments:
+    index:
+      comments: "Comments"
