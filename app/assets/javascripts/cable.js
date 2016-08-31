@@ -15,6 +15,6 @@
 (function() {
   this.App || (this.App = {});
 
-  App.cable = ActionCable.createConsumer('ws://127.0.0.1:3000/chats?user=1');
+  App.cable = ActionCable.createConsumer('ws://37.139.4.141:28080/chats?user=1');
 
 }).call(this);
