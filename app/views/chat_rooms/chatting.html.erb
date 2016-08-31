@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-<%= action_cable_meta_tag %>
+
 <script>
 App.cable = ActionCable.createConsumer();
 function getParameterByName(name) {
@@ -73,7 +73,7 @@ function getParameterByName(name) {
 App.global_chat = App.cable.subscriptions.create({
   channel: "ChatsChannel",
   id: getParameterByName('chat_room'),
-  
+
 }, {
   connected: function() {
     console.log('connected')
