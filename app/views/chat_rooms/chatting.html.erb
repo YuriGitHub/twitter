@@ -71,7 +71,8 @@ function getParameterByName(name) {
 }
 App.global_chat = App.cable.subscriptions.create({
   channel: "ChatsChannel",
-  id: getParameterByName('chat_room')
+  id: getParameterByName('chat_room'),
+  url: 'ws://37.139.4.141:28080/cable',
 }, {
   connected: function() {
     console.log('connected')
