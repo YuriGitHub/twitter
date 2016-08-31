@@ -58,8 +58,9 @@
         </div>
     </div>
 </div>
-
+<%= action_cable_meta_tag %>
 <script>
+App.cable = ActionCable.createConsumer();
 function getParameterByName(name) {
     url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -72,7 +73,7 @@ function getParameterByName(name) {
 App.global_chat = App.cable.subscriptions.create({
   channel: "ChatsChannel",
   id: getParameterByName('chat_room'),
-  url: 'ws://37.139.4.141:28080/cable',
+  
 }, {
   connected: function() {
     console.log('connected')
