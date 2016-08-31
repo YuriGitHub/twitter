@@ -9,7 +9,9 @@ module ApplicationCable
            protected
              def find_verified_user
                puts 'Connecting....'
-               if verified_user = User.first
+              id = request.env['QUERY_STRING'].split('=')[1]
+              puts 'Connecting....'
+               if verified_user = User.find_by(id: id)
                  puts 'Connected'
                  verified_user
 
