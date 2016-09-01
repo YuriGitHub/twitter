@@ -12,9 +12,15 @@
  * Released under the MIT license
  */
 
+
 (function() {
   this.App || (this.App = {});
-
-  App.cable = ActionCable.createConsumer('ws://37.139.4.141:28080/chats?user=8');
+  function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+   App.cable = ActionCable.createConsumer('ws://37.139.4.141:28080/chats?token='.concat(getCookie('token')));
 
 }).call(this);

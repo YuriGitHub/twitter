@@ -4,19 +4,16 @@ module ApplicationCable
 
            def connect
              self.current_user = find_verified_user
-             logger.add_tags 'ActionCable Cannoection', current_user
+             logger.add_tags 'ActionCable', current_user
            end
            protected
              def find_verified_user
-               puts 'Connecting....'
-              id = request.env['QUERY_STRING'].split('=')[1]
-              puts 'Connecting....'
-               if verified_user = User.find_by(id: id)
-                 puts 'Connected'
+
+               if verified_user = User.find_by(ws_token: request.params[:token])
                  verified_user
 
                else
-                 puts 'Unauthorazition'
+              
                  reject_unauthorized_connection
 
                end
