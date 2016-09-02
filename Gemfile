@@ -49,6 +49,7 @@ gem 'activerecord-session_store'
 gem 'redis'
 gem "carrierwave", github: 'carrierwaveuploader/carrierwave'
 gem "bootstrap-switch-rails"
+gem "font-awesome-rails"
 
 gem 'pg'
 gem 'country_select'

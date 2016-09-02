@@ -9,8 +9,8 @@ development:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: yuri
-  password: 1234567
+  username: sblazhko
+  password: 2525
   database: development
 
 
@@ -21,8 +21,8 @@ test:
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: yuri
-      password: 1234567
+      username: sblazhko
+      password: 2525
       database: test
 
 production:

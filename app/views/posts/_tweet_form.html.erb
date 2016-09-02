@@ -1,0 +1,7 @@
+<div class="row">
+<%= form_for [@user, @post] do |f| %>
+	<div class="col-md-8"><%= f.text_area :text, class: 'form-control', row: 2, placeholder: 'Short Tweet' %></div>
+	<%= f.hidden_field :post_type, value: "tweet" %>
+	<button type="submit" class="btn btn-success btn-lg"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></button>
+<% end %>
+</div>

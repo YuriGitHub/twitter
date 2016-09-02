@@ -15,6 +15,7 @@ class UsersController < ApplicationController
                 end
                 @post = Post.new
                 @posts = Post.where('user_id = ?', @user.id).page(params[:page]).per(4).reverse_order!
+                # binding.pry
             end
         end
     end
