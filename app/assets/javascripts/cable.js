@@ -4,10 +4,23 @@
 //= require action_cable
 //= require_self
 //= require_tree ./channels
+/*!
+ * JavaScript Cookie v2.1.2
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+
 
 (function() {
   this.App || (this.App = {});
-
-  App.cable = ActionCable.createConsumer();
+  function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+   App.cable = ActionCable.createConsumer('ws://37.139.4.141:28080/chats?token='.concat(getCookie('token')));
 
 }).call(this);

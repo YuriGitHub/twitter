@@ -60,6 +60,7 @@
 </div>
 
 <script>
+
 function getParameterByName(name) {
     url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -71,7 +72,8 @@ function getParameterByName(name) {
 }
 App.global_chat = App.cable.subscriptions.create({
   channel: "ChatsChannel",
-  id: getParameterByName('chat_room')
+  id: getParameterByName('chat_room'),
+
 }, {
   connected: function() {
     console.log('connected')
