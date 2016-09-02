@@ -13,17 +13,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.text = 'New post' if @post.text == nil
-    if @post.post_type == "post"
-     @post.save
+     if @post.save
       respond_to do |format|
         format.json {render json: @post.as_json, status: 200 }
         format.html { redirect_to edit_user_post_path(current_user,@post)}
-      end
-    else
-      @post.save
-      respond_to do |format|
-        format.json {render json: @post.as_json, status: :ok}
-        format.html {redirect_to :back}
       end
     end
   end
