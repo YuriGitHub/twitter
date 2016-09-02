@@ -10,7 +10,11 @@ $(document).ready(function(){
     var search_type = $('#search-type')
     var search_window = $('#result-window')
     var modal_data;
-    var search;
+
+    if(typeof page != 'string'){
+        page = ""
+    }
+    console.log(page)
 
     if(page == user_search_page){
         var users_container = $('#users')
@@ -22,7 +26,7 @@ $(document).ready(function(){
         modal_data = data
         results_modal.empty()
         search_window.css('visibility','visible')
-        if(search_type.prop('checked')==true && page == user_show_page)
+        if(search_type.prop('checked') == true)
             resolve_mini_user_data(data)
     }
 
@@ -34,6 +38,7 @@ $(document).ready(function(){
 
     var resolve_mini_user_data = function(data){
         mini_user_template = $('#user-mini-template')
+        console.log(mini_user_template)
         var cutted = false;
 
         if( data.length > 5) {
@@ -114,6 +119,7 @@ $(document).ready(function(){
     }
 
 
+    //-----------Search--logic
     var search = function() {
         var url;
         if(search_type.prop('checked') == true)
@@ -123,10 +129,10 @@ $(document).ready(function(){
         $.get(url,{query:search_field.val()}).then(function(data){
             console.log(data)
             var is_search = false;
-            if(page == user_show_page && search_type.prop('checked') == false){
-                resolve_post_data(data)
-                is_search = true
-            }
+            //if(page == user_show_page && search_type.prop('checked') == false){
+                //resolve_post_data(data)
+                //is_search = true
+            //}
 
             if(page == user_search_page && search_type.prop('checked') == true ){
                 resolve_user_data(data)
@@ -136,13 +142,18 @@ $(document).ready(function(){
             if(!is_search)
                 search_modal(data)
         })}
+    //-----------Search--logic
 
 
+
+    //-----------Search--keypress
     search_field.keypress(function(e){
         if(e.which == 13){
             search()
         }
     });
+    //-----------Search--keypress
+
     search_field.focusout(function(){
         setTimeout(function(){
             search_window.css('visibility','hidden')
