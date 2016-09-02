@@ -130,8 +130,8 @@ $(document).ready(function(){
             console.log(data)
             var is_search = false;
             //if(page == user_show_page && search_type.prop('checked') == false){
-                //resolve_post_data(data)
-                //is_search = true
+            //resolve_post_data(data)
+            //is_search = true
             //}
 
             if(page == user_search_page && search_type.prop('checked') == true ){
@@ -151,7 +151,17 @@ $(document).ready(function(){
         if(e.which == 13){
             search()
         }
+
     });
+    var searching = false;
+    search_field.keyup(function(){
+        if((search_type.prop('checked') == true) && !searching){
+            searching = true;
+        setTimeout(function(){
+            search();
+            searching = false;
+        },400);}
+    })
     //-----------Search--keypress
 
     search_field.focusout(function(){
