@@ -15,7 +15,8 @@
                     <%= render "search/search" %>
             <% end %>
             <div id="navbar" class="collapse navbar-collapse">
-
+         
+              
               <div class="locale">
 
                 <div class="dropdown">
@@ -26,8 +27,9 @@
                     <%= link_to 'ru', locales_path(:locale => 'ru') %>
                   </div>
                 </div>
-
               </div>
+
+
 
                 <ul class="nav navbar-nav navbar-right">
                     <% if user_signed_in? %>
