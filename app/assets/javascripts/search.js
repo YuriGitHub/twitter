@@ -57,7 +57,7 @@ $(document).ready(function(){
                 info.text(data[i].login+""+(data[i].first_name != null ? ", "+data[i].first_name: "")+(data[i].last_name != null ? " "+data[i].last_name: ""))
             avatar.attr("href","/users/"+data[i].id)
 
-            avatar.attr("src",data[i].image_url)
+            avatar.attr("src","/"+data[i].image_url)
 
             for(ref in refs){
                 $(refs[ref]).attr("href","/users/"+data[i].id)
@@ -88,10 +88,8 @@ $(document).ready(function(){
 
             template.attr("id","template_"+data[i].id)
             ava.attr("id","avatar_"+data[i].id)
+            ava.attr("src","/"+data[i].image_url)
 
-            if(data[i].image_url != null){
-                ava.attr("src",data[i].image_url)
-            }
 
             info.attr("id","title_"+data[i].id)
             follow_button.attr("id","followtoggle_"+data[i].id)
@@ -157,10 +155,10 @@ $(document).ready(function(){
     search_field.keyup(function(){
         if((search_type.prop('checked') == true) && !searching){
             searching = true;
-        setTimeout(function(){
-            search();
-            searching = false;
-        },400);}
+            setTimeout(function(){
+                search();
+                searching = false;
+            },400);}
     })
     //-----------Search--keypress
 
