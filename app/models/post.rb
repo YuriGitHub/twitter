@@ -10,8 +10,6 @@ class Post < ApplicationRecord
     validates :text, :user_id, presence: true
     validates :text,length: {in: 5...50}
 
-    enum post_type: [:tweet, :post]
-
     attr_accessor :videos
     attr_accessor :images
     attr_accessor :audio
