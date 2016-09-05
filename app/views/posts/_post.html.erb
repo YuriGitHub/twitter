@@ -1,7 +1,8 @@
 <div class="panel panel-default post"> <div class="panel-heading">
         <div class="row">
             <div class="col-sm-7">
-                <h4 class="text-info"><%=post.user.login%></h4>
+
+               <b><h5 class="text-info"><%=post.user.login%></h5></b>
             </div>
             <div class="col-sm-3">
                 <h5 class="text-muted"><%=time_ago_in_words(post.created_at)%>&nbsp;ago&nbsp;</h5>
@@ -15,19 +16,21 @@
         </div>
     </div>
     <div class="panel-body">
+        <h4 class="text-info"><%=post.header%></h4>
         <p><%=post.text%></p>
 
 
-            <%= render partial: "/attachments/attachments", locals:{post_id: post.id} %>
+        <%= render partial: "/attachments/attachments", locals:{post_id: post.id} %>
 
         <div class="row-fluid">
+
+            <%= render partial: "/comments/index", locals:{post_id: post.id} %>
             <div class="pull-right">
                 <% if current_user != nil %>
                     <%=render partial: "/likes/likes_panel", locals:{post_id:post.id}%>
                 <% end %>
             </div>
 
-            <%= render partial: "/comments/index", locals:{post_id: post.id} %>
 
         </div>
     </div>
