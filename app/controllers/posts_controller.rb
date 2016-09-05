@@ -53,6 +53,6 @@ end
 
   private
   def post_params
-    params.require(:post).permit(:text, :post_type,:header)
+    params.require(:post).permit(:text,:header)
   end
 end
