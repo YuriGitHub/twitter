@@ -8,6 +8,7 @@ class Post < ApplicationRecord
 
     validates :text, length: { in: 5...500}
     validates :text, :user_id, presence: true
+    validates :text,length: {in: 5...50}
 
     enum post_type: [:tweet, :post]
 
@@ -24,5 +25,6 @@ class Post < ApplicationRecord
         #search posts by text
         searchable do
             text :text
+            text :header
         end
 end
