@@ -34,6 +34,10 @@ Rails.application.routes.draw do
         resources :posts, only: [:index, :update, :destroy, :edit, :create]
     end
 
+  resources :users, only:[] do
+    resources :photo_albums
+  end
+
     resources :comments
     post 'reply_comment/:id' => 'comments#reply_comment', as: :reply_comment
     post 'ansver_to_comment/:id' => 'comments#ansver_to_comment', as: :ansver_to_comment

@@ -13,6 +13,11 @@
       <h4><%= t '.live' %><%= @user.country %> - <%= @user.city %></h4>
 
 
+
+
+<%= link_to 'Photo Albums', user_photo_albums_path(@user) %>
+
+
         <% if @user.id != current_user.id %>
         <%= link_to 'Send Message', find_chat_room_path + "?user_id=#{@user.id}" ,method: :get  %>
             <% @id = @user.id %>

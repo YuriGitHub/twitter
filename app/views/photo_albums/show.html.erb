@@ -1,0 +1,7 @@
+<%= @album.name %>
+
+<%= form_for @album.attachments.
+
+<% if @user.id == current_user.id %>
+  <%= link_to 'Edit Album', edit_user_photo_album_path(@user, @album) %>
+<% end %>

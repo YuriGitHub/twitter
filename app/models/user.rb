@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :attachments
 
+ has_many :photo_albums
+
   validates :login, uniqueness: true, presence: true
 
   validate :check_date_of_birth
