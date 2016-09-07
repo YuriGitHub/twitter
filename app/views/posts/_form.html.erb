@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="/assets/show.css"/>
+
+<div> 
+    <%= form_for [current_user,@post],remote:true, id:'post_form', method: :post do |f| %>
+        <%= f.text_field :header,id:'header_field', class:'form-control', placeholder:'header'%><br />
+        <%= f.text_area :text,id:'text_field', class:'form-control',rows:'10'%><br><br>
+        <%#<%= f.submit t('.edit'), class:"btn btn-primary" %>
+    <% end %>
+    <%#<h3 class="text-info"><%= t '.attachments' %></h3>
+    <%#<div class="row">%>
+        <%#<div class="col-sm-8">%>
+            <%#[><%=render partial: 'attachments/edit'<]%>
+            <%#</div>%>
+        <%#</div>%>
+
+    <hr />
+
+    <div class="row">
+        <div class='col-sm-12'>
+            <%=render partial: 'attachments/add_file',locals:{post:@post}%>
+        </div>
+    </div>
+
+</div>
