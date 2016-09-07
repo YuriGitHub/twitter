@@ -3,5 +3,5 @@ development:
   HOST: 'localhost:3000'
 
 production:
-  DEFAULT_EMAIL_FROM: "example@mail.com"
-  HOST: '37.139.4.141'
+  DEFAULT_EMAIL_FROM: "testapp891@gmail.com"
+  HOST: '139.59.147.251'

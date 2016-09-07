@@ -1,7 +1,7 @@
 
 production:
   solr:
-    hostname: 37.139.4.141
+    hostname: 139.59.147.251
     # hostname: localhost
     port: 8983
     log_level: INFO

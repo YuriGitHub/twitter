@@ -28,7 +28,7 @@ class SendReportsController < ApplicationController
           MailforLockedUserMailer.lock_user_email(user, user.blocked_text).deliver_now
         end
       end
-      redirect_to '/search'
+      redirect_to "/users/#{user.id}"
     end
 
     def show_report_form

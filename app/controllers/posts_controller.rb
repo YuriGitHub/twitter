@@ -15,11 +15,12 @@ class PostsController < ApplicationController
         @post.text = 'New post' if @post.text == nil
         if @post.save
             respond_to do |format|
-                format.json {render json: @post.as_json, status: 200 }
+                format.json {render json: @post,status: :created}
                 format.html { redirect_to edit_user_post_path(current_user,@post)}
             end
         end
     end
+
 
     def edit
         @post = Post.find(params[:id])
@@ -31,7 +32,7 @@ class PostsController < ApplicationController
         post = Post.find(params[:id])
         respond_to do |format|
             if post.destroy
-                format.json {render json: @post.as_json, status: 200 }
+                format.json {render json: @post, status: 200 }
                 format.html { redirect_to current_user }
             end
         end
@@ -42,8 +43,8 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         respond_to do |format|
             if @post.update(post_params)
+                format.json { render json: @post, status: :ok }
                 format.html { redirect_to current_user }
-                format.json { render :show, status: :ok, location: @post }
             else
                 format.html { render :edit }
                 format.json { render json: @post.errors, status: :unprocessable_entity }

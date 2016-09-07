@@ -1,4 +1,4 @@
-<div class="panel panel-default post"> <div class="panel-heading">
+<div class="panel panel-default post main" id="<%=post.id%>">  <div class="panel-heading">
         <div class="row">
             <div class="col-sm-7">
 
@@ -9,15 +9,16 @@
             </div>
             <div class="col-sm-2 pull-right" style = 'padding: 7px'>
                 <% if post.user.id == current_user.id %>
-                    <%= link_to t('.edit'), edit_user_post_path(current_user, post), class:'text-primary' %>
+                    <%#<%= link_to t('.edit'), edit_user_post_path(current_user, post), class:'text-primary',  %>
+                    <a class="text-primary" href="#stub" onclick="edit_post(this)">Edit</a>
                     <%= link_to t('.delete'),user_post_path(current_user, post), method: :delete, remote: true, id: 'del_ps', class:'text-danger' %>
                 <% end %>
             </div>
         </div>
     </div>
     <div class="panel-body">
-        <h4 class="text-info"><%=post.header%></h4>
-        <p><%=post.text%></p>
+        <h4 class="text-info post_header"><%=post.header%></h4>
+        <p class="post_text"><%=post.text%></p>
 
 
         <%= render partial: "/attachments/attachments", locals:{post_id: post.id} %>

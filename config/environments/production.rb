@@ -3,13 +3,15 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-
+  config.action_mailer.default_url_options = { host: '139.59.147.251', port: 80 }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = false
-
+  config.action_mailer.default_options = {
+  from: "testapp891@gmail.com"
+}
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -36,10 +38,10 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = 'wss://example.com/cable'
+  config.action_cable.url = 'ws://139.59.147.251'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
   config.action_cable.disable_request_forgery_protection = true
-
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
@@ -84,4 +86,21 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  config.app_domain = '139.59.147.251'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: config.app_domain }
+
+# SMTP settings for gmail
+config.action_mailer.smtp_settings = {
+ :address              => "smtp.gmail.com",
+ :port                 => 587,
+ :user_name            => 'testapp891@gmail.com',
+ :password             => 'wwwqqqeee',
+ :authentication       => "plain",
+:enable_starttls_auto => true
+}
 end

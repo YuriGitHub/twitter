@@ -21,6 +21,6 @@
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
-   App.cable = ActionCable.createConsumer('ws://37.139.4.141:28080/chats?token='.concat(getCookie('token')));
+   App.cable = ActionCable.createConsumer('/chats?token='.concat(getCookie('token')));
 
 }).call(this);
