@@ -11,6 +11,8 @@
       <h4 id="headercustom"><%= t '.login' %><%= @user.login %></h4>
       <h4><%= t '.date_of_birth' %><%= @user.date_of_birth %> </h4>
       <h4><%= t '.live' %><%= @user.country %> - <%= @user.city %></h4>
+
+
         <% if @user.id != current_user.id %>
         <%= link_to 'Send Message', find_chat_room_path + "?user_id=#{@user.id}" ,method: :get  %>
             <% @id = @user.id %>
@@ -49,13 +51,13 @@
       <div class="col-md-2"><h4><%= t '.i_follow' %><%= @user.ifollow.count %> </h4></div>
       <div class="col-md-2"><h4><%= t '.posts' %><%= @user.posts.count %> </h4></div>
     </div>
+   
     <% if @user == current_user %>
-        <div class="col-md-8">
-            <%= render partial: 'posts/new' %>
-        </div>
-    <% end %>
+      <%= render partial: 'posts/new' %>
+    <% end %> 
+
     <div class="col-md-8">
         <%= render partial: 'posts/index' %>
         <%= paginate @posts %>
     </div>
-    </div>
+</div>

@@ -13,7 +13,6 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         @post.text = 'New post' if @post.text == nil
-
         if @post.save
             respond_to do |format|
                 format.json {render json: @post.as_json, status: 200 }
@@ -25,9 +24,7 @@ class PostsController < ApplicationController
     def edit
         @post = Post.find(params[:id])
         @post.set_attachments
-        #@image = Image.create(post_id:@post.id)
         @attachment = Attachment.new
-        
     end
 
     def destroy
@@ -41,7 +38,7 @@ class PostsController < ApplicationController
     end
 
     def update
-        user = User.find(params[:user_id])
+        #user = User.find(params[:user_id])
         @post = Post.find(params[:id])
         respond_to do |format|
             if @post.update(post_params)
@@ -56,6 +53,6 @@ class PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:text)
+        params.require(:post).permit(:text,:header)
     end
 end
