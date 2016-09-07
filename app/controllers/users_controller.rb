@@ -22,6 +22,8 @@ class UsersController < ApplicationController
     def feed
         @user = current_user
         @query = params[:query]
+        @form_dummy = Post.new(:id => 0)
+        @attachment = Attachment.new
         @post = Post.new
         search = nil;
         if @query != nil

@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :feedback_to_admins
   has_many :likes
+  has_many :attachments
 
   validates :login, uniqueness: true, presence: true
 
@@ -139,8 +140,5 @@ def self.new_with_session(params, session)
     def reindex!
       Sunspot.index!(self)
     end
-
-
-
 
 end

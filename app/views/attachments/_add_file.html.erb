@@ -1,14 +1,60 @@
-<%=form_for([current_user,post,@attachment],html:{:multipart => true,:class => 'dropzone',:id => 'new_upload'}) do |f|%>
-    <div class="fallback">
-        <%=f.file_field :file%>
-        <%=f.submit "Upload"%>
-    </div>
-<%end%>
-<script type="text/javascript" charset="utf-8">
-        Dropzone.autoDiscover = false;
-            $("#new_upload").dropzone({
+<%#<%=form_for([current_user,post,@attachment],html:{:multipart => true,:class => 'dropzone',:id => 'file_upload_form'}) do |f| %>
+
+    <% if ((not defined?(type)) ? true : (type == nil or type == "" )) %>
+        <%=form_for([current_user,(@post.id != nil ? @post : @form_dummy),@attachment],html:{:multipart => true,:class => 'dropzone',:id => 'file_upload_form'}) do |f|%>
+
+            <div class="fallback">
+                <%=f.file_field :file%>
+                <%=f.submit "Upload"%>
+            </div>
+        <%end%>
+        <script type="text/javascript" charset="utf-8">
+            Dropzone.autoDiscover = false;
+            $("#file_upload_form").dropzone({
+                autoProcessQueue :false,
+                maxFilesize: 700,
+                paramName: "attachment[file]",
+                addRemoveLinks: true,
+                init:function(){
+                    this.on('complete',function(file){
+                        console.log(file)
+                            if (this.getQueuedFiles().length == 0 && 
+                                    this.getUploadingFiles().length == 0){
+                                $('#create-form').modal('toggle')
+                                    location.reload()
+                            }
+                    });
+                }
+            });
+var dropzone = Dropzone.forElement("#file_upload_form");
+
+var submit_all = function(){
+    dropzone.options.url = $('#file_upload_form').attr('action')
+        dropzone.options.autoProcessQueue = true;
+    dropzone.processQueue();
+    if(dropzone.files.length== 0){
+        $('#create-form').modal('toggle')
+            location.reload()
+    }
+}
+        </script>
+    <% else %>
+        <%=form_for([current_user,@post,@attachment],html:{:multipart => true,:class => 'dropzone',:id => 'file_upload_form'}) do |f|%>
+
+            <div class="fallback">
+                <%=f.file_field :file%>
+                <%=f.submit "Upload"%>
+            </div>
+        <%end%>
+        <script type="text/javascript" charset="utf-8">
+            Dropzone.autoDiscover = false;
+            $("#file_upload_form").dropzone({
+                autoProcessQueue :true,
                 maxFilesize: 700,
                 paramName: "attachment[file]",
                 addRemoveLinks: true
             });
-</script>
+        </script>
+
+    <% end %>
+
