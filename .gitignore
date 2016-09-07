@@ -26,4 +26,9 @@ solr/development/data
 /public/system/users/avatars
 /public/uploads
 tags
+public
 public/uploads
+/config/database.yml
+/.gitignore
+config/database.yml
+.gitignore

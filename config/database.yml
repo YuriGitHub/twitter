@@ -5,13 +5,12 @@
 #   gem 'sqlite3'
 #
 
-
 development:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: yuri
-  password: 1234567
+  username: bliareg
+  password: password
   database: development
 
 
@@ -22,8 +21,8 @@ test:
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: yuri
-      password: 1234567
+      username: bliareg
+      password: password
       database: test
 
 production:
@@ -34,9 +33,4 @@ production:
   host: localhost
   username: twitter_user
   password: yura89peregudov
-  # adapter: postgresql
-  # encoding: unicode
-  # pool: 5
-  # username: yuri
-  # password: 1234567
-  # database: development
+
