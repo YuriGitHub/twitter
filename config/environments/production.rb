@@ -10,7 +10,7 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = false
   config.action_mailer.default_options = {
-  from: "testapp891@gmail.com" 
+  from: "testapp891@gmail.com"
 }
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -38,7 +38,7 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = 'wss://example.com/cable'
+  config.action_cable.url = 'ws://139.59.147.251'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
   config.action_cable.disable_request_forgery_protection = true
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]

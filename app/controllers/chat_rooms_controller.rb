@@ -2,10 +2,6 @@ class ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
   def find_chat_room
-<<<<<<< HEAD
-
-=======
->>>>>>> bef63fefbd48b1f5fe10671450f99495703b6c9c
     if User.find_by(ws_token: cookies[:token]) == nil || User.where(ws_token: cookies[:token]) != current_user
       token = SecureRandom.hex
       cookies[:token] = token

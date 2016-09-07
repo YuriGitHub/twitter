@@ -1,0 +1,6 @@
+development:
+  url: 'localhost:3000'
+
+
+production:
+  url: '139.59.147.251'

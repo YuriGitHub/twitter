@@ -9,10 +9,9 @@ development:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: bliareg
-  password: password
+  username: yuri
+  password: 1234567
   database: development
-
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,9 +20,9 @@ test:
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: bliareg
-      password: password
-      database: test
+      username: yuri
+      password: 1234567
+      database: development
 
 production:
   adapter: postgresql
@@ -33,4 +32,3 @@ production:
   host: localhost
   username: twitter_user
   password: yura89peregudov
-
