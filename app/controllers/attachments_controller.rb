@@ -31,14 +31,11 @@ class AttachmentsController < ApplicationController
     end
 
 
-
-
-
-
-
     def create
         @attachment = Attachment.new(attachment_params);
-        @attachment.post_id = params[:post_id]
+        @attachment.post_id = params[:post_id] if params[:post_id]
+        @attachment.post_id = 0 unless params[:post_id]
+        @attachment.user_id = current_user.id
         if Post.find(params[:post_id]).user_id == current_user.id
             type = params[:attachment][:file].content_type.split('/')[0]
             if type == 'audio' or type == 'video' or type == 'image'
@@ -52,13 +49,10 @@ class AttachmentsController < ApplicationController
                 render json: {},status:403
             end
         else
-            render json: {},status:400 
+            render json: {},status:400
         end
 
     end
-
-
-
 
 
 
