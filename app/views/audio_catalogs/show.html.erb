@@ -1,5 +1,5 @@
-
-
+<h2><%= @audio_catalog.name %></h2>
+<%= link_to 'All Audio Catalogs', user_audio_catalogs_path(@user), class:'btn btn-default' %>
 <% if @user == current_user %>
     <%= link_to 'Edit Audio Catalog', edit_user_audio_catalog_path(@user, @audio_catalog), class:'btn btn-default' %>
     <%= link_to 'Delete Audio Catalog', user_audio_catalog_path(@user, @audio_catalog), method: :delete, class:'btn btn-default', data:{confirm: 'Are you  shure?'} %>
@@ -27,6 +27,5 @@
     <% if @user == current_user %>
         <%= link_to 'Remove', user_remove_track_path(@user, track_id: track.id, audio_catalog_id: @audio_catalog ), method: :delete %>
     <% end %>
-
 <% end %>
 

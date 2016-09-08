@@ -1,10 +1,6 @@
-<div class="media" >
-
-
-
 <h1><%= @album.name %></h1>
 
-
+<%= link_to 'All Photo Albums', user_photo_albums_path(@user), class:'btn btn-default' %>
 
 <% if @user.id == current_user.id %>
   <%= link_to 'Edit Album', edit_user_photo_album_path(@user, @album), class:'btn btn-default' %>
@@ -33,4 +29,3 @@
 
 <% end %>
 
-</div>
