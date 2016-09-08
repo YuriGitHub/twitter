@@ -1,3 +1,5 @@
+
+
 <% if @user == current_user %>
     <%= link_to 'Edit Audio Catalog', edit_user_audio_catalog_path(@user, @audio_catalog), class:'btn btn-default' %>
     <%= link_to 'Delete Audio Catalog', user_audio_catalog_path(@user, @audio_catalog), method: :delete, class:'btn btn-default', data:{confirm: 'Are you  shure?'} %>
