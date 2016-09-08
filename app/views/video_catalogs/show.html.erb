@@ -19,7 +19,7 @@
         <h2>Add Video To Catalog</h2>
 
             <div class="form-group">
-              <%= f.file_field :file %>
+              <%= f.file_field :file, accept:'video/*' %>
             </div>
             <div class="form-group">
               <%= f.submit 'Submit', class:'btn btn-primary'  %>
@@ -27,12 +27,15 @@
 
 
 
+    <% end %>
+<% end %>
 
 
-
-
-
-
-
+<% @video_catalog.attachments.video.each do |clip| %>
+    <%=link_to '#', remote: true do %>
+        <%= video_tag clip.file.to_s, :size => "320x240", :controls => true %>
+    <% end %>
+    <% if @user == current_user %>
+        <%= link_to 'Remove', user_remove_video_path(@user, video_id: clip.id, video_catalog_id: @video_catalog ), method: :delete %>
     <% end %>
 <% end %>

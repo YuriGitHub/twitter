@@ -8,8 +8,8 @@ class PhotoAlbumsController < ApplicationController
 
   def  add_photo_to_album
     @album = @user.photo_albums.find(params[:photo_album_id])
-    @picture = @album.attachments.build(photo_params)
-    @picture.file_type = :image
+    @picture = @album.attachments.image.build(photo_params)
+    @picture.user_id = params[:user_id]
     if @picture.save
       redirect_to user_photo_album_path(@user, @album)
     end

@@ -51,15 +51,39 @@ class VideoCatalogsController < ApplicationController
   end
 
 
-
-
-
-  def add_video_to_catalog
-    binding.pry
+  def remove_video
+    @video_catalog = @user.video_catalogs.find(params[:video_catalog_id])
+    @video = @video_catalog.attachments.video.find(params[:video_id])
+    unless @video.destroy
+       flash[:errors] = @video.errors.full_messages
+    else
+       flash[:notice] = 'Video successfully removed.'
+    end
+    redirect_to user_video_catalog_path(@user, @video_catalog)
   end
 
 
+  def add_video_to_catalog
+    @video_catalog = @user.video_catalogs.find(params[:video_catalog_id])
+    @video = @video_catalog.attachments.video.build(video_params)
+    @video.user_id = params[:user_id]
+
+    if @video.save
+      redirect_to user_video_catalog_path(@user, @video_catalog)
+    end
+
+  end
+
+
+
+
+
+
   private
+
+  def video_params
+    params.require(:attachment).permit(:file)
+  end
 
   def video_catalog_params
     params.require(:video_catalog).permit(:name)

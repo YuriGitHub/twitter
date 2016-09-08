@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     post 'add_photo_to_album/(:format)' => 'photo_albums#add_photo_to_album', as: :add_photo_to_album
     resources :video_catalogs
     post 'add_video_to_catalog/(:format)' => 'video_catalogs#add_video_to_catalog', as: :add_video_to_catalog
+    delete 'remove_video' => 'video_catalogs#remove_video', as: :remove_video
   end
 
     resources :comments
