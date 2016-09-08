@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
 
-  has_and_belongs_to_many:ifollow,class_name:"User",join_table:"followers",foreign_key: :follower_id,association_foreign_key: :user_id
+  has_and_belongs_to_many:ifollow,class_name: "User", join_table:"followers",foreign_key: :follower_id,association_foreign_key: :user_id
   has_and_belongs_to_many:followers,class_name:"User",join_table:"followers",foreign_key: :user_id,association_foreign_key: :follower_id
   has_many :messsages
   has_many :chat_rooms
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   has_many :feedback_to_admins
   has_many :likes
   has_many :attachments
+
+ has_many :photo_albums
+ has_many :video_catalogs
+ has_many :audio_catalogs
 
   validates :login, uniqueness: true, presence: true
 

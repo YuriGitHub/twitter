@@ -1,0 +1,15 @@
+
+<%= form_for [@user, @audio_catalog] do |f| %>
+    <div class="form-group">
+      <h2><%= f.label :name %></h2>
+      <%= f.text_field :name, class:'form-control' %>
+    </div>
+    <%= f.submit class:'btn btn-primary' %>
+
+    <% if @audio_catalog.id %>
+      <%= link_to 'Cancel', user_audio_catalog_path(@user, @audio_catalog), class:'btn btn-default' %>
+    <% else %>
+      <%= link_to 'Cancel', user_audio_catalogs_path(@user), class:'btn btn-default' %>
+    <% end %>
+
+<% end %>

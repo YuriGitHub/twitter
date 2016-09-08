@@ -11,7 +11,7 @@ development:
   pool: 5
   username: dima
   password: 777Dima777
-  database: development
+  database: twitter_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,7 +23,7 @@ test:
       username: dima
       password: 777Dima777
       database: test
-      database: development
+      database: twitter_test
 
 
 production:
