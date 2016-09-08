@@ -7,7 +7,7 @@
   <%= link_to 'Delete Album', user_photo_album_path(@user, @album), method: :delete, data:{confirm: 'Are you  shure?'}, class:'btn btn-default' %>
 
     <h2>Add Photo To Album</h2>
-    <%= form_for [@user, @album.attachments.build], url: user_add_photo_to_album_path(photo_album_id: @album.id) do |f| %>
+    <%= form_for [@user, @album.attachments.build], url: user_add_photo_to_album_path(id: @album) do |f| %>
         <div class="form-group">
             <%= f.file_field :file,  accept:'image/*' %>
         </div>
@@ -24,7 +24,7 @@
           <%=image_tag photo.file.to_s, :accept => 'jpeg/jpg/png', :width => 370, :height => 260 %>
       <% end %>
       <% if @user == current_user %>
-          <%= link_to 'Remove', user_remove_photo_path(@user, photo_album_id: @album, photo_id: photo), method: :delete %>
+          <%= link_to 'Remove', user_remove_photo_path(@user, id: @album, photo_id: photo), method: :delete %>
       <% end %>
 
 <% end %>

@@ -2,35 +2,22 @@ class PhotoAlbumsController < ApplicationController
 
   before_action :find_user
   before_action :check_authorization, only:[:new, :create, :update, :destroy, :remove_photo, :add_photo_to_album]
-  before_action :find_album, only:[:show, :edit, :update, :destroy]
+  before_action :find_album, only:[:show, :edit, :update, :destroy, :add_photo_to_album, :remove_photo]
 
   def remove_photo
-    @album = @user.photo_albums.find(params[:photo_album_id])
-    @photo = @album.attachments.find(params[:photo_id])
-    if @photo.destroy
-      flash[:notice] = 'Photo successfully removed.'
-    else
-      flash[:error] = @photo.errors.full_messages
-    end
+    flash[:notice] = @album.remove_photo(params[:photo_id])
     redirect_to user_photo_album_path(@user, @album)
   end
 
   def  add_photo_to_album
-    @album = @user.photo_albums.find(params[:photo_album_id])
     unless params[:attachment]
-      flash[:error] = 'No file selected.'
+      set_flash_error('No file selected.')
       redirect_to user_photo_album_path(@user, @album)
       return
     end
-    @picture = @album.attachments.image.build(photo_params)
-    @picture.user_id = params[:user_id]
-    if @picture.save
-      redirect_to user_photo_album_path(@user, @album)
-    end
+    flash[:notice] = @album.load_photo(photo_params, current_user)
+    redirect_to user_photo_album_path(@user, @album)
   end
-
-
-
 
   def index
   end
@@ -39,7 +26,6 @@ class PhotoAlbumsController < ApplicationController
   end
 
   def edit
-    @errors = params[:errors]
   end
 
   def show
@@ -47,34 +33,59 @@ class PhotoAlbumsController < ApplicationController
 
   def create
     @album = @user.photo_albums.build(album_params)
-    respond_to do |format|
-      if @album.save
-        format.html {redirect_to user_photo_albums_path(@user)}
-      else
-        format.html {render 'new' }
-      end
+    if @album.name_uniquess(@album.name)
+        respond_to do |format|
+          if @album.save
+            flash[:notice] = 'Photo Album successfully created'
+            format.html {redirect_to user_photo_albums_path(@user)}
+          else
+            set_flash_error
+            format.html { redirect_to new_user_photo_album_path(@user) }
+          end
+        end
+    else
+        set_flash_error('Name must by uniquess.')
+        redirect_to new_user_photo_album_path(@user)
     end
   end
 
   def update
+   if @album.name_uniquess(@album.name)
     respond_to do |format|
       if @album.update(album_params)
-        format.html {redirect_to user_photo_album_path(@user, @album)}
+        format.html do
+          flash[:notice] = 'Photo Album successfully updated'
+          redirect_to user_photo_album_path(@user, @album)
+        end
       else
         format.html do
-          errors = @album.errors.full_messages
-          redirect_to edit_user_photo_album_path(@user, @album, errors: errors)
+          set_flash_error
+          redirect_to edit_user_photo_album_path(@user, @album)
         end
       end
     end
+   else
+     set_flash_error('Name must by uniquess.')
+     redirect_to edit_user_photo_album_path(@user, @album)
+   end
   end
 
   def destroy
-    @album.destroy
-    redirect_to user_photo_albums_path(@user)
+    if @album.destroy
+      flash[:notice] = 'Photo Album successfully deleted.'
+      redirect_to user_photo_albums_path(@user)
+    else
+      set_flash_error
+      redirect_to user_photo_album_path(@user, @album)
+    end
   end
 
   private
+
+  def set_flash_error(errors = nil)
+    errors ||= @album.errors.full_messages
+    flash[:error] = errors
+  end
   def find_album
     @album = @user.photo_albums.find(params[:id])
   end
