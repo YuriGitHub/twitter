@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
  has_many :photo_albums
  has_many :video_catalogs
+ has_many :audio_catalogs
 
   validates :login, uniqueness: true, presence: true
 

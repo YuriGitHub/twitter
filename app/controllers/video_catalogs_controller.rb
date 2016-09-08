@@ -1,6 +1,6 @@
 class VideoCatalogsController < ApplicationController
   before_action :find_user
-  before_action :check_authorization, only:[:edit, :create, :update, :destroy]
+  before_action :check_authorization, only:[:edit, :create, :update, :destroy, :remove_video, :add_video_to_catalog]
   before_action :find_video_catalog, only:[:show, :update, :destroy]
 
   def index
@@ -64,8 +64,6 @@ class VideoCatalogsController < ApplicationController
 
 
   def add_video_to_catalog
-
-
     @video_catalog = @user.video_catalogs.find(params[:video_catalog_id])
     unless params[:attachment]
       flash[:error] = 'No file selected.'
