@@ -19,7 +19,12 @@
 <% end %>
 
 <% @album.attachments.image.each do |photo| %>
-    <%=link_to '#' do %>
-        <%=image_tag photo.file.to_s, :accept => 'jpeg/jpg/png', :width => 370, :height => 260 %>
-    <% end %>
+
+      <%=link_to '#' do %>
+          <%=image_tag photo.file.to_s, :accept => 'jpeg/jpg/png', :width => 370, :height => 260 %>
+      <% end %>
+      <% if @user == current_user %>
+          <%= link_to 'Remove', user_remove_photo_path(@user, photo_album_id: @album, photo_id: photo), method: :delete %>
+      <% end %>
+
 <% end %>
