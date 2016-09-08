@@ -1,7 +1,22 @@
 class PhotoAlbumsController < ApplicationController
-  before_action :check_authorization, only:[:new, :create, :update]
+
   before_action :find_user
-  before_action :find_album, only:[:show, :edit, :update]
+  before_action :check_authorization, only:[:new, :create, :update, :destroy]
+  before_action :find_album, only:[:show, :edit, :update, :destroy]
+
+
+
+  def  add_photo_to_album
+    @album = @user.photo_albums.find(params[:photo_album_id])
+    @picture = @album.attachments.build(photo_params)
+    @picture.file_type = :image
+    if @picture.save
+      redirect_to user_photo_album_path(@user, @album)
+    end
+  end
+
+
+
 
   def index
   end
@@ -40,6 +55,11 @@ class PhotoAlbumsController < ApplicationController
     end
   end
 
+  def destroy
+    @album.destroy
+    redirect_to user_photo_albums_path(@user)
+  end
+
   private
   def find_album
     @album = @user.photo_albums.find(params[:id])
@@ -55,5 +75,9 @@ class PhotoAlbumsController < ApplicationController
   end
   def album_params
     params.require(:photo_album).permit(:name)
+  end
+
+  def photo_params
+    params.require(:attachment).permit(:file)
   end
 end

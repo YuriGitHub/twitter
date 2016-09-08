@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   resources :users, only:[] do
     resources :photo_albums
+    post 'add_photo_to_album/(:format)' => 'photo_albums#add_photo_to_album', as: :add_photo_to_album
   end
 
     resources :comments

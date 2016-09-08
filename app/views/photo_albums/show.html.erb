@@ -1,7 +1,25 @@
-<%= @album.name %>
+<h1><%= @album.name %></h1>
 
-<%= form_for @album.attachments.
+
 
 <% if @user.id == current_user.id %>
-  <%= link_to 'Edit Album', edit_user_photo_album_path(@user, @album) %>
+  <%= link_to 'Edit Album', edit_user_photo_album_path(@user, @album), class:'btn btn-default' %>
+  <%= link_to 'Delete Album', user_photo_album_path(@user, @album), method: :delete, data:{confirm: 'Are you  shure?'}, class:'btn btn-default' %>
+
+    <h2>Add Photo To Album</h2>
+    <%= form_for [@user, @album.attachments.build], url: user_add_photo_to_album_path(photo_album_id: @album.id) do |f| %>
+        <div class="form-group">
+            <%= f.file_field :file %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Submit', class:'btn btn-primary'  %>
+        </div>
+    <% end %>
+
+<% end %>
+
+<% @album.attachments.image.each do |photo| %>
+    <%=link_to '#' do %>
+        <%=image_tag photo.file.to_s, :accept => 'jpeg/jpg/png', :width => 370, :height => 260 %>
+    <% end %>
 <% end %>

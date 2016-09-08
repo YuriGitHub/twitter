@@ -1,11 +1,11 @@
 class PhotoAlbum < ApplicationRecord
   belongs_to :user
-  has_many :attachments
+  has_many :attachments, dependent: :destroy
   validates :name, presence: true
 
-  attr_accessor :images
+  attr_accessor :photos
   def set_attachments
-    self.images = self.attachments.image
+    self.photos = self.attachments.image
   end
 
 end
