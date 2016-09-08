@@ -1,0 +1,38 @@
+<h1><%= @video_catalog.name %></h1>
+
+<% if @user == current_user %>
+    <%= link_to 'Edit Video Catalog', edit_user_video_catalog_path(@user, @video_catalog), class:'btn btn-default' %>
+    <%= link_to 'Delete Video Catalog', user_video_catalog_path(@user, @video_catalog), class:'btn btn-default', method: :delete, data:{confirm: 'Are you  shure?'} %>
+    <%= form_for @video_catalog.attachments.video.build, url: user_add_video_to_catalog_path(@user, video_catalog_id: @video_catalog) do |f| %>
+
+
+
+
+
+
+
+
+
+
+
+
+        <h2>Add Video To Catalog</h2>
+
+            <div class="form-group">
+              <%= f.file_field :file %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Submit', class:'btn btn-primary'  %>
+            </div>
+
+
+
+
+
+
+
+
+
+
+    <% end %>
+<% end %>
