@@ -7,14 +7,23 @@
   <%= link_to 'Delete Album', user_photo_album_path(@user, @album), method: :delete, data:{confirm: 'Are you  shure?'}, class:'btn btn-default' %>
 
     <h2>Add Photo To Album</h2>
-    <%= form_for [@user, @album.attachments.build], url: user_add_photo_to_album_path(id: @album) do |f| %>
-        <div class="form-group">
-            <%= f.file_field :file,  accept:'image/*' %>
+    <%=form_for([@user, @album.attachments.build], url: user_add_photo_to_album_path(id: @album), html:{:multipart => true, :class => 'dropzone', :id => 'file_upload_form'}) do |f|%>
+
+        <div class="fallback">
+          <%=f.file_field :file, accept:'image/*'%>
+          <%=f.submit "Upload"%>
         </div>
-        <div class="form-group">
-          <%= f.submit 'Submit', class:'btn btn-primary'  %>
-        </div>
-    <% end %>
+    <%end%>
+    <script type="text/javascript" charset="utf-8">
+      Dropzone.autoDiscover = false;
+      $("#file_upload_form").dropzone({
+        autoProcessQueue :true,
+        maxFilesize: 700,
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",
+        paramName: "attachment[file]",
+        addRemoveLinks: true
+      });
+    </script>
 
 <% end %>
 
