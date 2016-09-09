@@ -1,12 +1,46 @@
 
 <%= link_to 'All Photos', user_all_photos_path(@user), class:'btn btn-default' %>
-
 <% if @user.id == current_user.id %>
     <%= link_to 'Add New Photo Album', new_user_photo_album_path(@user), class:'btn btn-default' %>
 <% end %>
 
+<% @user.photo_albums.each_slice(3) do |albums| %>
+    <div class="row">
+
+      <% albums.each do |album| %>
+          <div class="col-md-4">
+
+            <%= link_to user_photo_album_path(@user, album) do %>
+                <h2 class="text-info"><%=album.name%></h2>
+            <%end%>
+
+            <div class="fotorama" data-width="100%"
+                 data-height="50%" data-nav="thumbs"  data-fit="cover" data-clicktransition="crossfade" data-transition="slide"
+                 data-hash="true" data-loop="true" data-autoplay="true"
+                 data-shuffle="true" data-keyboard="true" >
+              <% if album.photos.any? %>
+                  <% album.photos.each do |photo| %>
+                      <%= image_tag photo.file.to_s %>
+                  <% end %>
+              <% else %>
+                  <img src='/assets/empty.jpg' />
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+
+    </div>
+<% end %>
+
+
+
+
+
 <% @user.photo_albums.each do |album| %>
-   <h2> <%= link_to album.name, user_photo_album_path(@user, album) %></h2></br>
+
+
+
+
 <% end %>
 
 

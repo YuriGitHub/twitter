@@ -18,14 +18,14 @@
 
 <% end %>
 
+<div class="fotorama" data-width="90%"
+     data-height="80%" data-nav="thumbs"  data-fit="cover" data-clicktransition="crossfade" data-transition="slide"
+     data-hash="true" data-loop="true" data-autoplay="true"
+     data-shuffle="true" data-keyboard="true"
+     data-keyboard='{"space": true, "home": true, "end": true, "up": true, "down": true}'
+     data-navposition="top">
 <% @album.attachments.image.each do |photo| %>
-
-      <%=link_to '#' do %>
-          <%=image_tag photo.file.to_s, :accept => 'jpeg/jpg/png', :width => 370, :height => 260 %>
-      <% end %>
-      <% if @user == current_user %>
-          <%= link_to 'Remove', user_remove_photo_path(@user, id: @album, photo_id: photo), method: :delete %>
-      <% end %>
-
+          <%=image_tag photo.file.to_s %>
 <% end %>
 
+</div>
