@@ -50,11 +50,21 @@ ActiveRecord::Schema.define(version: 20160907123751) do
     t.integer  "file_type"
     t.string   "file"
     t.integer  "post_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "user_id"
-    t.boolean  "library_show", default: false
+    t.boolean  "library_show",     default: false
+    t.integer  "photo_album_id"
+    t.integer  "video_catalog_id"
+    t.integer  "audio_catalog_id"
     t.index ["user_id"], name: "index_attachments_on_user_id", using: :btree
+  end
+
+  create_table "audio_catalogs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "chat_rooms", force: :cascade do |t|
@@ -106,6 +116,13 @@ ActiveRecord::Schema.define(version: 20160907123751) do
     t.datetime "updated_at",   null: false
     t.index ["chat_room_id"], name: "index_messages_on_chat_room_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "photo_albums", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -194,6 +211,13 @@ ActiveRecord::Schema.define(version: 20160907123751) do
     t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "video_catalogs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "attachments", "users"

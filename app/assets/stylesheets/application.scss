@@ -21,6 +21,8 @@
 @import "devise/registrations.scss";
 @import "devise.scss";
 @import "font-awesome";
+@import "fotorama";
+
 
 html,
 body {
@@ -30,8 +32,15 @@ body {
 body {
 
 }
+
+
+
 footer {
     padding: 30px 0;
+}
+
+.container{
+  margin-top: 40px;
 }
 
 .navbar-fixed-top {
@@ -138,3 +147,5 @@ footer {
 #modal-content{
     text-align: center;
 }
+
+
