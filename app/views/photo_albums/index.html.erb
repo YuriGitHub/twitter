@@ -1,3 +1,6 @@
+
+<%= link_to 'All Photos', user_all_photos_path(@user), class:'btn btn-default' %>
+
 <% if @user.id == current_user.id %>
     <%= link_to 'Add New Photo Album', new_user_photo_album_path(@user), class:'btn btn-default' %>
 <% end %>

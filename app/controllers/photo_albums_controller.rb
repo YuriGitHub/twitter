@@ -19,6 +19,16 @@ class PhotoAlbumsController < ApplicationController
     redirect_to user_photo_album_path(@user, @album)
   end
 
+
+  def all_photos
+    albums = @user.photo_albums
+    @photos = []
+    albums.each do |album|
+      @photos << album.photos
+    end
+    @photos.flatten!
+  end
+
   def index
   end
 
