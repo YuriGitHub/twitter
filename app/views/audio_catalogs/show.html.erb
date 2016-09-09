@@ -6,7 +6,7 @@
 
 
     <h2>Add Track To Catalog</h2>
-    <%= form_for [@user, @audio_catalog.attachments.audio.build], url: user_add_track_to_catalog_path(audio_catalog_id: @audio_catalog) do |f| %>
+    <%= form_for [@user, @audio_catalog.attachments.audio.build], url: user_add_track_to_catalog_path(id: @audio_catalog) do |f| %>
 
         <div class="form-group">
             <%= f.file_field :file, accept:'audio/*' %>
@@ -25,7 +25,7 @@
     <% end %>
 
     <% if @user == current_user %>
-        <%= link_to 'Remove', user_remove_track_path(@user, track_id: track.id, audio_catalog_id: @audio_catalog ), method: :delete %>
+        <%= link_to 'Remove', user_remove_track_path(@user, track_id: track.id, id: @audio_catalog ), method: :delete %>
     <% end %>
 <% end %>
 

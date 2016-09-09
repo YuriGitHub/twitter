@@ -27,12 +27,4 @@ class PhotoAlbum < ApplicationRecord
     self.attachments.image
   end
 
-  def name_uniquess(name)
-    if User.find(self.user_id).photo_albums.find_by_name(name)
-      false
-    else
-      true
-    end
-  end
-
 end
