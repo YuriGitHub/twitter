@@ -9,8 +9,8 @@ development:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: yuri
-  password: 1234567
+  username: bliareg
+  password: password
   database: development
 
 # Warning: The database defined as "test" will be erased and
@@ -20,8 +20,8 @@ test:
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: yuri
-      password: 1234567
+      username: bliareg
+      password: password
       database: development
 
 production:
