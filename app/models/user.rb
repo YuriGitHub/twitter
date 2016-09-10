@@ -44,11 +44,6 @@ class User < ActiveRecord::Base
 
 
 
-
-
-
-
-
  def check_date_of_birth
     from = 16.years.ago.to_date
     to = 200.years.ago.to_date

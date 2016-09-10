@@ -4,21 +4,27 @@
     <%= link_to 'Edit Audio Catalog', edit_user_audio_catalog_path(@user, @audio_catalog), class:'btn btn-default' %>
     <%= link_to 'Delete Audio Catalog', user_audio_catalog_path(@user, @audio_catalog), method: :delete, class:'btn btn-default', data:{confirm: 'Are you  shure?'} %>
 
+    <h2>Add Tracks To Catalog</h2>
+    <%=form_for(@audio_catalog.tracks.build, url: user_add_track_to_catalog_path(@user, id: @audio_catalog), html:{:multipart => true, :class => 'dropzone', :id => 'file_upload_form'}) do |f|%>
 
-    <h2>Add Track To Catalog</h2>
-    <%= form_for [@user, @audio_catalog.attachments.audio.build], url: user_add_track_to_catalog_path(id: @audio_catalog) do |f| %>
-
-        <div class="form-group">
-            <%= f.file_field :file, accept:'audio/*' %>
+        <div class="fallback">
+          <%= f.file_field :file %>
+          <%= f.submit "Upload" %>
         </div>
-        <div class="form-group">
-            <%= f.submit 'Submit', class:'btn btn-primary' %>
-        </div>
-    <% end %>
+    <%end%>
+    <script type="text/javascript" charset="utf-8">
+      Dropzone.autoDiscover = false;
+      $("#file_upload_form").dropzone({
+        autoProcessQueue :true,
+        maxFilesize: 700,
+        acceptedFiles: "audio/*",
+        paramName: "attachment[file]",
+        addRemoveLinks: true
+      });
+    </script>
 <% end %>
 
 <h2><%= @audio_catalog.name %></h2>
-
 <% @audio_catalog.attachments.audio.each do |track| %>
     <%=link_to '#', remote: true do %>
         <br><%= audio_tag track.file.to_s, controls: true%>

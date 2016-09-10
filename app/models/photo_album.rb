@@ -14,6 +14,9 @@ class PhotoAlbum < ApplicationRecord
     end
   end
 
+
+
+
   def remove_photo(id)
     photo = self.photos.find(id)
     unless photo.destroy
