@@ -14,6 +14,7 @@
  *= require_self
  *= require dropzone/dropzone
  *= require bootstrap3-switch
+ *= require blueimp-gallery-all
  */
 
 @import "bootstrap-sprockets";
@@ -22,6 +23,8 @@
 @import "devise.scss";
 @import "font-awesome";
 @import "fotorama";
+@import "photo_albums";
+
 
 
 html,

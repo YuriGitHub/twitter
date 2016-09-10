@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require fotorama
+//= require blueimp-gallery-all
 //= require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap-switch

@@ -26,15 +26,45 @@
     </script>
 
 <% end %>
+<div id="blueimp-gallery" class="blueimp-gallery">
+  <div class="slides"></div>
+  <h3 class="title"></h3>
+  <a class="prev">‹</a>
+  <a class="next">›</a>
+  <a class="close">×</a>
+  <a class="play-pause"></a>
+  <ol class="indicator"></ol>
+</div>
 
-<div class="fotorama" data-width="90%"
-     data-height="80%" data-nav="thumbs"  data-fit="cover" data-clicktransition="crossfade" data-transition="slide"
-     data-hash="true" data-loop="true" data-autoplay="true"
-     data-shuffle="true" data-keyboard="true"
-     data-keyboard='{"space": true, "home": true, "end": true, "up": true, "down": true}'
-     data-navposition="top">
-<% @album.attachments.image.each do |photo| %>
-          <%=image_tag photo.file.to_s %>
-<% end %>
+<div id="links">
+
+    <% @album.photos.each_slice(3) do |photos| %>
+        <div class="row" >
+           <% photos.each do |photo| %>
+              <div class="col-md-4">
+                <a href="<%= photo.file.to_s %>" title="Title" >
+                  <%=image_tag photo.file.to_s, class:'gallery-picture'  %>
+                </a>
+              </div>
+           <% end %>
+        </div>
+    <% end %>
+
+
+
+</div>
+
+
+<script>
+  document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+  };
+</script>
+
 
 </div>

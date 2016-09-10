@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'tokens'
 gem 'fotoramajs'
+gem 'blueimp-gallery'
 
 
 # Use jquery as the JavaScript library
