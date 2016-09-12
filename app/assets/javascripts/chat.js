@@ -1,10 +1,5 @@
 
-$(document).ready(function(){
-  var objDiv = document.getElementById("scroll");
-objDiv.scrollTop = objDiv.scrollHeight;
-user_id = $("#user_id").val();
 
-});
 
 var user_id;
 
@@ -96,6 +91,18 @@ return `<div class="answer ${obj.layout}">
                 </div>
                 <div class="time">5 min ago</div>
               </div>`
+}
 
 
+function get_all_chat_rooms(){
+
+  $.ajax({
+    url: 'get_all_chat_rooms',
+    method: 'get',
+    data: '',
+    success: function(data){
+      console.log(data)
+    }
+
+  })
 }

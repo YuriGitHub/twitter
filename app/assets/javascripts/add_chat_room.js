@@ -50,7 +50,24 @@ function find_users(val){
   })
 };
 
+function get_chat_room(){
+  $.ajax({
+    url: '/get_chat_room_data',
+    method: 'get',
+    data: {chat_room_id: document.location.hash.split('=')[1]},
+    success: function(data){
+      data.forEach(function(current_value){
 
+        $('#insert_message').append(text_for_append(current_value));
+      })
+      $("#loader").remove();
+      $(".no_display").removeClass('no_display')
+      console.log('continue chat room')
+      $('.chat').scrollTop(1E10);
+    }
+  })
+
+}
 
 function create_chat_room(data){
   $.ajax({

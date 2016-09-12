@@ -9,7 +9,7 @@ class ChatRoomsController < ApplicationController
 
   def chatting
     # check_chat_room
-    binding.pry
+
     # @chat_rooms = ChatRoom.where("users @> ARRAY[?]", current_user.id)
     # @chat_room = ChatRoom.find_by('id = ?',params[:chat_room])
     # if(@chat_room.blank?)
@@ -21,7 +21,7 @@ class ChatRoomsController < ApplicationController
     #   @chat_room = nil
     #   redirect_to '/'
     #   return
-  end
+  # end
 
 end
 
@@ -33,6 +33,27 @@ def find_users
   render json: results.map { |user| [user.login, user.id]}
 
 end
+#
+# this.image = data.image;
+# this.login = data.login;
+# this.user_id = data.user_id;
+# this.message = data.message;
+def get_chat_room_data
+  messages = ChatRoom.find(params[:chat_room_id]).messages
+
+    render json: messages.map{|m| {image: m.user.avatar(:thumb), login: m.user.email, user_id: m.user.id, message: m.text_message}}
+
+end
+
+
+  def get_all_chat_rooms
+    chat_rooms = ChatRoom.where('users @> ARRAY[?]',current_user.id)
+
+    chat_rooms.map do |c|
+
+    end
+  end
+
 
   def create_chat_room
     users_id = [current_user.id]

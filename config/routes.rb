@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     get 'find_chat_room', to: 'chat_rooms#find_chat_room'
     get 'chat_room', to: 'chat_rooms#chatting'
     post 'create_chat_room', to: 'chat_rooms#create_chat_room'
+    get 'get_all_chat_rooms', to: 'chat_rooms#get_all_chat_rooms'
+    get 'get_chat_room_data',to:'chat_rooms#get_chat_room_data'
     mount ActionCable.server => "/chats"
 
 
