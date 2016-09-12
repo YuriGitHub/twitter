@@ -43,7 +43,7 @@ class PhotoAlbumsController < ApplicationController
 
   def create
     @album = @user.photo_albums.build(album_params)
-    if @album.name_uniquess(@album.name)
+    if name_uniquess(@album.name)
         respond_to do |format|
           if @album.save
             flash[:notice] = 'Photo Album successfully created'
@@ -60,19 +60,19 @@ class PhotoAlbumsController < ApplicationController
   end
 
   def update
-   if @album.name_uniquess(@album.name)
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html do
-          flash[:notice] = 'Photo Album successfully updated'
-          redirect_to user_photo_album_path(@user, @album)
+   if name_uniquess(params[:photo_album][:name]) || @album.name == params[:photo_album][:name]
+     respond_to do |format|
+        if @album.update(album_params)
+          format.html do
+            flash[:notice] = 'Photo Album successfully updated'
+            redirect_to user_photo_album_path(@user, @album)
+          end
+        else
+          format.html do
+            set_flash_error
+            redirect_to edit_user_photo_album_path(@user, @album)
+          end
         end
-      else
-        format.html do
-          set_flash_error
-          redirect_to edit_user_photo_album_path(@user, @album)
-        end
-      end
     end
    else
      set_flash_error('Name must by uniquess.')
@@ -91,6 +91,14 @@ class PhotoAlbumsController < ApplicationController
   end
 
   private
+
+  def name_uniquess(name)
+    if @user.photo_albums.find_by_name(name)
+      false
+    else
+      true
+    end
+  end
 
   def set_flash_error(errors = nil)
     errors ||= @album.errors.full_messages
