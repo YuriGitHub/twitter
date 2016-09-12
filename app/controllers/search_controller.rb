@@ -25,6 +25,7 @@ class SearchController < ApplicationController
     def search_posts
         search = Sunspot.search( Post ) do
             fulltext params[:query]
+            
         end
         respond_to do |format|
             format.json{

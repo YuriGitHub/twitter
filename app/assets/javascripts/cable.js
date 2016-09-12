@@ -15,12 +15,7 @@
 
 (function() {
   this.App || (this.App = {});
-  function getCookie(name) {
-    var matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-  }
-   App.cable = ActionCable.createConsumer('/chats?token='.concat(getCookie('token')));
+
+  App.cable = ActionCable.createConsumer('/chats');
 
 }).call(this);

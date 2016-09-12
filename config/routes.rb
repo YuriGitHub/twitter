@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'users/toggle_follow'=>'users#toggle_follow'
     get 'users/search' => 'users#search'
 
+    get 'chat/search', to: 'chat_rooms#find_users'
 
     post 'likes/toggle_like' => 'likes#toggle_like'
     post 'likes/toggle_dislike' => 'likes#toggle_dislike'
@@ -56,7 +57,7 @@ Rails.application.routes.draw do
 
     get 'find_chat_room', to: 'chat_rooms#find_chat_room'
     get 'chat_room', to: 'chat_rooms#chatting'
-
+    post 'create_chat_room', to: 'chat_rooms#create_chat_room'
     mount ActionCable.server => "/chats"
 
 

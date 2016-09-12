@@ -36,13 +36,22 @@ class User < ActiveRecord::Base
  #before_save :ensure_authentication_token
 
 
+ def is_online?
+   if $redis.get(self.email)
+     return true
+   else
+     return false
+   end
+ end
 
 
+ def set_online
+   $redis.set(self.email, true)
+ end
 
-
-
-
-
+ def set_offlane
+   $redis.del(self.email)
+ end
 
  def check_date_of_birth
     from = 16.years.ago.to_date
@@ -110,6 +119,7 @@ def self.new_with_session(params, session)
  searchable do
    text :login, :email
    text :first_name, :last_name
+   integer :id
  end
  #json format fields-----\
 

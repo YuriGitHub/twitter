@@ -11,10 +11,11 @@ production:
 
 development:
   solr:
-    hostname: localhost
-    port: 8982
+    hostname: 139.59.147.251
+    # hostname: localhost
+    port: 8983
     log_level: INFO
-    path: /solr/development
+    path: /solr
 
 test:
   solr:
