@@ -33,6 +33,9 @@
   <a class="next">›</a>
   <a class="close">×</a>
   <a class="play-pause"></a>
+
+  <p class="description"></p>
+
   <ol class="indicator"></ol>
 </div>
 
@@ -42,7 +45,7 @@
         <div class="row" >
            <% photos.each do |photo| %>
               <div class="col-md-4">
-                <a href="<%= photo.file.to_s %>" title="Title" >
+                <a href="<%= photo.file.to_s %>" title="Title" data-description="This is a description." >
                   <%=image_tag photo.file.to_s, class:'gallery-picture'  %>
                 </a>
               </div>
