@@ -1,6 +1,10 @@
 class AttachmentsController < ApplicationController
 
-    
+    def remove_posts_image
+       # binding.pry
+        @image = User.find(params[:user_id]).posts.find(params[:post_id]).attachments.image.find(params[:id])
+
+    end
 
     def show_image 
         @post =  Post.find(params[:post_id])      
