@@ -21,6 +21,10 @@ gem 'tokens'
 gem 'fotoramajs'
 gem 'blueimp-gallery'
 
+gem 'jquery-ui-rails'
+
+
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
