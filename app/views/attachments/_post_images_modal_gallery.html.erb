@@ -39,22 +39,24 @@
                     </div>
               </div>
 
-              <%= link_to 'remove', '#', id:"test-"+photo.id.to_s, class:'post-modal-image-remove', data:{confirm: 'Shure?'} %>
+              <%= link_to 'remove',  '#',  id:"test-"+photo.id.to_s, class:'post-modal-image-remove', data:{confirm: 'Shure?'}  %>
 
               <script>
                 $("#test-<%= photo.id.to_s %>").click(function(e){
                     e.stopPropagation();
-                    $.confirm({
-                        title: 'Confirm!',
-                        content: 'Simple confirm!',
-                        confirm: function(){
-                          $.alert('Confirmed!');
-                        },
-                        cancel: function(){
-                          $.alert('Canceled!')
-                        }
-                    });
-                    $(this).confirm(options);
+                    var response = confirm( 'Are you sure?');
+                    if (response) { console.log('hello!');
+                      var url = '/users/' + "<%= current_user.id %>" + '/posts/' + "<%= post.id %>" + '/remove_posts_image/' + "<%= photo.id %>";
+                      $.ajax({
+                        url: url,
+                        type: "Delete"
+                      });
+
+                      return true;
+                    }else{
+                      console.log('no!'); return false;
+                    }
+
                 });
               </script>
 

@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
         resources :posts, only: [:index, :update, :destroy, :edit, :create] do
             resources :attachments,only: [:create,:destroy,:update]
+            delete 'remove_posts_image/:id' => 'attachments#remove_posts_image', as: :remove_posts_image
         end
     end
 
