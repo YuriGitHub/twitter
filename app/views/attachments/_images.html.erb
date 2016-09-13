@@ -2,15 +2,18 @@
 <% post = Post.find(post_id) %>
 <% images = post.attachments.image %>
 
-<div class='col-sm-2'>	
+<div class='col-sm-2'>
+  _images
 	<% i = 0 %>
 	<% images.each do |image| %>			
 		<%=link_to show_image_path(image_id: image, post_id: post), remote: true do %>
 			<%=image_tag image.file.to_s, :width => 70, :height => 60 %><br>				
 		<% end %>
 		<% i += 1 %>
-		<% break if i == 4 %>	
+		<% break if i == 4 %>
 	<% end %>
+  <%= render partial: 'attachments/post_images_modal_gallery', locals:{images: images, post: post} %>
+
 </div> 
 
 

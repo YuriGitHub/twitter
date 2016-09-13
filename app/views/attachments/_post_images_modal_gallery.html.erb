@@ -1,0 +1,82 @@
+
+<a  data-toggle="modal" href="#post-<%= post.id %>-modal">all...</a>
+
+
+
+
+<div id="blueimp-gallery" class="blueimp-gallery">
+  <div class="slides"></div>
+  <h3 class="title"></h3>
+  <a class="prev">‹</a>
+  <a class="next">›</a>
+  <a class="close">×</a>
+  <a class="play-pause"></a>
+
+  <p class="description"></p>
+
+  <ol class="indicator"></ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="post-<%= post.id %>-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= post.id %>
+
+
+
+
+        <div id="links">
+
+          <% images.each do |photo| %>
+              <div class="row" >
+
+                    <div class="col-md-12">
+                      <a href="<%= photo.file.to_s %>" title="Title" data-description="This is a description." >
+                        <%=image_tag photo.file.to_s, width: 567  %>
+                      </a>
+                    </div>
+
+              </div>
+          <% end %>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</div>  <!-- /.blueimp -->
+
+
+
+<script>
+  document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+  };
+</script>
