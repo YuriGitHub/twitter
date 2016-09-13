@@ -1,5 +1,12 @@
 
 
+
+
+
+
+
+
+
 <div id="blueimp-gallery" class="blueimp-gallery">
   <div class="slides"></div>
   <h3 class="title"></h3>
@@ -26,14 +33,37 @@
           <% images.each do |photo| %>
               <div class="row post-modal-images-row" >
                     <div class="col-md-12">
-                      <div class="post-remove-image" >X</div>
                       <a href="<%= photo.file.to_s %>" title="Title" data-description="This is a description." >
                         <%=image_tag photo.file.to_s, class:'post-modal-image'  %>
                       </a>
                     </div>
               </div>
+
+              <%= link_to 'remove', '#', id:"test-"+photo.id.to_s, class:'post-modal-image-remove', data:{confirm: 'Shure?'} %>
+
+              <script>
+                $("#test-<%= photo.id.to_s %>").click(function(e){
+                    e.stopPropagation();
+                    $.confirm({
+                        title: 'Confirm!',
+                        content: 'Simple confirm!',
+                        confirm: function(){
+                          $.alert('Confirmed!');
+                        },
+                        cancel: function(){
+                          $.alert('Canceled!')
+                        }
+                    });
+                    $(this).confirm(options);
+                });
+              </script>
+
+
           <% end %>
       </div>
+
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -42,7 +72,6 @@
 </div><!-- /.modal -->
 
 </div>  <!-- /.blueimp -->
-
 
 
 <script>
@@ -55,3 +84,6 @@
     blueimp.Gallery(links, options);
   };
 </script>
+
+
+
