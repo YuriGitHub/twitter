@@ -21,7 +21,11 @@
         maxFilesize: 700,
         acceptedFiles: ".jpeg,.jpg,.png,.gif",
         paramName: "attachment[file]",
-        addRemoveLinks: true
+        addRemoveLinks: true,
+
+        queuecomplete: function() {
+          location.reload();
+        }
       });
     </script>
 
