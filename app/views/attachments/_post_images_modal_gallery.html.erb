@@ -33,15 +33,15 @@
 
 
           <% images.each do |photo| %>
-              <div class="row post-modal-images-row" >
+              <div class="row post-modal-images-row" id="post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-row">
                     <div class="col-md-12">
-                      <a href="<%= photo.file.to_s %>"    class="photo-href"       title="Title" data-description="This is a description." data-gallery="#blueimp-gallery-<%= post.id %>" >
+                      <a href="<%= photo.file.to_s %>"  class="photo-href"  title="Title" data-description="This is a description." data-gallery="#blueimp-gallery-<%= post.id %>" >
                         <%=image_tag photo.file.to_s, class:'post-modal-image'  %>
                       </a>
                     </div>
               </div>
 
-              <a href="" id="post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove" class='post-modal-image-remove'  data-confirm='Shure?'>remove</a>
+              <a href="" id="post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove" class='post-modal-image-remove' >remove</a>
 
               <script>
                 $("#post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove").click(function(e){
