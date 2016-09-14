@@ -1,3 +1,24 @@
 .video-catalogs-modal-video{
     width: 100%;
 }
+
+.video-cell{
+    text-align: center;
+
+}
+
+.video-catalog-clip{
+    width: 100%;
+    border: 2px solid;
+}
+.video-catalog-clip-remove-link{
+  position: absolute;
+  top: 1px;
+  right: 21px;
+  font-size: 20px;
+  color: grey;
+}
+
+.catalog-video-row{
+    margin-top: 50px;
+}

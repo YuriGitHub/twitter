@@ -16,10 +16,10 @@ class VideoCatalog < ApplicationRecord
   end
 
 
-  def remove_video(id)
-    video = self.videos.find(id)
-    unless video.destroy
-      self.flash_notice = video.errors.full_messages
+  def remove_clip(id)
+    clip = self.videos.find(id)
+    unless clip.destroy
+      self.flash_notice = clip.errors.full_messages
     else
       self.flash_notice = 'Clip successfully removed.'
     end

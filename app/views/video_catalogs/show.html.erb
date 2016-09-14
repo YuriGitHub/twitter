@@ -20,20 +20,36 @@
     maxFilesize: 700,
     acceptedFiles: ".mp4,.mkv,.avi",
     paramName: "attachment[file]",
-    addRemoveLinks: true
+    addRemoveLinks: true,
+    queuecomplete: function() {
+      location.reload();
+    }
   });
 </script>
 
 <% end %>
 
-<% @video_catalog.videos.each do |clip| %>
+<% @video_catalog.videos.each_slice(3) do |clips| %>
+    <div class="row catalog-video-row" >
+      <% clips.each do |clip| %>
+          <div class="col-md-4 video-cell"  id="catalog-video-cell<%= clip.id %>">
 
 
-        <%= link_to user_catalog_video_play_path(@user,  clip_id: clip), remote: true do %>
-          <%= video_tag clip.file.to_s, class:'video-catalog-clip', id: 'video-catalog-'+@video_catalog.id.to_s+'clip'+clip.id.to_s, :size => "320x240", :controls => true %>
-        <% end %>
+              <%= link_to user_catalog_video_play_path(@user,  clip_id: clip), remote: true do %>
+                    <%= video_tag clip.file.to_s, class:'video-catalog-clip', id: 'video-catalog-'+@video_catalog.id.to_s+'clip'+clip.id.to_s, :size => "320x240", :controls => true %>
+              <% end %>
+              <div class="row">
+                <div class="col-md-12" >
+                  <%= link_to clip.file.to_s.split('/').last, user_catalog_video_play_path(@user,  clip_id: clip), remote: true %>
+                </div>
+              </div>
+              <% if @user == current_user %>
+                    <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id, id: @video_catalog), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
+              <% end %>
 
-
+          </div>
+      <% end %>
+    </div>
 
 <% end %>
 
@@ -61,6 +77,7 @@
 
 
 
+
 <script>
   $('.video-catalog-clip').each(function(){
       $(this).on('play', function(){
@@ -74,13 +91,56 @@
       });
   });
 
+  $('.video-catalog-clip-remove-link').each(function(){
+      $(this).mouseover(function(){
+          $(this).attr('title', 'remove');
+      });
+  });
+
 
   $('#video-catalogs-modal').on('hidden.bs.modal', function () {
-
       $('#video-catalogs-modal').find('.video-catalogs-modal-body').find('video').trigger('pause');
   });
 
 </script>
+
+
+
+
+
+<script>
+//$('a[data-confirm]').click(function(ev) {
+//var href = $(this).attr('href');
+//
+//console.log(href);
+//$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+//$('#dataConfirmOK').attr('href', href);
+//$('#dataConfirmModal').modal({show:true});
+//return false;
+//});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
