@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :lockable,:rememberable, :omniauthable, :recoverable,:trackable,:validatable
 
-  has_and_belongs_to_many:ifollow,class_name:"User",join_table:"followers",foreign_key: :follower_id,association_foreign_key: :user_id
+  has_and_belongs_to_many:ifollow,class_name: "User", join_table:"followers",foreign_key: :follower_id,association_foreign_key: :user_id
   has_and_belongs_to_many:followers,class_name:"User",join_table:"followers",foreign_key: :user_id,association_foreign_key: :follower_id
   has_many :messsages
   has_many :chat_rooms
@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :feedback_to_admins
   has_many :likes
+  has_many :attachments
+
+ has_many :photo_albums
+ has_many :video_catalogs
+ has_many :audio_catalogs
 
   validates :login, uniqueness: true, presence: true
 
@@ -49,9 +54,11 @@ class User < ActiveRecord::Base
    $redis.set(self.email, true)
  end
 
+
  def set_offlane
    $redis.del(self.email)
  end
+
 
  def check_date_of_birth
     from = 16.years.ago.to_date
@@ -149,8 +156,5 @@ def self.new_with_session(params, session)
     def reindex!
       Sunspot.index!(self)
     end
-
-
-
 
 end

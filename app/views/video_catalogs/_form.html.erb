@@ -1,0 +1,18 @@
+
+
+
+<%= form_for [@user, @video_catalog] do |f| %>
+    <div class="form-group" >
+      <h2><%= f.label :name %></h2>
+      <%= f.text_field :name, class:'form-control' %>
+    </div>
+
+    <div class="form-group" >
+      <%= f.submit  class:'btn btn-primary' %>
+      <% if @video_catalog.id %>
+          <%= link_to 'Cancel', user_video_catalog_path(@user, @video_catalog), class:'btn btn-default' %>
+      <% else %>
+          <%= link_to 'Cancel', user_video_catalogs_path(@user), class:'btn btn-default' %>
+      <% end %>
+    </div>
+<% end %>

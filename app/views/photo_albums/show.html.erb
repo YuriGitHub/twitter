@@ -1,0 +1,40 @@
+<h1><%= @album.name %></h1>
+
+<%= link_to 'All Photo Albums', user_photo_albums_path(@user), class:'btn btn-default' %>
+
+<% if @user.id == current_user.id %>
+  <%= link_to 'Edit Album', edit_user_photo_album_path(@user, @album), class:'btn btn-default' %>
+  <%= link_to 'Delete Album', user_photo_album_path(@user, @album), method: :delete, data:{confirm: 'Are you  shure?'}, class:'btn btn-default' %>
+
+    <h2>Add Photo To Album</h2>
+    <%=form_for([@user, @album.attachments.build], url: user_add_photo_to_album_path(id: @album), html:{:multipart => true, :class => 'dropzone', :id => 'file_upload_form'}) do |f|%>
+
+        <div class="fallback">
+          <%=f.file_field :file, accept:'image/*'%>
+          <%=f.submit "Upload"%>
+        </div>
+    <%end%>
+    <script type="text/javascript" charset="utf-8">
+      Dropzone.autoDiscover = false;
+      $("#file_upload_form").dropzone({
+        autoProcessQueue :true,
+        maxFilesize: 700,
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",
+        paramName: "attachment[file]",
+        addRemoveLinks: true
+      });
+    </script>
+
+<% end %>
+
+<div class="fotorama" data-width="90%"
+     data-height="80%" data-nav="thumbs"  data-fit="cover" data-clicktransition="crossfade" data-transition="slide"
+     data-hash="true" data-loop="true" data-autoplay="true"
+     data-shuffle="true" data-keyboard="true"
+     data-keyboard='{"space": true, "home": true, "end": true, "up": true, "down": true}'
+     data-navposition="top">
+<% @album.attachments.image.each do |photo| %>
+          <%=image_tag photo.file.to_s %>
+<% end %>
+
+</div>

@@ -1,0 +1,2 @@
+module AudioCatalogsHelper
+end

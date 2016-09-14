@@ -1,0 +1,12 @@
+
+
+<% if @user == current_user %>
+    <%= link_to 'Add New Video Catalog', new_user_video_catalog_path(@user), class:'btn btn-default'%>
+<% end %>
+
+
+<% video_catalogs = @user.video_catalogs.sort_by{|m| m[:name]} %>
+
+<% video_catalogs.each  do |catalog| %>
+  <h2><%= link_to catalog.name, user_video_catalog_path(@user, catalog) %></h2>
+<% end %>

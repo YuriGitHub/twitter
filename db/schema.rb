@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160912074408) do
+=======
+ActiveRecord::Schema.define(version: 20160907123751) do
+>>>>>>> c2b79451f69b21ba21bb1e1341be0d917cecbf49
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +54,19 @@ ActiveRecord::Schema.define(version: 20160912074408) do
     t.integer  "file_type"
     t.string   "file"
     t.integer  "post_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "user_id"
+    t.boolean  "library_show",     default: false
+    t.integer  "photo_album_id"
+    t.integer  "video_catalog_id"
+    t.integer  "audio_catalog_id"
+    t.index ["user_id"], name: "index_attachments_on_user_id", using: :btree
+  end
+
+  create_table "audio_catalogs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,12 +123,19 @@ ActiveRecord::Schema.define(version: 20160912074408) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "text"
+  create_table "photo_albums", force: :cascade do |t|
+    t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "header"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "text",       limit: 500
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "header",     limit: 100
   end
 
   create_table "reports", force: :cascade do |t|
@@ -194,4 +218,12 @@ ActiveRecord::Schema.define(version: 20160912074408) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  create_table "video_catalogs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "attachments", "users"
 end

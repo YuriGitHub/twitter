@@ -1,0 +1,8 @@
+<% if @user == current_user %>
+    <h2><%= link_to 'Create New Audio Catalog', new_user_audio_catalog_path(@user), class:'btn btn-default' %></h2>
+<% end %>
+
+<% audio_catalogs = @user.audio_catalogs.sort_by{|m| m[:name]} %>
+<% audio_catalogs.each do |catalog| %>
+  <h2><%= link_to catalog.name, user_audio_catalog_path(@user, catalog) %> </h2>
+<% end %>

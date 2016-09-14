@@ -1,0 +1,31 @@
+<h1><%= @video_catalog.name %></h1>
+<%= link_to 'All Video Catalogs', user_video_catalogs_path(@user), class:'btn btn-default' %>
+
+<% if @user == current_user %>
+    <%= link_to 'Edit Video Catalog', edit_user_video_catalog_path(@user, @video_catalog), class:'btn btn-default' %>
+    <%= link_to 'Delete Video Catalog', user_video_catalog_path(@user, @video_catalog), class:'btn btn-default', method: :delete, data:{confirm: 'Are you  shure?'} %>
+
+<h2>Add Clips To Catalog</h2>
+<%=form_for(@video_catalog.videos.build, url: user_add_video_to_catalog_path(@user, id: @video_catalog), html:{:multipart => true, :class => 'dropzone', :id => 'file_upload_form'}) do |f|%>
+
+    <div class="fallback">
+      <%=f.file_field :file, accept:'video/*'%>
+      <%=f.submit "Upload"%>
+    </div>
+<%end%>
+<script type="text/javascript" charset="utf-8">
+  Dropzone.autoDiscover = false;
+  $("#file_upload_form").dropzone({
+    autoProcessQueue :true,
+    maxFilesize: 700,
+    acceptedFiles: ".mp4,.mkv,.avi",
+    paramName: "attachment[file]",
+    addRemoveLinks: true
+  });
+</script>
+
+<% end %>
+
+<% @video_catalog.videos.each do |clip| %>
+      <%= video_tag clip.file.to_s, :size => "320x240", :controls => true %>
+<% end %>
