@@ -42,7 +42,7 @@ end
 # this.message = data.message;
 def get_chat_room_data
   messages = ChatRoom.find(params[:chat_room_id]).messages
-
+  
     render json: messages.map{|m| {image: m.user.avatar(:thumb), login: m.user.email, user_id: m.user.id, message: m.text_message}}
 
 end

@@ -10,7 +10,7 @@ class ChatsChannel < ApplicationCable::Channel
  end
 
  def unsubscribed
-
+   p "Unsubscribed #{current_user.email}"
  end
 
  def send_message(data)

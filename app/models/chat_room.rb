@@ -7,11 +7,9 @@ class ChatRoom < ApplicationRecord
       return ChatRoom.find_by("users = ARRAY[?]",users.sort)
     end
 
-
     def is_chat_room?
-      self.users.length > 2
+      self.user != nil
     end
-
 
     def get_another_user_from_chat_room(current_user)
       self.users.each do |u|

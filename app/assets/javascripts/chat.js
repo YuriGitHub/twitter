@@ -1,5 +1,29 @@
 var user_id;
 
+function connecting(id_chat_room){
+
+  App.global_chat = App.cable.subscriptions.create({
+      channel: "ChatsChannel",
+      id: id_chat_room,
+
+  }, {
+      connected: function() {
+          console.log('connected')
+      },
+      disconnected: function() {
+        console.log('unsubscribed');
+
+      },
+      received: function(data) {
+          $('#insert_message').append(text_for_append(data));
+          console.log(data);
+          $("#text_value").val('');
+          var objDiv = document.getElementById("scroll");
+          objDiv.scrollTop = objDiv.scrollHeight;
+          console.log('here');
+      },
+  });
+}
 var obj = {
     image: '',
     login: 'undefined',
@@ -34,24 +58,7 @@ function getParameterByName(name) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-App.global_chat = App.cable.subscriptions.create({
-    channel: "ChatsChannel",
-    id: document.location.hash.split('=')[1],
 
-}, {
-    connected: function() {
-        console.log('connected')
-    },
-    disconnected: function() {},
-    received: function(data) {
-        $('#insert_message').append(text_for_append(data));
-        console.log(data);
-        $("#text_value").val('');
-        var objDiv = document.getElementById("scroll");
-        objDiv.scrollTop = objDiv.scrollHeight;
-        console.log('here');
-    },
-});
 
 $("#submit").click(function() {
     sen()
@@ -68,11 +75,8 @@ function sen() {
         text: text_message
     });
 }
-$(".user").click(function() {
-    var obj = jQuery(this).children();
-    obj = obj[2]['outerText'];
-    console.log(obj);
-});
+
+
 
 
 
@@ -93,7 +97,7 @@ function text_for_append(data) {
               </div>`
 }
 
-
+var t;
 function get_all_chat_rooms() {
     $.ajax({
         url: 'get_all_chat_rooms',
@@ -103,9 +107,22 @@ function get_all_chat_rooms() {
             data.forEach(function(current) {
                 $('.chat-users').append(show_chat_rooms(current))
             })
+            $(".user").click(function() {
+                create_loader();
+                App.global_chat.unsubscribe();
+                t = this;
+                document.location.hash = "chat_room=".concat(t.dataset.idChatRoom)
+                change_chat_room();
+            });
         }
 
     })
+}
+
+
+function create_loader(){
+  $('.chat-body').prepend("<div id='loader'></div>");
+    $('.chat-body').addClass('no_display');
 }
 
 function show_chat_rooms({

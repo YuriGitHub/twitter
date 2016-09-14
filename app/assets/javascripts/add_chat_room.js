@@ -50,11 +50,11 @@ function find_users(val){
   })
 };
 
-function get_chat_room(){
+function get_chat_room(id_chat_room){
   $.ajax({
     url: '/get_chat_room_data',
     method: 'get',
-    data: {chat_room_id: document.location.hash.split('=')[1]},
+    data: {chat_room_id: id_chat_room},
     success: function(data){
       data.forEach(function(current_value){
 
@@ -81,9 +81,10 @@ function create_chat_room(data){
 }
 
 function change_chat_room(data){
-  if(data.type == "old"){
-    change_messages(data)
-  }
+  
+  $("#insert_message").empty();
+  get_chat_room(document.location.hash.split('=')[1]);
+  connecting(document.location.hash.split('=')[1]);
 }
 
 function change_messages(data){
@@ -95,11 +96,7 @@ function change_messages(data){
   text_for_old_chat_room(data);
 
 }
-
-
 function text_for_old_chat_room(data){
-
-
       var html = '';
       data.messages.forEach(function(current){
         html += `<div class="answer left">
