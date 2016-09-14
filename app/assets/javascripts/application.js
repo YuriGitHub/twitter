@@ -14,9 +14,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require cable.js
-//  require_tree .
 //= require fotorama
-//= require_tree .
+// require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require dropzone

@@ -4,10 +4,7 @@ class ChatRoom < ApplicationRecord
   has_many :messages
 
     def self.get_chat_room_by_users_array(users)
-      if(users.instance_of? Array)
-
-        self.find_by("users = ARRAY[?]::integer[]",users.sort)
-      end
+      return ChatRoom.find_by("users = ARRAY[?]",users.sort)
     end
 
 

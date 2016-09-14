@@ -3,7 +3,8 @@ class ChatRoomsController < ApplicationController
 
   def find_chat_room
     check_chat_room
-    c = ChatRoom.get_chat_room_by_users_array([current_user.id,params[:user_id].to_i])
+    c = ChatRoom.get_chat_room_by_users_array([current_user.id,params[:user_id].to_i].sort)
+    binding.pry
     redirect_to chat_room_path + "#chat_room=#{c.id}"
   end
 
@@ -72,10 +73,10 @@ end
   private
   def check_chat_room
     c = ChatRoom.get_chat_room_by_users_array([current_user.id,params[:user_id].to_i])
+    binding.pry
     if c == nil
       c = ChatRoom.new
-      c.users = [current_user.id,params[:user_id].to_i]
-      c.users.sort
+      c.users = [current_user.id,params[:user_id].to_i].sort
       c.save
     end
   end

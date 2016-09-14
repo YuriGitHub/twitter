@@ -15,13 +15,14 @@ $(document).ready(function () {
             jQuery.when($.getScript("/assets/chat.js")).done(function () {
                 jQuery.when($.getScript("/assets/add_chat_room.js")).done(function () {
                     jQuery.when($.getScript("/assets/purl.js")).done(function () {
-                        user_id = $("#user_id").val();
-                        $(".chat").niceScroll();
-                        $('.dropdown').dropdown();
+
                         jQuery.when(get_all_chat_rooms()).done(function () {
                             jQuery.when(get_chat_room()).done(function () {});
                         });
                     });
+                    user_id = $("#user_id").val();
+                    $(".chat").niceScroll();
+                    $('.dropdown').dropdown();
                 });
             });
         });
