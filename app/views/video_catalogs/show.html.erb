@@ -27,5 +27,61 @@
 <% end %>
 
 <% @video_catalog.videos.each do |clip| %>
-      <%= video_tag clip.file.to_s, :size => "320x240", :controls => true %>
+
+
+        <%= link_to user_catalog_video_play_path(@user,  clip_id: clip), remote: true do %>
+          <%= video_tag clip.file.to_s, class:'video-catalog-clip', id: 'video-catalog-'+@video_catalog.id.to_s+'clip'+clip.id.to_s, :size => "320x240", :controls => true %>
+        <% end %>
+
+
+
 <% end %>
+
+
+
+<div class="modal fade" id="video-catalogs-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+          <div class="col-md-12 video-catalogs-modal-body">
+
+          </div>
+        </div>
+			</div>
+
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<script>
+  $('.video-catalog-clip').each(function(){
+      $(this).on('play', function(){
+        var clip = $(this);
+        $('.video-catalog-clip').each(function(){
+          if ($(this).attr('id') != $(clip).attr('id')){
+            console.log($(clip));
+            $(this).trigger('pause');
+          }
+        });
+      });
+  });
+
+
+  $('#video-catalogs-modal').on('hidden.bs.modal', function () {
+
+      $('#video-catalogs-modal').find('.video-catalogs-modal-body').find('video').trigger('pause');
+  });
+
+</script>
+
+
+
+

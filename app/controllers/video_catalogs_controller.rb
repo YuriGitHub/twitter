@@ -64,6 +64,12 @@ class VideoCatalogsController < ApplicationController
 
 
 
+  def catalog_video_play
+    @clip_id = params[:clip_id]
+  end
+
+
+
   def remove_video
     flash[:notice] = @video_catalog.remove_video(params[:video_id])
     redirect_to user_video_catalog_path(@user, @video_catalog)
