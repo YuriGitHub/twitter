@@ -76,7 +76,7 @@ function create_chat_room(data){
     data: {users: data.users, title: data.title},
     success: function(data){
       $('#users_list').after(show_chat_rooms(data));
-    
+
       add_onclik();
     }
   })
@@ -101,17 +101,14 @@ function change_messages(data){
 function text_for_old_chat_room(data){
       var html = '';
       data.messages.forEach(function(current){
-        html += `<div class="answer left">
-                        <div class="avatar">
-                          <img src="/" alt="User name">
-                          <div class="status offline"></div>
-                        </div>
-                        <div class="name">test</div>
-                        <div class="text">
-                        ${current.text_message}
-                        </div>
-                        <div class="time">5 min ago</div>
-                      </div>`
+        html += "<div class='answer left'>"+
+                        "<div class='avatar'>"+
+                          "<img src='/' alt='User name'>"+
+                          "<div class='status offline'></div>"+
+                        "</div>"+
+                        "<div class='name'>test</div>"+
+                        "<div class='text'>"+current.text_message+ " </div>  <div class='time'>5 min ago</div>"+
+                      "</div>"
       });
 
 $("#messages_for_del").append(html);
