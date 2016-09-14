@@ -421,8 +421,8 @@ PLATFORMS
 DEPENDENCIES
   activeadmin (~> 1.0.0.pre4)
   activerecord-session_store
-  blueimp-gallery
   autoprefixer-rails
+  blueimp-gallery
   bootstrap-sass
   bootstrap-switch-rails
   byebug

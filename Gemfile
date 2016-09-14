@@ -21,7 +21,6 @@ gem 'tokens'
 gem 'fotoramajs'
 gem 'blueimp-gallery'
 
-gem 'jquery-ui-rails'
 
 
 
