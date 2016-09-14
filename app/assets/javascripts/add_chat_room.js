@@ -108,7 +108,7 @@ function text_for_old_chat_room(data){
                         "</div>"+
                         "<div class='name'>test</div>"+
                         "<div class='text'>"+current.text_message+ " </div>  <div class='time'>5 min ago</div>"+
-                      "</div>"
+                      "</div>";
       });
 
 $("#messages_for_del").append(html);

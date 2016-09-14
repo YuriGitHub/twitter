@@ -58,7 +58,9 @@ end
         image = c.is_chat_room? ? 'chat.jpg' : c.get_another_user_from_chat_room(current_user).avatar(:thumb)
         status = c.is_chat_room? ? false : c.get_another_user_from_chat_room(current_user).is_online?
         res.push ({title: title, image: image, status: status, id: id})
+
     end
+    
     render json: res
   end
 
