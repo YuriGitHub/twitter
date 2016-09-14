@@ -75,13 +75,15 @@ function create_chat_room(data){
     method: 'post',
     data: {users: data.users, title: data.title},
     success: function(data){
-      $('#users_list').after(show_chat_rooms(data))
+      $('#users_list').after(show_chat_rooms(data));
+    
+      add_onclik();
     }
   })
 }
 
 function change_chat_room(data){
-  
+
   $("#insert_message").empty();
   get_chat_room(document.location.hash.split('=')[1]);
   connecting(document.location.hash.split('=')[1]);
