@@ -11,8 +11,12 @@ class ChatRoom < ApplicationRecord
     end
 
 
+    def is_chat_room?
+      self.users.length > 2
+    end
 
-    def get_another_user_from_chat_room
+
+    def get_another_user_from_chat_room(current_user)
       self.users.each do |u|
         if u != current_user.id
           return User.find(u)

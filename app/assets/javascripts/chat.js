@@ -95,14 +95,33 @@ return `<div class="answer ${obj.layout}">
 
 
 function get_all_chat_rooms(){
-
   $.ajax({
     url: 'get_all_chat_rooms',
     method: 'get',
     data: '',
     success: function(data){
-      console.log(data)
+      data.forEach(function(current){
+        $('.chat-users').append(show_chat_rooms(current))
+      })
     }
 
   })
+}
+
+function show_chat_rooms({title,image,status,id}){
+  var on;
+  if(status){
+    on = 'online'
+  }
+  else {
+      on = 'offline'
+    }
+  return `<div class="user" data-id-chat-room='${id}'>
+                    <div class="avatar">
+                    <img src="${image}" alt="User name" width='40' height='40'>
+                    <div class="status ${on}"></div>
+                    </div>
+                    <div class="name">${title}</div>
+
+                </div>`
 }

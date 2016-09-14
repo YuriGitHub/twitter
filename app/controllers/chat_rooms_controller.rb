@@ -28,6 +28,7 @@ end
 def find_users
   search = Sunspot.search( User ) do
       fulltext params[:user]
+      without(:id, current_user.id)
   end
   results = search.results
   render json: results.map { |user| [user.login, user.id]}
@@ -47,27 +48,26 @@ end
 
 
   def get_all_chat_rooms
+
     chat_rooms = ChatRoom.where('users @> ARRAY[?]',current_user.id)
-
-    chat_rooms.map do |c|
-
+    res = Array.new
+    chat_rooms.each do |c|
+      id = c.id
+        title = c.is_chat_room? ? c.title : c.get_another_user_from_chat_room(current_user).email
+        image = c.is_chat_room? ? 'chat.jpg' : c.get_another_user_from_chat_room(current_user).avatar(:thumb)
+        status = c.is_chat_room? ? false : c.get_another_user_from_chat_room(current_user).is_online?
+        res.push ({title: title, image: image, status: status, id: id})
     end
+    render json: res
   end
 
 
   def create_chat_room
     users_id = [current_user.id]
     params[:users].each{ |user| users_id.push user.to_i }
-
-    chat_room = ChatRoom.where('users = ARRAY[?]', users_id.sort).first
-    if(chat_room)
-      render json: {type: 'old', chat_room_id: chat_room.id, messages: chat_room.messages, users: chat_room.users}
-    else
-      chat_room = ChatRoom.create(users: users_id, title: params[:title], user: current_user)
-      render json: {chat_room_id: chat_room.id, type: 'new',users: chat_room.users }
-      chat_room.destroy
+    chat_room = ChatRoom.create(users: users_id.sort, title: params[:title], user: current_user)
+    render json: {title: chat_room.title, image: 'chat.jpg', status: 'offline', id: chat_room.id}
     end
-  end
 
   private
   def check_chat_room

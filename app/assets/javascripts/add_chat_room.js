@@ -75,8 +75,7 @@ function create_chat_room(data){
     method: 'post',
     data: {users: data.users, title: data.title},
     success: function(data){
-      console.log(data)
-      change_chat_room(data)
+      $('#users_list').after(show_chat_rooms(data))
     }
   })
 }
