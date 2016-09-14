@@ -84,17 +84,14 @@ function sen() {
 function text_for_append(data) {
     obj.data = data;
 
-    return `<div class="answer ${obj.layout}">
-                <div class="avatar">
-                  <img src="${obj.image}" alt="User name">
-                  <div class="status offline"></div>
-                </div>
-                <div class="name">${obj.login}</div>
-                <div class="text">
-                ${obj.message}
-                </div>
-                <div class="time">5 min ago</div>
-              </div>`
+    return "<div class='answer" + obj.layout + ">"+
+                "<div class='avatar'>"+
+                  "<img src=" + obj.image + " alt='User name'>"+
+                  "<div class='status offline'></div>" +
+                "</div>"+
+                "<div class='name'>" + obj.login + "</div>"+
+                "<div class='text'>"+obj.message +" </div>" +
+                "<div class='time'>5 min ago</div> </div>"
 }
 
 var t;
@@ -115,7 +112,7 @@ function get_all_chat_rooms() {
 }
 
 function add_onclik() {
-  
+
     $(".user").click(function() {
         console.log("lalalalala");
         create_loader();
@@ -131,24 +128,18 @@ function create_loader() {
     $('.chat-body').addClass('no_display');
 }
 
-function show_chat_rooms({
-    title,
-    image,
-    status,
-    id
-}) {
+function show_chat_rooms(data) {
     var on;
-    if (status) {
+    if (data.status) {
         on = 'online'
     } else {
         on = 'offline'
     }
-    return `<div class="user" data-id-chat-room='${id}'>
-                    <div class="avatar">
-                    <img src="${image}" alt="User name" width='40' height='40'>
-                    <div class="status ${on}"></div>
-                    </div>
-                    <div class="name">${title}</div>
-
-                </div>`
+    return "<div class='user' data-id-chat-room=" + data.id + ">" +
+                    "<div class='avatar>"+
+                    "<img src=" + data.image + " alt='User name' width='40' height='40'>" +
+                    "<div class='status " + on + "'></div>"+
+                    "</div>"+
+                    "<div class='name'>" + data.title + "</div>" +
+                "</div>"
 }
