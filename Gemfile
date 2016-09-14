@@ -19,6 +19,10 @@ gem 'redis-rails'
 gem 'autoprefixer-rails'
 gem 'tokens'
 gem 'fotoramajs'
+gem 'blueimp-gallery'
+
+
+
 
 
 # Use jquery as the JavaScript library

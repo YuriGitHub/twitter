@@ -1,6 +1,15 @@
 class AttachmentsController < ApplicationController
 
-    
+    def refresh_post_images_thumbs_block
+        @post = Post.find(params[:post_id])
+    end
+
+    def remove_posts_image
+        @post = User.find(params[:user_id]).posts.find(params[:post_id])
+        image = @post.attachments.image.find(params[:id])
+        @image_id = image.id
+        image.destroy
+    end
 
     def show_image 
         @post =  Post.find(params[:post_id])      
