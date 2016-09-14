@@ -2,11 +2,11 @@
 <% post = Post.find(post_id) %>
 <% images = post.attachments.image %>
 
-<div class='col-sm-2'>
+
 	<% i = 0 %>
 	<% images.each do |image| %>
-      <a  data-toggle="modal" href="#post-<%= post.id %>-modal">
-			    <%=image_tag image.file.to_s, :width => 70, :height => 60 %><br>
+      <a  data-toggle="modal" href="#post-<%= post.id %>-modal" id="post-<%= post.id %>-thumb-image-<%= image.id %>">
+			    <%=image_tag image.file.to_s,  class:'posts-thumb-image' %><br>
       </a>
 		<% i += 1 %>
 		<% break if i == 2 %>
@@ -16,7 +16,17 @@
   <% end %>
   <%= render partial: 'attachments/post_images_modal_gallery', locals:{images: images, post: post} %>
 
-</div> 
+
+
+<script>
+  $("#post-<%= post.id %>-modal").on("hidden.bs.modal", function () {
+    var url =  '/users/' + <%= current_user.id %> + '/posts/' + <%= post.id %> + '/refresh_post_images_thumbs_block';
+    $.ajax({
+      url: url,
+      type: "Patch"
+    });
+  });
+</script>
 
 
 
