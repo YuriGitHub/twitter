@@ -11,11 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery-ui
+//= require jquery_ujs
 //= require fotorama
 //= require blueimp-gallery-all
-//= require_tree .
+//= require cable.js
+// require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require dropzone

@@ -4,7 +4,6 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-
 development:
   adapter: postgresql
   encoding: unicode
@@ -24,6 +23,8 @@ test:
       username: dima
       password: 777Dima777
       database: twitter_test
+
+
 
 production:
   adapter: postgresql

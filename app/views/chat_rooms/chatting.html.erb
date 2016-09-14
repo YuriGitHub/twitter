@@ -1,130 +1,32 @@
-<link rel="stylesheet" href="/assets/chat.css"/>
-<div class="container" >
-    <div class="row" >
-        <div class="col-md-12">
-            <div class="panel panel-primary" >
-                <div class="panel-heading" >
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                </div>
-                <div class="panel-body height" id="scroll">
-                    <ul class="chat">
-
-
-                      <% @chat_room.messages.each do |m| %>
-                      <% if m.user != current_user %>
-                        <li class="left clearfix"><span class="chat-img pull-left">
-                          <%= image_tag  m.user.avatar.url(:thumb), altt: 'User Avatar', class: 'img-circle' %>
-                            <!-- <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"> -->
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font"><%= m.user.login %></strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span><%= time_ago_in_words m.updated_at %></small>
-                                </div>
-                                <p><%= m.text_message %></p>
-                            </div>
-                        </li>
-                      <% else %>
-                        <li class="right clearfix"><span class="chat-img pull-right">
-                            <%= image_tag  m.user.avatar.url(:thumb), altt: 'User Avatar', class: 'img-circle' %>
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span><%= time_ago_in_words m.updated_at %></small>
-                                    <strong class="pull-right primary-font"><%= m.user.login %></strong>
-                                </div>
-                                <p><%= m.text_message %></p>
-                            </div>
-                        </li>
-
-                        <% end %>
-                        <% end %>
-                        <div id="insert_message" id="scroll">
-
-
-
-                        </div>
-                      </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="text_value" type="text" class="form-control input-sm" placeholder="Type your message here...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="submit">Send</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="loader"></div>
+<div class="no_display">
+    <input type="hidden" value="<%= current_user.id %>" id="user_id"/>
+</div>
 </div>
 
-<script>
+<!-- Modal -->
+<!-- Modal -->
 
-function getParameterByName(name) {
-    url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-App.global_chat = App.cable.subscriptions.create({
-  channel: "ChatsChannel",
-  id: getParameterByName('chat_room'),
+<script type="text/javascript">
+$(document).ready(function () {
 
-}, {
-  connected: function() {
-    console.log('connected')
-  },
-  disconnected: function() {},
-  received: function(data) {
-    $('#insert_message').append(text_for_append(data,false));
-    console.log(data);
-    $("#text_value").val('');
-    var objDiv = document.getElementById("scroll");
-objDiv.scrollTop = objDiv.scrollHeight;
-    console.log('here');
-  },
+    jQuery.when($('.no_display').append("<%= escape_javascript render(:partial => 'chat_rooms/main') %>")).done(function () {
+        jQuery.when($.getScript("/assets/nice_scroll.js")).done(function () {
+            jQuery.when($.getScript("/assets/chat.js")).done(function () {
+                jQuery.when($.getScript("/assets/add_chat_room.js")).done(function () {
+                    jQuery.when($.getScript("/assets/purl.js")).done(function () {
+
+                        jQuery.when(get_all_chat_rooms()).done(function () {
+                            jQuery.when(get_chat_room()).done(function () {});
+                        });
+                    });
+                    user_id = $("#user_id").val();
+                    $(".chat").niceScroll();
+                    $('.dropdown').dropdown();
+                });
+            });
+        });
+    });
+
 });
-
-$( "#submit" ).click(function() {
-sen()
-});
-$("#text_value").keypress(function(e){
-    if(e.which == 13){
-        sen()
-    }
-});
-function sen(){
-  var text_message = $("#text_value").val();
-  App.global_chat.perform("send_message",{text: text_message});
-}
-
-
-
-
-
-
-
-
-function text_for_append (data,current_user){
-console.log('fubndc')
-var l_or_r = 'right';
- return  "<li class=" + l_or_r+ "clearfix'><span class='chat-img pull-" + l_or_r + "'>" +
-      "<img altt='User Avatar' class='img-circle' src='" + data.image+ "' alt='Missing thumb'>"+
-  "</span>"+
-      "<div class='chat-body clearfix'>"+
-          "<div class='header'>"+
-              "<small class='text-muted'><span class='glyphicon glyphicon-time'></span>now</small>"+
-              "<strong class='pull-"+ l_or_r + " primary-font'>" + data.login+ "</strong>"+
-          "</div>"+
-          "<p>" + data.message+ "</p>"+
-      "</div>"+
-  "</li>";
-
-
-}
-
 </script>
