@@ -20,6 +20,6 @@
         <%#<% end %> 
         <%#</div>%>
 
-    <%=render partial: 'posts/post', collection: @posts%>
+    <%=render partial: 'posts/post', collection: @posts, locals:{user: @user}%>
 
 </div>

@@ -1,7 +1,7 @@
 
 
 
-
+<% @user %>
 
 
 
@@ -41,7 +41,12 @@
                     </div>
               </div>
 
+
+<% if @user == current_user %>
               <a href="" id="post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove" class='post-modal-image-remove' >remove</a>
+<% end %>
+
+
 
               <script>
                 $("#post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove").click(function(e){

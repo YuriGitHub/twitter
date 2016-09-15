@@ -6,7 +6,7 @@
 	</div>
 	
 	<div class='col-sm-2' id="post-<%= post_id %>-images-thumbs-block">
-		<%= render partial: "/attachments/images", locals:{post_id: post_id} %>
+		<%= render partial: "/attachments/images", locals:{post_id: post_id, user: @user} %>
 
 	</div> 
 </div>

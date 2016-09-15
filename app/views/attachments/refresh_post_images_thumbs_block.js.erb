@@ -1,2 +1,2 @@
-$("#post-<%= @post.id %>-images-thumbs-block").html("<%= j render partial:'/attachments/images', locals:{post_id: @post.id} %>");
+$("#post-<%= @post.id %>-images-thumbs-block").html("<%= j render partial:'/attachments/images', locals:{post_id: @post.id, user: @user} %>");
 

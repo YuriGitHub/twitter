@@ -65,7 +65,7 @@ Rails.application.routes.draw do
         end
     end
 
-    get 'show_image' => 'attachments#show_image'
+
     get 'show_audios_block' => 'attachments#show_audios_block'
     get 'show_video' => 'attachments#show_video'
     get 'show_videos_block' => 'attachments#show_videos_block'

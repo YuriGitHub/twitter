@@ -1,28 +1,17 @@
 class AttachmentsController < ApplicationController
 
     def refresh_post_images_thumbs_block
+        #binding.pry
         @post = Post.find(params[:post_id])
+        @user = User.find(params[:user_id])
     end
 
     def remove_posts_image
+        #binding.pry
         @post = User.find(params[:user_id]).posts.find(params[:post_id])
         image = @post.attachments.image.find(params[:id])
         @image_id = image.id
         image.destroy
-    end
-
-    def show_image 
-        @post =  Post.find(params[:post_id])      
-        images = @post.attachments.image       
-        @image = images.find(params[:image_id]) 
-        if params[:position] == 'next'             
-             @index = images.find_index(@image)
-             if @index == images.count - 1
-                @image = images[0]
-             else              
-                @image = images[@index + 1]
-             end
-        end
     end
 
     def show_audios_block

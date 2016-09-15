@@ -1,4 +1,4 @@
-
+<% @user %>
 <% post = Post.find(post_id) %>
 <% images = post.attachments.image %>
 
@@ -14,7 +14,7 @@
   <% if images.count > 2 %>
       <a  data-toggle="modal" href="#post-<%= post.id %>-modal">all...</a>
   <% end %>
-  <%= render partial: 'attachments/post_images_modal_gallery', locals:{images: images, post: post} %>
+  <%= render partial: 'attachments/post_images_modal_gallery', locals:{images: images, post: post, user: @user } %>
 
 
 

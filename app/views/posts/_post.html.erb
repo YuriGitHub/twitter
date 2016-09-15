@@ -28,7 +28,7 @@
 
         <div class="post-content collapse" id="collapse_post_<%=post.id%>">
             <p class="post_text"><%=post.text%></p>
-            <%= render partial: "/attachments/attachments", locals:{post_id: post.id} %>
+            <%= render partial: "/attachments/attachments", locals:{post_id: post.id, user: @user} %>
             <%= render partial: "/comments/index", locals:{post_id: post.id} %>
         </div>
 
