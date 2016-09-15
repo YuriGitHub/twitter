@@ -6,7 +6,7 @@ class PhotoAlbumsController < ApplicationController
 
   def remove_photo
     flash[:notice] = @album.remove_photo(params[:photo_id])
-    redirect_to user_photo_album_path(@user, @album)
+    @photo_id = params[:photo_id]
   end
 
   def  add_photo_to_album

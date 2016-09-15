@@ -48,7 +48,7 @@
                     e.stopPropagation();
                     e.preventDefault();
                     var response = confirm( 'Are you sure?');
-                    if (response) { console.log('hello!');
+                    if (response) {
                       var url = '/users/' + "<%= current_user.id %>" + '/posts/' + "<%= post.id %>" + '/remove_posts_image/' + "<%= photo.id %>";
                       $.ajax({
                         url: url,
@@ -57,8 +57,6 @@
 
                       return true;
                     }else{
-                      console.log('no!');
-//                      e = e.originalEvent;
                       return false;
                     }
 

@@ -37,26 +37,52 @@
   <a class="next">›</a>
   <a class="close">×</a>
   <a class="play-pause"></a>
-
   <p class="description"></p>
-
   <ol class="indicator"></ol>
 </div>
 
 <div id="links">
 
     <% @album.photos.each_slice(3) do |photos| %>
-        <div class="row" >
+        <div class="row photo-albums-pictures-row" >
            <% photos.each do |photo| %>
-              <div class="col-md-4">
-                <a href="<%= photo.file.to_s %>" title="Title" data-description="This is a description." >
+              <div class="col-md-4" id="photo-albums-<%=@album.id%>-picture-<%=photo.id%>-cell">
+
+                <a href="<%= photo.file.to_s %>"  title="Title" class="photo-href" data-description="This is a description." >
                   <%=image_tag photo.file.to_s, class:'gallery-picture'  %>
                 </a>
+
+                <% if @user == current_user %>
+                    <%= link_to 'X', '#', id:'photo-albums-'+@album.id.to_s+'-picture-'+photo.id.to_s+'-href', class:'photo-albums-remove-link' %>
+                    <script>
+                        $('#photo-albums-<%=@album.id%>-picture-<%=photo.id%>-href').click(function(e){
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var response = confirm( 'Are you sure?');
+                            if (response) { console.log('hello!');
+                                 var url = '/users/'+"<%=@user.id%>"+'/remove_photo' ;
+                                  $.ajax({
+                                    url: url,
+                                    type: "Delete",
+                                    data: {'id': "<%=@album.id%>", 'photo_id': "<%= photo.id %>"}
+                                  });
+
+                                return true;
+                            }else{
+                              console.log('no!');
+                              return false;
+                            }
+                        });
+                    </script>
+                <% end %>
               </div>
+
            <% end %>
         </div>
     <% end %>
 </div>
+</div>
+
 
 
 <script>
@@ -65,10 +91,18 @@
     var target = event.target || event.srcElement,
         link = target.src ? target.parentNode : target,
         options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
+        links = this.getElementsByClassName('photo-href');
     blueimp.Gallery(links, options);
   };
+
+  $('.photo-albums-remove-link').each(function(){
+    $(this).mouseover(function(){
+      $(this).attr('title', 'remove');
+    });
+  });
+
+
 </script>
 
-</div>
+
 
