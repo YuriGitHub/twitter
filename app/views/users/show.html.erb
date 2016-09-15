@@ -1,9 +1,13 @@
-<link rel="stylesheet" href="/assets/show.css"/>
 
-<script src="/assets/comments.js" ></script>
+<%#<link rel="stylesheet" href="/assets/show.css"/>%>
+<%=stylesheet_link_tag "users_show"%>
+<%=javascript_include_tag "users_show"%>
 <script type="text/javascript" charset="utf-8">var page = 'user_show'</script>
-<script type="text/javascript" src="/assets/likes.js"></script>
-<link rel="stylesheet" href="/assets/likes.css" title="" type="" />
+<%#<script src="/assets/comments.js" ></script>%>
+<%#<script type="text/javascript" src="/assets/likes.js"></script>%>
+
+<%#<link rel="stylesheet" href="/assets/likes.css" title="" type="" />%>
+
 <div class="user-cont">
     <div class="col-md-4">
         <%= image_tag @user.avatar.url(:medium), class: 'img-rounded' %>
