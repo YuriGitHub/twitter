@@ -18,15 +18,6 @@ class AttachmentsController < ApplicationController
         @post_id = params[:post_id]
     end
 
-    def show_video
-        @post = Post.find(params[:post_id])
-        videos = @post.attachments.video
-        @video = videos.find(params[:video_id])        
-    end
-
-    def show_videos_block
-        @post_id = params[:post_id]
-    end
 
 
     def create

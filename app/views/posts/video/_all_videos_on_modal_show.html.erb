@@ -1,0 +1,14 @@
+
+<% post %>
+
+<% clips = post.attachments.video %>
+<% clips.each do |clip| %>
+  <div class="row posts-modals-clips-row">
+    <div>Title</div>
+    <div class="col-md-12">
+      <%= video_tag clip.file.to_s, :controls => true, class:'posts-modals-clip' %>
+    </div>
+
+  </div>
+
+<% end %>

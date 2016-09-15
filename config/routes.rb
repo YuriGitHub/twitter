@@ -62,13 +62,14 @@ Rails.application.routes.draw do
             resources :attachments,only: [:create,:destroy,:update]
             delete 'remove_posts_image/:id' => 'attachments#remove_posts_image', as: :remove_posts_image
             patch 'refresh_post_images_thumbs_block' => 'attachments#refresh_post_images_thumbs_block', as: :refresh_post_images_thumbs_block
+            get 'show_all_videos_modal' => 'posts#show_all_videos_modal', as: :show_all_videos_modal
         end
     end
 
 
-    get 'show_audios_block' => 'attachments#show_audios_block'
-    get 'show_video' => 'attachments#show_video'
-    get 'show_videos_block' => 'attachments#show_videos_block'
+
+
+
 
 
     get 'find_chat_room', to: 'chat_rooms#find_chat_room'

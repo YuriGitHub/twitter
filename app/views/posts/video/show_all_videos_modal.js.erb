@@ -1,0 +1,6 @@
+$("#post-<%= post.id %>-videos-modal").modal();
+
+
+
+
+$("#post-<%= post.id %>-videos-modal").find('.modal-body').html("<%= j render partial:'posts/video/all_videos_on_modal_show', locals:{post: post} %>");

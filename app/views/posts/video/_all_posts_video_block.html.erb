@@ -1,0 +1,46 @@
+
+<% post %>
+<% @user %>
+<% clips = post.attachments.video %>
+<% arr = clips[0..2] %>
+<% if arr.size > 0 %>
+  <% cols = 12/arr.size %>
+<% else %>
+  <% cols = 12 %>
+<% end %>
+<div class="row">
+    <% arr.each do |clip| %>
+      <div class="col-md-<%= cols %>">
+        <%= video_tag clip.file.to_s, width: 200, height: 180 %>
+        <div><%= clip.file.to_s.split('/').last %></div>
+      </div>
+    <% end %>
+</div>
+
+<% if clips.count > 3 %>
+    <div class="row">
+      <div class="col-md-2">
+        <%= link_to 'All clips...',   user_post_show_all_videos_modal_path(@user, post), remote: true %>
+      </div>
+    </div>
+<% end %>
+
+
+
+<div class="modal fade" id="post-<%= post.id %>-videos-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				Modal body ...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

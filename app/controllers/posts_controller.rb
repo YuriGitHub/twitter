@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
 
+
+    def show_all_videos_modal
+        render :template => 'posts/video/show_all_videos_modal', locals:{post: Post.find(params[:post_id])}
+    end
+
     def index
         @user = User.find(params[:id])
         @posts = @user.posts
