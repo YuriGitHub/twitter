@@ -14,7 +14,6 @@ $(document).ready(function(){
     if(typeof page != 'string'){
         page = ""
     }
-    console.log(page)
 
     if(page == user_search_page){
         var users_container = $('#users')

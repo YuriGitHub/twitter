@@ -20,5 +20,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require dropzone
+//= require search
 
 
