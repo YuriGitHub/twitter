@@ -11,20 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require fotorama
-//= require_tree .
+//= require blueimp-gallery-all
+//= require cable.js
+// require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require dropzone
 
 
-$(document).ready(function(){
-	$('#modal_close').click(function(){
-		$('#modal_form').hide() // делaем ему display: none;
-		$('#overlay').fadeOut(400); // скрывaем пoдлoжку
-
-	});
-
-
-});

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'users/toggle_follow'=>'users#toggle_follow'
     get 'users/search' => 'users#search'
 
+    get 'chat/search', to: 'chat_rooms#find_users'
 
     post 'likes/toggle_like' => 'likes#toggle_like'
     post 'likes/toggle_dislike' => 'likes#toggle_dislike'
@@ -58,6 +59,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
         resources :posts, only: [:index, :update, :destroy, :edit, :create] do
             resources :attachments,only: [:create,:destroy,:update]
+            delete 'remove_posts_image/:id' => 'attachments#remove_posts_image', as: :remove_posts_image
+            patch 'refresh_post_images_thumbs_block' => 'attachments#refresh_post_images_thumbs_block', as: :refresh_post_images_thumbs_block
         end
     end
 
@@ -69,7 +72,9 @@ Rails.application.routes.draw do
 
     get 'find_chat_room', to: 'chat_rooms#find_chat_room'
     get 'chat_room', to: 'chat_rooms#chatting'
-
+    post 'create_chat_room', to: 'chat_rooms#create_chat_room'
+    get 'get_all_chat_rooms', to: 'chat_rooms#get_all_chat_rooms'
+    get 'get_chat_room_data',to:'chat_rooms#get_chat_room_data'
     mount ActionCable.server => "/chats"
 
 

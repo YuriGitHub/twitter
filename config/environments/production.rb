@@ -12,6 +12,8 @@ Rails.application.configure do
   config.action_mailer.default_options = {
   from: "testapp891@gmail.com"
 }
+
+config.cache_store = :redis_store, "redis://localhost:6379/0/cache"
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
