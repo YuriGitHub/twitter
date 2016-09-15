@@ -32,12 +32,11 @@
 
 
 
+          <div id="posts-<%= post.id %>-videos-block">
 
+              <%= render partial: "posts/video/all_posts_video_block", locals:{post: post, user: @user} %>
 
-
-          <%= render partial: "posts/video/all_posts_video_block", locals:{post: post, user: @user} %>
-
-
+          </div>
 
 
 

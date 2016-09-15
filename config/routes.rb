@@ -47,6 +47,11 @@ Rails.application.routes.draw do
     resources :audio_catalogs
     post 'add_track_to_catalog/(:format)' => 'audio_catalogs#add_track_to_catalog', as: :add_track_to_catalog
     delete 'remove_track' => 'audio_catalogs#remove_track', as: :remove_track
+
+    resources :posts, only:[] do
+      delete 'remove_clip' => 'posts#remove_clip'
+      get 'refresh_posts_videos_thumbs_block' => 'posts#refresh_posts_videos_thumbs_block'
+    end
   end
 
     resources :comments

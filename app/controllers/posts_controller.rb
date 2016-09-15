@@ -3,7 +3,25 @@ class PostsController < ApplicationController
 
 
     def show_all_videos_modal
-        render :template => 'posts/video/show_all_videos_modal', locals:{post: Post.find(params[:post_id])}
+        render :template => 'posts/video/show_all_videos_modal', locals:{post: Post.find(params[:post_id]), user: User.find(params[:user_id])}
+    end
+
+    def remove_clip
+        user = User.find(params[:user_id])
+        if user == current_user
+            post = Post.find(params[:post_id])
+            post.attachments.video.find(params[:clip_id]).destroy
+            render template: 'posts/video/remove_clip', locals: {post: post, clip_id: params[:clip_id], user: user}
+        else
+            render :nothing
+        end
+    end
+
+
+    def refresh_posts_videos_thumbs_block
+
+        #binding.pry
+        render template: 'posts/video/refresh_posts_videos_thumbs_block', locals: { post: Post.find(params[:post_id]), user: User.find(params[:user_id])}
     end
 
     def index

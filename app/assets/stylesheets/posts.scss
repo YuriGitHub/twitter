@@ -4,9 +4,26 @@
 
 .posts-modals-clip{
   width: 100%;
+  border: 1px solid;
 }
 
 .posts-modals-clips-row{
-  text-align: center;
-  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
+.posts-modals-clips-title{
+  margin-left: 20px;
+}
+
+.posts-modal-clips-remove-link{
+  position: absolute;
+  top: -24px;
+  right: 3px;
+  color: grey;
+  font-size: 21px;
+}
+
+.posts-modal-content{
+  padding-left: 20px;
+  padding-right: 20px;
 }

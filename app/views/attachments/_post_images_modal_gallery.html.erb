@@ -1,12 +1,4 @@
-
-
-
 <% @user %>
-
-
-
-
-
 <div id="blueimp-gallery-<%= post.id %>" class="blueimp-gallery">
   <div class="slides"></div>
   <h3 class="title"></h3>
@@ -14,9 +6,7 @@
   <a class="next">›</a>
   <a class="close">×</a>
   <a class="play-pause"></a>
-
   <p class="description"></p>
-
   <ol class="indicator"></ol>
 </div>
 
@@ -40,14 +30,9 @@
                       </a>
                     </div>
               </div>
-
-
-<% if @user == current_user %>
-              <a href="" id="post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove" class='post-modal-image-remove' >remove</a>
-<% end %>
-
-
-
+              <% if @user == current_user %>
+                            <a href="" id="post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove" class='post-modal-image-remove' >remove</a>
+              <% end %>
               <script>
                 $("#post-<%= post.id %>-modal-image-<%= photo.id.to_s %>-remove").click(function(e){
                     e.stopPropagation();
@@ -67,8 +52,6 @@
 
                 });
               </script>
-
-
           <% end %>
       </div>
 
@@ -90,7 +73,6 @@
     var target = event.target || event.srcElement,
         link = target.src ? target.parentNode : target,
         options = {index: link, event: event},
-       // links = this.getElementsByTagName('a');
         links = this.getElementsByClassName('photo-href');
     blueimp.Gallery(links, options);
   };

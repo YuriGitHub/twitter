@@ -1,6 +1,6 @@
 
 <% post %>
-<% @user %>
+<% user %>
 <% clips = post.attachments.video %>
 <% arr = clips[0..2] %>
 <% if arr.size > 0 %>
@@ -20,7 +20,7 @@
 <% if clips.count > 3 %>
     <div class="row">
       <div class="col-md-2">
-        <%= link_to 'All clips...',   user_post_show_all_videos_modal_path(@user, post), remote: true %>
+        <%= link_to 'All clips...',   user_post_show_all_videos_modal_path(user, post), remote: true %>
       </div>
     </div>
 <% end %>
@@ -28,19 +28,26 @@
 
 
 <div class="modal fade" id="post-<%= post.id %>-videos-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Modal title</h4>
-			</div>
-			<div class="modal-body">
-				Modal body ...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+  <div class="modal-dialog">
+    <div class="modal-content posts-modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        Modal body ...
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+<script>
+  $("#post-<%= post.id %>-videos-modal").on("hidden.bs.modal", function () {
+    var url =  '/users/' + <%= current_user.id %> + '/posts/' + <%= post.id %> + '/refresh_posts_videos_thumbs_block';
+    $.ajax({
+      url: url,
+      type: "GET"
+    });
+  });
+</script>

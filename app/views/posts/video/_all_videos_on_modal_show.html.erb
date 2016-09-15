@@ -1,14 +1,31 @@
 
 <% post %>
+<% user %>
 
 <% clips = post.attachments.video %>
 <% clips.each do |clip| %>
-  <div class="row posts-modals-clips-row">
-    <div>Title</div>
+  <div class="row posts-modals-clips-row" id="posts<%=post.id%>-modal-clips<%=clip.id%>-row">
+
     <div class="col-md-12">
       <%= video_tag clip.file.to_s, :controls => true, class:'posts-modals-clip' %>
+
+      <div class="posts-modals-clips-title"><%= clip.file.to_s.split('/').last %></div>
+      <% if user == current_user %>
+          <%= link_to 'X', user_post_remove_clip_path(user, post, clip_id: clip), method: :delete, remote: true, class:'posts-modal-clips-remove-link', data:{confirm: 'Are you shure?'} %>
+      <% end %>
     </div>
 
   </div>
 
 <% end %>
+
+<script>
+  $('.posts-modal-clips-remove-link').each(function(){
+    $(this).mouseover(function(){
+      $(this).attr('title', 'remove');
+    });
+  });
+</script>
+
+
+
