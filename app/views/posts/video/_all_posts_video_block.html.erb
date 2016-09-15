@@ -27,27 +27,8 @@
 
 
 
-<div class="modal fade" id="post-<%= post.id %>-videos-modal">
-  <div class="modal-dialog">
-    <div class="modal-content posts-modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body">
-        Modal body ...
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 
 
-<script>
-  $("#post-<%= post.id %>-videos-modal").on("hidden.bs.modal", function () {
-    var url =  '/users/' + <%= current_user.id %> + '/posts/' + <%= post.id %> + '/refresh_posts_videos_thumbs_block';
-    $.ajax({
-      url: url,
-      type: "GET"
-    });
-  });
-</script>
+
+
