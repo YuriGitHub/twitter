@@ -25,13 +25,21 @@
 <% end %>
 
 <h2><%= @audio_catalog.name %></h2>
-<% @audio_catalog.attachments.audio.each do |track| %>
-    <%=link_to '#', remote: true do %>
+<% @audio_catalog.tracks.each do |track| %>
+  <div class="row audio-catalogs-track-cell"  >
+    <div class="col-md-12">
         <br><%= audio_tag track.file.to_s, controls: true%>
-    <% end %>
 
-    <% if @user == current_user %>
-        <%= link_to 'Remove', user_remove_track_path(@user, track_id: track.id, id: @audio_catalog ), method: :delete %>
-    <% end %>
+
+        <% if @user == current_user %>
+            <%= link_to 'Remove', user_remove_track_path(@user, track_id: track.id, id: @audio_catalog ), method: :delete %>
+        <% end %>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= track.file.to_s.split('/').last %>
+      </div>
+    </div>
 <% end %>
 

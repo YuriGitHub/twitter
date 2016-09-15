@@ -3,8 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .gallery-picture{
-  height: 260px;
-  width: 390px;
+
+  width: 100%;
+  height: 215px;
+}
+
+.photo-albums-pictures-row{
+    margin-top: 50px;
+
+}
+
+.photo-albums-remove-link{
+    position: absolute;
+    top: -19px;
+    right: 4px;
+    font-size: 19px;
+    color: grey;
 }
 
 

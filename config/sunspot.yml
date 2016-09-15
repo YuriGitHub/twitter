@@ -2,7 +2,7 @@
 production:
   solr:
     hostname: 139.59.147.251
-    # hostname: localhost
+#     hostname: localhost
     port: 8983
     log_level: INFO
     path: /solr
@@ -11,11 +11,11 @@ production:
 
 development:
   solr:
-    hostname: 139.59.147.251
-    # hostname: localhost
+#    hostname: 139.59.147.251
+    hostname: localhost
     port: 8983
     log_level: INFO
-    path: /solr
+    path: /solr/development
 
 test:
   solr:

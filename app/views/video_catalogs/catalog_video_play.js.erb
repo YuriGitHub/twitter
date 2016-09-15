@@ -1,0 +1,4 @@
+$('#video-catalogs-modal').modal();
+<% clip = Attachment.find(@clip_id) %>
+$('#video-catalogs-modal').find('.modal-title').html("<%= clip.file.to_s.split('/').last %>");
+$('#video-catalogs-modal').find('.video-catalogs-modal-body').html("<%= j render partial: 'modal_video', locals:{clip: clip} %>");
