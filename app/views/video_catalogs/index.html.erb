@@ -10,3 +10,29 @@
 <% video_catalogs.each  do |catalog| %>
   <h2><%= link_to catalog.name, user_video_catalog_path(@user, catalog) %></h2>
 <% end %>
+
+
+<h1>All Videos:</h1>
+
+<% all_clips = @user.attachments.video %>
+<% all_clips.each_slice(3) do |group| %>
+    <div class="row catalog-video-row">
+      <% group.each do |clip| %>
+        <div class="col-md-4 video-cell"  id="catalog-video-cell<%= clip.id.to_s %>">
+          <%= video_tag clip.file.to_s, class:'video-catalog-clip', controls: true %>
+          <%= clip.file.to_s.split('/').last[0..30] %>
+
+
+          <% if @user == current_user %>
+              <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
+          <% end %>
+        </div>
+
+
+
+      <% end %>
+
+
+    </div>
+
+<% end %>

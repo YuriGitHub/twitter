@@ -3,24 +3,32 @@
 <% user %>
 <% clips = post.attachments.video %>
 
-
-<div class="row">
-
-
-      <div class="col-md-12 posts-video-block-thumb-cell">
-          <%= video_tag clips.first.file.to_s, class:'posts-video-block-thumb-clip' %>
-            <%= link_to clips.first.file.to_s.split('/').last.split('.').first %>
-        <% if clips.count > 1 %>
-            <%= link_to   user_post_show_all_videos_modal_path(user, post), remote: true do %>
-                <div class="mask"><p class="mask-p">+<%= clips.count -1 %></p></div>
-            <% end %>
-        <% end %>
-      </div>
+<% if clips.count > 0 %>
+    <div class="row">
 
 
-</div>
+          <div class="col-md-12 posts-video-block-thumb-cell">
+              <%= video_tag clips.first.file.to_s, class:'posts-video-block-thumb-clip' %>
+                <%= link_to clips.first.file.to_s.split('/').last.split('.').first %>
+
+                <%= link_to   user_post_show_all_videos_modal_path(user, post), remote: true do %>
+                    <div class="mask">
+                      <p class="mask-p">
+                        <% if clips.count > 1 %>
+                           +<%= clips.count -1 %>
+                        <% else %>
+                          <img src="/assets/play_video.png" class="posts-video-block-thumb-play-img" />
+                        <% end %>
+                      </p>
+                    </div>
+                <% end %>
+
+          </div>
 
 
+    </div>
+
+<% end %>
 
 
 

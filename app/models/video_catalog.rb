@@ -11,6 +11,7 @@ class VideoCatalog < ApplicationRecord
     unless video.save
       self.flash_notice = video.errors.full_messages
     else
+      user.attachments << video
       self.flash_notice = 'Clip successfully added.'
     end
   end

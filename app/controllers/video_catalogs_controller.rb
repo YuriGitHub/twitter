@@ -1,7 +1,7 @@
 class VideoCatalogsController < ApplicationController
   before_action :find_user
   before_action :check_authorization, only:[:edit, :create, :update, :destroy, :remove_video, :add_video_to_catalog, :catalog_clip_remove]
-  before_action :find_video_catalog, only:[:catalog_clip_remove, :show, :update, :destroy, :add_video_to_catalog]
+  before_action :find_video_catalog, only:[:show, :update, :destroy, :add_video_to_catalog]
 
   def index
   end
@@ -70,7 +70,12 @@ class VideoCatalogsController < ApplicationController
 
   def catalog_clip_remove
      @clip_id = params[:clip_id]
-     @video_catalog.remove_clip(@clip_id)
+     if params.has_key?(:id)
+       find_video_catalog
+       @video_catalog.remove_clip(@clip_id)
+     else
+       @user.attachments.video.find(params[:clip_id]).destroy()
+     end
   end
 
 
@@ -81,6 +86,8 @@ class VideoCatalogsController < ApplicationController
       return
     end
     flash[:notice] = @video_catalog.load_video(video_params, current_user)
+
+
     redirect_to user_video_catalog_path(@user, @video_catalog)
   end
 

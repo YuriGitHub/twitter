@@ -15,8 +15,14 @@
       <% end %>
 
 
-      <% unless user == current_user %>
-          <%= link_to 'add_to my video', '#' %>
+      <% if user != current_user %>
+
+            <% if !current_user.attachments.video.find_by_id(clip.id) %>
+              <%= link_to 'add clip_id'+clip.id.to_s, user_post_add_clip_to_my_videos_path(user, post, clip_id: clip.id), remote: true, method: :put %>
+
+            <% end %>
+
+
       <% end %>
     </div>
 

@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :posts, only:[] do
       delete 'remove_clip' => 'posts#remove_clip'
       get 'refresh_posts_videos_thumbs_block' => 'posts#refresh_posts_videos_thumbs_block'
+      put 'add_clip_to_my_videos' => 'posts#add_clip_to_my_videos'
     end
   end
 

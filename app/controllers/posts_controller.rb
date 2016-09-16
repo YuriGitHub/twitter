@@ -19,9 +19,11 @@ class PostsController < ApplicationController
 
 
     def refresh_posts_videos_thumbs_block
-
-        #binding.pry
         render template: 'posts/video/refresh_posts_videos_thumbs_block', locals: { post: Post.find(params[:post_id]), user: User.find(params[:user_id])}
+    end
+
+    def add_clip_to_my_videos
+        render template: 'posts/video/add_clip_to_my_videos'
     end
 
     def index
