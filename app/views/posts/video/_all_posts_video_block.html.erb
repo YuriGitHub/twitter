@@ -2,28 +2,25 @@
 <% post %>
 <% user %>
 <% clips = post.attachments.video %>
-<% arr = clips[0..2] %>
-<% if arr.size > 0 %>
-  <% cols = 12/arr.size %>
-<% else %>
-  <% cols = 12 %>
-<% end %>
+
+
 <div class="row">
-    <% arr.each do |clip| %>
-      <div class="col-md-<%= cols %>">
-        <%= video_tag clip.file.to_s, width: 200, height: 180 %>
-        <div><%= clip.file.to_s.split('/').last %></div>
+
+
+      <div class="col-md-12 posts-video-block-thumb-cell">
+          <%= video_tag clips.first.file.to_s, class:'posts-video-block-thumb-clip' %>
+            <%= link_to clips.first.file.to_s.split('/').last.split('.').first %>
+        <% if clips.count > 1 %>
+            <%= link_to   user_post_show_all_videos_modal_path(user, post), remote: true do %>
+                <div class="mask"><p class="mask-p">+<%= clips.count -1 %></p></div>
+            <% end %>
+        <% end %>
       </div>
-    <% end %>
+
+
 </div>
 
-<% if clips.count > 3 %>
-    <div class="row">
-      <div class="col-md-2">
-        <%= link_to 'All clips...',   user_post_show_all_videos_modal_path(user, post), remote: true %>
-      </div>
-    </div>
-<% end %>
+
 
 
 
