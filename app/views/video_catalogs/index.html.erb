@@ -14,21 +14,32 @@
 
 <h1>All Videos:</h1>
 
-<% all_clips = @user.attachments.video %>
+<% references = @user.attachment_references.where(attachment_type: 'video') %>
+<% ids = references.map{|obj| obj.attachment_id } %>
+<% ref_clips = Attachment.where(id: ids) %>
+
+
+
+<% all_clips = @user.attachments.video + ref_clips %>
 <% all_clips.each_slice(3) do |group| %>
     <div class="row catalog-video-row">
       <% group.each do |clip| %>
         <div class="col-md-4 video-cell"  id="catalog-video-cell<%= clip.id.to_s %>">
           <%= video_tag clip.file.to_s, class:'video-catalog-clip', controls: true %>
           <%= clip.file.to_s.split('/').last[0..30] %>
+          <h5>Added by:  <%= User.find(clip.user_id).login %></h5>
 
 
           <% if @user == current_user %>
-              <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id, id: clip.video_catalog_id), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
+
+              <% if clip.user_id == current_user.id %>
+                   <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id, id: clip.video_catalog_id), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
+              <% else %>
+                  <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
+              <% end %>
+
           <% end %>
         </div>
-
-
 
       <% end %>
 

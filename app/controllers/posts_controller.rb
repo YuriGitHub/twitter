@@ -27,16 +27,11 @@ class PostsController < ApplicationController
     end
 
     def add_clip_to_my_videos
-       # binding.pry
-
-        # user = User.find(params[:user_id])
-        # post = Post.find(params[:post_id])
-        # clip = Attachment.video.find(params[:clip_id])
-        #создать у юзера ссылку на чужое видео
-        # reference - attachments.video.find(clip_id)
-        #
-        # user.attachments << clip
-        # render template: 'posts/video/add_clip_to_my_videos', locals: { post: post, clip: clip}
+         user = User.find(params[:user_id])
+         post = Post.find(params[:post_id])
+         clip = Attachment.video.find(params[:clip_id])
+         user.attachment_references.create(attachment_type:'video', attachment_id: clip.id)
+         render template: 'posts/video/add_clip_to_my_videos', locals: { post: post, clip: clip}
     end
 
 

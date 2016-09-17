@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
  has_many :photo_albums
  has_many :video_catalogs
  has_many :audio_catalogs
+ has_many :attachment_references, dependent: :destroy #references for enother users media files
 
   validates :login, uniqueness: true, presence: true
 

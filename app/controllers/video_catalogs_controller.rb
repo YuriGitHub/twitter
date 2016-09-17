@@ -1,7 +1,7 @@
 class VideoCatalogsController < ApplicationController
   before_action :find_user
   before_action :check_authorization, only:[:edit, :create, :update, :destroy, :remove_video, :add_video_to_catalog, :catalog_clip_remove]
-  before_action :find_video_catalog, only:[:catalog_clip_remove, :show, :update, :destroy, :add_video_to_catalog]
+  before_action :find_video_catalog, only:[ :show, :update, :destroy, :add_video_to_catalog]
 
   def index
   end
@@ -70,7 +70,16 @@ class VideoCatalogsController < ApplicationController
 
   def catalog_clip_remove
      @clip_id = params[:clip_id]
-     @video_catalog.remove_clip(@clip_id)
+
+     if params[:id]
+       find_video_catalog
+       @video_catalog.remove_clip(@clip_id)
+     else
+       User.find(params[:user_id]).attachment_references.find_by_attachment_id(@clip_id).destroy
+     end
+
+
+
   end
 
 
@@ -81,10 +90,34 @@ class VideoCatalogsController < ApplicationController
       return
     end
     flash[:notice] = @video_catalog.load_video(video_params, current_user)
-
-
     redirect_to user_video_catalog_path(@user, @video_catalog)
   end
+
+
+
+
+
+
+
+
+
+
+
+
+  def add_to_my_videos
+    @clip = Attachment.find(params[:clip_id])
+    ref = User.find(params[:user_id]).attachment_references.create(attachment_type:'video', attachment_id: @clip.id )
+
+#binding.pry
+    @video_catalog_id = params[:video_catalog_id]
+    #binding.pry
+  end
+
+
+
+
+
+
 
 
 

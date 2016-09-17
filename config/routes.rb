@@ -44,6 +44,14 @@ Rails.application.routes.draw do
     post 'add_video_to_catalog/(:format)' => 'video_catalogs#add_video_to_catalog', as: :add_video_to_catalog
     get 'catalog_video_play' => 'video_catalogs#catalog_video_play', as: :catalog_video_play
     delete 'catalog_clip_remove' => 'video_catalogs#catalog_clip_remove', as: :catalog_clip_remove
+
+
+
+
+    put 'add_to_my_videos' => 'video_catalogs#add_to_my_videos'
+
+
+
     resources :audio_catalogs
     post 'add_track_to_catalog/(:format)' => 'audio_catalogs#add_track_to_catalog', as: :add_track_to_catalog
     delete 'remove_track' => 'audio_catalogs#remove_track', as: :remove_track

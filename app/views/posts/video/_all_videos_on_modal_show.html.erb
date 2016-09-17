@@ -17,9 +17,11 @@
 
       <% if current_user != user %>
 
-            <% if !current_user.attachments.video.find_by_id(clip.id) %>
+
+
+            <% if current_user.attachment_references.where(attachment_type:'video', attachment_id: clip.id).count == 0 %>
               <div class="posts-modal-add-to-my-videos-link" id="posts<%=post.id%>-modal-add-to-my-videos-link<%=clip.id%>">
-                 <%= link_to 'add clip_id'+clip.id.to_s, user_post_add_clip_to_my_videos_path(current_user, post, clip_id: clip.id), remote: true, method: :put %>
+                 <%= link_to '+add to my videos', user_post_add_clip_to_my_videos_path(current_user, post, clip_id: clip.id), remote: true, method: :put %>
               </div>
             <% end %>
 
