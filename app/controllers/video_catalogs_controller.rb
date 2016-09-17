@@ -68,6 +68,7 @@ class VideoCatalogsController < ApplicationController
     @clip_id = params[:clip_id]
   end
 
+
   def catalog_clip_remove
      @clip_id = params[:clip_id]
 
@@ -77,9 +78,6 @@ class VideoCatalogsController < ApplicationController
      else
        User.find(params[:user_id]).attachment_references.find_by_attachment_id(@clip_id).destroy
      end
-
-
-
   end
 
 
@@ -94,23 +92,11 @@ class VideoCatalogsController < ApplicationController
   end
 
 
-
-
-
-
-
-
-
-
-
-
   def add_to_my_videos
     @clip = Attachment.find(params[:clip_id])
     ref = User.find(params[:user_id]).attachment_references.create(attachment_type:'video', attachment_id: @clip.id )
-
-#binding.pry
     @video_catalog_id = params[:video_catalog_id]
-    #binding.pry
+
   end
 
 

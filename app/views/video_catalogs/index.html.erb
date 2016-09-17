@@ -39,6 +39,26 @@
               <% end %>
 
           <% end %>
+
+
+          <% if current_user != @user %>
+              <% if current_user.attachment_references.where(attachment_type:'video', attachment_id: clip.id).count == 0 %>
+                  <div class="video-catalog-add-to-my-videos-link" id="video-catalogmain-add-to-my-videos-link<%=clip.id%>">
+                    <%= link_to '+add to my videos', user_add_to_my_videos_path(current_user, clip_id: clip.id, video_catalog_id: 'main'), remote: true, method: :put %>
+                  </div>
+              <% end %>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+
         </div>
 
       <% end %>
