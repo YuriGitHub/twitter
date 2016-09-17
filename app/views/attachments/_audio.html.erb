@@ -1,10 +1,10 @@
 <% post = Post.find(post_id) %>
 <% audios = post.attachments.audio %>
 	<% unless audios.empty? %>
-		<%= link_to 'audios', show_audios_block_path(post_id: post.id), remote: true %>
+		<%= link_to 'audio tracks', user_post_show_audio_block_path(post.user_id, post), remote: true %>
 	<% end %>
 
-<div id="post-<%=post_id%>-audio" class='post-audios'>
+<div id="post-<%=post_id%>-audio-block" class='post-audios'>
 	<% audios.each do |track| %>
 		<br><%=audio_tag track.file.to_s, controls:true%>
 	<% end %>

@@ -3,7 +3,7 @@ class Attachment < ApplicationRecord
     belongs_to :photo_album
     belongs_to :video_catalog
     belongs_to :audio_catalog
-
+    #belongs_to :user
     validates :user_id, presence: true
 
     mount_uploader :file,FileUploader

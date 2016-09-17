@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
 
+    def show_audio_block
+        render template: 'posts/audio/show_audio_block', locals:{post_id: params[:post_id]}
+    end
+
 
     def show_all_videos_modal
         render :template => 'posts/video/show_all_videos_modal', locals:{post: Post.find(params[:post_id]), user: User.find(params[:user_id])}
@@ -23,8 +27,20 @@ class PostsController < ApplicationController
     end
 
     def add_clip_to_my_videos
-        render template: 'posts/video/add_clip_to_my_videos'
+       # binding.pry
+
+        # user = User.find(params[:user_id])
+        # post = Post.find(params[:post_id])
+        # clip = Attachment.video.find(params[:clip_id])
+        #создать у юзера ссылку на чужое видео
+        # reference - attachments.video.find(clip_id)
+        #
+        # user.attachments << clip
+        # render template: 'posts/video/add_clip_to_my_videos', locals: { post: post, clip: clip}
     end
+
+
+
 
     def index
         @user = User.find(params[:id])

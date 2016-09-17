@@ -24,7 +24,7 @@
 
 
           <% if @user == current_user %>
-              <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
+              <%= link_to 'X', user_catalog_clip_remove_path(current_user, clip_id: clip.id, id: clip.video_catalog_id), remote: true, method: :delete, data:{confirm: 'Are you shure?' }, class:'video-catalog-clip-remove-link' %>
           <% end %>
         </div>
 

@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       delete 'remove_clip' => 'posts#remove_clip'
       get 'refresh_posts_videos_thumbs_block' => 'posts#refresh_posts_videos_thumbs_block'
       put 'add_clip_to_my_videos' => 'posts#add_clip_to_my_videos'
+      get 'show_audio_block' => 'posts#show_audio_block'
     end
   end
 

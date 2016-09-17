@@ -33,9 +33,17 @@ class User < ActiveRecord::Base
 
   validate :check_date_of_birth
 
-  # after_create do
-  #   #DeviseMailer.welcome_email(self.email).deliver_later
-  # end
+   # after_create do
+   #   #DeviseMailer.welcome_email(self.email).deliver_later
+   # end
+ after_create do
+   default_video_catalog = self.video_catalogs.build(name:'From publications')
+   default_video_catalog.save
+   default_photo_album = self.photo_albums.build(name:'From publications')
+   default_photo_album.save
+   default_audio_catalog = self.audio_catalogs.build(name:'From publications')
+   default_audio_catalog.save
+ end
 
 
  #before_save :ensure_authentication_token

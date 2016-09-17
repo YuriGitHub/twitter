@@ -29,6 +29,16 @@ class AttachmentsController < ApplicationController
             type = params[:attachment][:file].content_type.split('/')[0]
             if type == 'audio' or type == 'video' or type == 'image'
                 @attachment.file_type = type.to_sym
+
+                if @attachment.file_type == 'video' && @attachment.post_id
+                    @attachment.video_catalog_id = current_user.video_catalogs.find_by_name('From publications').id
+                elsif @attachment.file_type == 'image' && @attachment.post_id
+                    @attachment.photo_album_id = current_user.photo_albums.find_by_name('From publications').id
+                elsif @attachment.file_type == 'audio' && @attachment.post_id
+                    @attachment.audio_catalog_id = current_user.audio_catalogs.find_by_name('From publications').id
+                end
+
+
                 if @attachment.save
                     render json: {}
                 else
