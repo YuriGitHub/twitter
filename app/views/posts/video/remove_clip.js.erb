@@ -1,3 +1,6 @@
 $("#posts<%=post.id%>-modal-clips<%=clip_id%>-row").remove();
 $("#posts-<%= post.id %>-videos-block").html("<%= j render partial: 'posts/video/all_posts_video_block', locals:{post: post, user: user} %>");
+if ("<%= post.attachments.video.count %>" == '0'){
+   $("#post-<%= post.id %>-videos-modal").modal('toggle');
+}
 
