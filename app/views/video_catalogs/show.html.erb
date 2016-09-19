@@ -1,7 +1,7 @@
 <h1><%= @video_catalog.name %></h1>
 <%= link_to 'All Video Catalogs', user_video_catalogs_path(@user), class:'btn btn-default' %>
 
-<% if @user == current_user %>
+<% if @user == current_user  && @video_catalog.name != 'From publications' %>
     <%= link_to 'Edit Video Catalog', edit_user_video_catalog_path(@user, @video_catalog), class:'btn btn-default' %>
     <%= link_to 'Delete Video Catalog', user_video_catalog_path(@user, @video_catalog), class:'btn btn-default', method: :delete, data:{confirm: 'Are you  shure?'} %>
 
